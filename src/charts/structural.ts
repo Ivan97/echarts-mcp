@@ -48,7 +48,7 @@ const TEMPLATES: ChartTemplate[] = [
       ],
     },
     build: (input) => {
-      const d = asNodeLink(input, 'sankey');
+      const d = asNodeLink(input, ChartType.Sankey);
       return {
         title: titleOf(input),
         tooltip: { trigger: 'item', triggerOn: 'mousemove' },
@@ -75,7 +75,7 @@ const TEMPLATES: ChartTemplate[] = [
       links: [{ source: 'A', target: 'B' }, { source: 'A', target: 'C' }, { source: 'B', target: 'D' }],
     },
     build: (input) => {
-      const d = asNodeLink(input, 'graph');
+      const d = asNodeLink(input, ChartType.Graph);
       return {
         title: titleOf(input),
         tooltip: { trigger: 'item' },

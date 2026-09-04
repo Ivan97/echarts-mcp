@@ -35,11 +35,8 @@
     "pixelmatch": "^7.2.0",
     "pngjs": "^7.0.0",
     "supertest": "^7.2.2",
-    "typescript": "^7.0.2",
+    "typescript": "^5.9.3",
     "vitest": "^4.1.11"
-  },
-  "optionalDependencies": {
-    "canvas": "^3.2.0"
   },
   "bin": {
     "echarts-mcp": "dist/transport/stdio.js",
@@ -47,5 +44,13 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "peerDependencies": {
+    "canvas": "^3.2.0"
+  },
+  "peerDependenciesMeta": {
+    "canvas": {
+      "optional": true
+    }
+  }
 }

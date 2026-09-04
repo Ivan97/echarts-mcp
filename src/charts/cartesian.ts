@@ -76,7 +76,7 @@ const TEMPLATES: ChartTemplate[] = [
       ],
     },
     build: (input) => {
-      const table = fixedDims(input, 3, 'heatmap');
+      const table = fixedDims(input, 3, ChartType.Heatmap);
       const xs = [...new Set(table.map((r) => String(r[0])))];
       const ys = [...new Set(table.map((r) => String(r[1])))];
       const values = table.map((r) => Number(r[2]));
@@ -113,7 +113,7 @@ const TEMPLATES: ChartTemplate[] = [
       source: [['A', 1, 3, 5, 7, 9], ['B', 2, 4, 6, 8, 12], ['C', 0, 2, 4, 6, 10]],
     },
     build: (input) => {
-      const table = fixedDims(input, 6, 'boxplot');
+      const table = fixedDims(input, 6, ChartType.Boxplot);
       return {
         title: titleOf(input),
         tooltip: { trigger: 'item' },
@@ -135,7 +135,7 @@ const TEMPLATES: ChartTemplate[] = [
       ],
     },
     build: (input) => {
-      const table = fixedDims(input, 5, 'candlestick');
+      const table = fixedDims(input, 5, ChartType.Candlestick);
       return {
         title: titleOf(input),
         tooltip: { trigger: 'axis', axisPointer: { type: 'cross' } },
@@ -157,7 +157,7 @@ const TEMPLATES: ChartTemplate[] = [
       ],
     },
     build: (input) => {
-      const table = fixedDims(input, 3, 'themeRiver');
+      const table = fixedDims(input, 3, ChartType.ThemeRiver);
       return {
         title: titleOf(input),
         tooltip: { trigger: 'axis', axisPointer: { type: 'line' } },

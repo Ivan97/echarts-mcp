@@ -57,7 +57,7 @@ const TEMPLATES: ChartTemplate[] = [
             type: 'pie',
             radius: ['42%', '68%'],
             itemStyle: { borderRadius: 6, borderColor: 'transparent', borderWidth: 2 },
-            data: pairs(input, 'pie'),
+            data: pairs(input, ChartType.Pie),
           },
         ],
       }) as EChartsOption,
@@ -71,7 +71,7 @@ const TEMPLATES: ChartTemplate[] = [
         title: titleOf(input),
         tooltip: { trigger: 'item' },
         series: [
-          { type: 'funnel', left: '10%', width: '80%', label: { show: true }, data: pairs(input, 'funnel') },
+          { type: 'funnel', left: '10%', width: '80%', label: { show: true }, data: pairs(input, ChartType.Funnel) },
         ],
       }) as EChartsOption,
   },
@@ -82,7 +82,7 @@ const TEMPLATES: ChartTemplate[] = [
     build: (input) =>
       ({
         title: titleOf(input),
-        series: [{ type: 'gauge', progress: { show: true, width: 14 }, data: pairs(input, 'gauge') }],
+        series: [{ type: 'gauge', progress: { show: true, width: 14 }, data: pairs(input, ChartType.Gauge) }],
       }) as EChartsOption,
   },
   {
@@ -145,7 +145,7 @@ const TEMPLATES: ChartTemplate[] = [
         title: titleOf(input),
         tooltip: { trigger: 'item' },
         series: [
-          { type: 'treemap', roam: false, itemStyle: { borderRadius: 4 }, data: pathsToTree(pairs(input, 'treemap')) },
+          { type: 'treemap', roam: false, itemStyle: { borderRadius: 4 }, data: pathsToTree(pairs(input, ChartType.Treemap)) },
         ],
       }) as EChartsOption,
   },
@@ -161,7 +161,7 @@ const TEMPLATES: ChartTemplate[] = [
         title: titleOf(input),
         tooltip: { trigger: 'item' },
         series: [
-          { type: 'sunburst', radius: [0, '85%'], itemStyle: { borderRadius: 4 }, data: pathsToTree(pairs(input, 'sunburst')) },
+          { type: 'sunburst', radius: [0, '85%'], itemStyle: { borderRadius: 4 }, data: pathsToTree(pairs(input, ChartType.Sunburst)) },
         ],
       }) as EChartsOption,
   },

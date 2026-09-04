@@ -1,0 +1,8 @@
+node_modules
+dist
+docs
+tests
+.git
+.claude
+*.local.mjs
+coverage

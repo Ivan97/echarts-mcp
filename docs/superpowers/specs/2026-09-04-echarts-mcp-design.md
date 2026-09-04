@@ -587,3 +587,58 @@ ECharts SSR 把 `textStyle.fontFamily` **原样**写进 SVG 的 `font-family="..
 
 字体栈中的字体名一律使用单引号。已加回归测试：扫描产物中所有 `font-family="..."`，
 断言其值内不含双引号。
+
+---
+
+## 17. §14 未验证假设的最终结论（实现完成后回填）
+
+### 17.1 聊天客户端对 SVG 的支持 —— 仍未验证
+
+未用真实聊天客户端做过测试。当前实现保持保守默认：`delivery: "inline"` 时强制输出 PNG。
+该默认在任何情况下都不会出错，代价是内联场景多付约 95ms 的栅格化开销。
+
+**若后续验证发现客户端能渲染 SVG**，只需放宽 `src/deliver/resolve.ts` 中的一处分支即可，
+不涉及架构改动。
+
+### 17.2 node-canvas 路径 —— 已验证可用，但无优势
+
+实测（macOS，600x400 含中文柱状图）：CanvasRenderer 出图 117ms，PNG 正确，中文正常。
+
+与 resvg 路径（95~122ms）**基本持平，并不更快**。而 canvas 需要编译 cairo/pango，
+安装成本高得多。因此维持 resvg 为默认 PNG 路径的决定不变，canvas 仅在需要其独有渲染特性时使用。
+
+canvas 已从 `optionalDependencies` 改为**可选 peer 依赖**，原因见 17.5。
+
+### 17.3 字体缓存收益 —— 已验证，但结论与预期不同
+
+见 §16.10。真实收益 2.4 倍而非更高，瓶颈是 CJK 字体文件本身的解析而非目录扫描。
+
+### 17.4 sankey / graph / tree 的 data 适配 —— 已验证，未超预期
+
+三类各用专属数据结构（`NodeLinkData` 与 `TreeNode`）后适配顺利，
+未出现 §14.4 担心的「适配代价过高」情况，无需退回只走 `render_option`。
+代价仅是这三类的 `dataShape` 描述比其他类型长一些。
+
+### 17.5 新发现：两个只在容器里才暴露的部署问题
+
+本地测试全绿、Docker 构建却失败的两个问题，均源于 **npm 用 `optionalDependencies`
+分发平台原生二进制**这一惯例：
+
+1. **TypeScript 7 的编译器二进制**。构建阶段的 `npm ci --omit=optional` 剥掉了
+   `@typescript/typescript-linux-arm64`，导致镜像内无法编译。
+   处理：退回 TypeScript 5（同时不再需要为 TS 7 添加的 `types: ["node"]` 绕行项）。
+2. **`@resvg/resvg-js` 的栅格化二进制**。运行时阶段同样被 `--omit=optional` 剥掉，
+   容器启动即崩，报 `Cannot find module @resvg/resvg-js-linux-arm64-gnu`。
+
+根因是用 `--omit=optional` 来排除 `canvas`，结果误伤了所有平台二进制包。
+处理：`canvas` 改为**可选 peer 依赖**（`peerDependenciesMeta.canvas.optional = true`），
+npm 本来就不会自动安装它，因而 Dockerfile 不再需要 `--omit=optional`。
+
+同时修掉一个可移植性缺陷：`import('canvas')` 用字符串字面量会让 TypeScript 静态解析该模块，
+在未安装该可选依赖的环境里直接报 TS2307 —— 那就违背了「可选」的意义。
+改用变量做 import 说明符，并加测试锁定。
+
+### 17.6 容器内中文渲染 —— 已验证
+
+在 `node:24-slim` + `fonts-noto-cjk` 镜像内，通过 HTTP 接口生成含中文的柱状图并导出目视确认：
+中文完整、Apple 配色与虚线网格均正确。镜像大小 639MB。

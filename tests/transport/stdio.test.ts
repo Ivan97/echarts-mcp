@@ -18,10 +18,33 @@ describe('stdio entry', () => {
     expect(pkg.bin['echarts-mcp-http']).toBe('dist/transport/http.js');
   });
 
-  it('canvas 是可选依赖而非必需依赖', () => {
+  // canvas 用可选 peer 依赖而非 optionalDependency：
+  // Docker 里 npm ci --omit=optional 会把 @resvg/resvg-js 的平台原生二进制一并剥掉，
+  // 导致运行时报 Cannot find module @resvg/resvg-js-linux-arm64-gnu。
+  // 可选 peer 依赖 npm 本来就不会自动安装，不需要 --omit=optional 这个开关。
+  it('canvas 是可选 peer 依赖，且不出现在 dependencies 与 optionalDependencies 中', () => {
     const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
-    expect(pkg.optionalDependencies?.canvas).toBeTruthy();
+    expect(pkg.peerDependencies?.canvas).toBeTruthy();
+    expect(pkg.peerDependenciesMeta?.canvas?.optional).toBe(true);
     expect(pkg.dependencies?.canvas).toBeUndefined();
+    expect(pkg.optionalDependencies).toBeUndefined();
+  });
+
+  it('Dockerfile 的 RUN 指令中不使用 --omit=optional', () => {
+    // 只看指令行，注释里解释「为什么不用」是允许的
+    const runLines = readFileSync('Dockerfile', 'utf8')
+      .split('\n')
+      .filter((l) => l.trimStart().startsWith('RUN'));
+    expect(runLines.length).toBeGreaterThan(0);
+    for (const line of runLines) {
+      expect(line, '剥掉 optional 会一并删除 resvg 的平台原生二进制').not.toMatch(/--omit=optional/);
+    }
+  });
+
+  it('可选依赖用变量做 import 说明符，缺失时仍能通过类型检查', () => {
+    const src = readFileSync('src/render/canvas.ts', 'utf8');
+    expect(src).not.toMatch(/import\('canvas'\)/);
+    expect(src).toContain('CANVAS_SPECIFIER');
   });
 
   it('全仓库源码不出现 eval 或 new Function', () => {
