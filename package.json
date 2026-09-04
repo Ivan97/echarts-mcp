@@ -9,7 +9,8 @@
   "scripts": {
     "test": "vitest run",
     "build": "tsc -p tsconfig.json",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [],
   "author": "",
@@ -39,5 +40,12 @@
   },
   "optionalDependencies": {
     "canvas": "^3.2.0"
-  }
+  },
+  "bin": {
+    "echarts-mcp": "dist/transport/stdio.js",
+    "echarts-mcp-http": "dist/transport/http.js"
+  },
+  "files": [
+    "dist"
+  ]
 }
