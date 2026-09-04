@@ -1,33 +1,33 @@
 # @ivan97/echarts-mcp
 
-[![npm](https://img.shields.io/npm/v/@ivan97/echarts-mcp)](https://www.npmjs.com/package/@ivan97/echarts-mcp)
-[![license](https://img.shields.io/npm/l/@ivan97/echarts-mcp)](LICENSE)
+[![npm](https://img.shields.io/npm/v/%40ivan97%2Fecharts-mcp)](https://www.npmjs.com/package/@ivan97/echarts-mcp)
+[![license](https://img.shields.io/badge/license-MIT-blue)](https://github.com/Ivan97/echarts-mcp/blob/main/LICENSE)
+[![node](https://img.shields.io/node/v/%40ivan97%2Fecharts-mcp)](https://nodejs.org)
 
-Apache ECharts 的 MCP 服务。给 LLM 一个图表类型和一份数据，返回可直接渲染的图。
+**English** · [简体中文](https://github.com/Ivan97/echarts-mcp/blob/main/README_CN.md)
 
-支持 **stdio** 与 **Streamable HTTP** 两种集成方式，输出 SVG / PNG / ECharts option JSON / 自包含 HTML 四种格式。
+An MCP server for Apache ECharts. Give an LLM a chart type and some data, get back a chart it can render.
 
-- 覆盖 18 种图表类型，细分样式（堆叠、横向、极坐标、双 Y 轴、玫瑰图……）不需要换工具
-- 默认渲染链路**零原生依赖**：ECharts SSR 出 SVG，需要位图时经 `@resvg/resvg-js` 栅格化，无需编译 cairo/pango
-- 存储走 `StorageAdapter` 接口，**不绑定任何云厂商**
-- 输出为 Markdown 语法，支持 md 的客户端直接把图渲染出来
+Works over **stdio** and **Streamable HTTP**, and produces SVG, PNG, ECharts option JSON, or a self-contained interactive HTML page.
 
-> **完整使用指南见 [`docs/usage.md`](https://github.com/Ivan97/echarts-mcp/blob/main/docs/usage.md)** —— 安装、各客户端接入配置、
-> 三个工具的全部参数、数据结构、出错时的表现，所有示例都是实际跑过的。
+- **18 chart types.** Variants like stacked, horizontal, polar, dual-axis and rose need no separate tool
+- **No native dependencies by default.** ECharts renders SVG server-side; PNG goes through `@resvg/resvg-js`, which ships prebuilt binaries, so there is nothing to compile
+- **No cloud vendor lock-in.** Storage sits behind a `StorageAdapter` interface with a local-disk implementation built in
+- **Markdown output.** Clients that render Markdown show the chart inline instead of a bare path
 
-## 快速开始
+## Quick start
 
-### 安装
+### Install
 
 ```bash
 npm install -g @ivan97/echarts-mcp
 ```
 
-也可以不装，接入配置里直接用 `npx`。
+You can also skip the install and point your client at `npx`.
 
 ### stdio
 
-标准 `mcpServers` 配置，适用于 Claude Desktop、Claude Code、Cherry Studio 等：
+Standard `mcpServers` config, works with Claude Desktop, Claude Code, Cherry Studio and others:
 
 ```json
 {
@@ -40,13 +40,13 @@ npm install -g @ivan97/echarts-mcp
 }
 ```
 
-Claude Code 也可以一行命令加上：
+With Claude Code, one command does it:
 
 ```bash
 claude mcp add echarts -- npx -y @ivan97/echarts-mcp
 ```
 
-### 远端 HTTP
+### Remote over HTTP
 
 ```bash
 docker run -d -p 3000:3000 \
@@ -56,7 +56,7 @@ docker run -d -p 3000:3000 \
   echarts-mcp
 ```
 
-客户端配置：
+Client config:
 
 ```json
 {
@@ -70,9 +70,9 @@ docker run -d -p 3000:3000 \
 }
 ```
 
-### 从 LangChain 调用
+### From LangChain
 
-本服务是标准 MCP server，无需任何改动即可被 LangChain 消费：
+This is a standard MCP server, so no adapter work is needed:
 
 ```ts
 import { MultiServerMCPClient } from '@langchain/mcp-adapters';
@@ -83,91 +83,93 @@ const client = new MultiServerMCPClient({
 const tools = await client.getTools();
 ```
 
-## 三个工具
+## Three tools
 
-| 工具 | 用途 |
+| Tool | What it is for |
 |---|---|
-| `generate_chart` | 主力。给图表类型与数据即可出图；细分样式靠 `optionOverrides` 追加 option 片段实现 |
-| `render_option` | 专家模式。直接给完整 ECharts option，能力上限等同 ECharts 本身 |
-| `list_chart_types` | 查询某类型的 data 结构、示例数据与可用的细分样式片段 |
+| `generate_chart` | The main one. Give it a chart type and data; variants come from `optionOverrides` |
+| `render_option` | Expert mode. Pass a complete ECharts option; the ceiling is ECharts itself |
+| `list_chart_types` | Look up a type's data shape, a copy-pasteable example, and its available variants |
 
-工具数量固定为 3 个。「每种图表一个工具」的路线会把 20~30 份 schema 常驻在 LLM 的 context 里；
-这里把它变成按需拉取 —— 平时只占一个工具的位置，需要时再调 `list_chart_types`。
+The tool count is fixed at three on purpose. Giving every chart type its own tool means 20-odd schemas sitting in the model's context at all times. Here that information moves into `list_chart_types`, which the model calls only when it needs it.
 
-### 细分样式不需要新工具
+### Variants do not need new tools
 
-「堆叠柱状图」不是一种新的图表类型，只是 `bar` 加了一段 option：
+A stacked bar chart is not a new chart type. It is `bar` plus one option fragment:
 
 ```json
 {
   "type": "bar",
-  "data": { "dimensions": ["月份", "订阅", "服务"], "source": [["1月", 182, 61], ["2月", 214, 74]] },
-  "optionOverrides": { "series": [{ "stack": "总量" }, { "stack": "总量" }] }
+  "data": { "dimensions": ["Month", "Subscription", "Services"], "source": [["Jan", 182, 61], ["Feb", 214, 74]] },
+  "optionOverrides": { "series": [{ "stack": "total" }, { "stack": "total" }] }
 }
 ```
 
-现成的片段可以从 `list_chart_types` 拿：传入 `type` 会返回该类型的 `variants` 列表。
+Ready-made fragments come from `list_chart_types`: pass a `type` and it returns that type's `variants`.
 
-## 支持的图表类型
+## Supported chart types
 
-18 种，分三组。每种的 data 结构、示例数据与实测渲染图见 [`docs/chart-types.md`](https://github.com/Ivan97/echarts-mcp/blob/main/docs/chart-types.md)。
+18 in three groups. Data shapes, example data and rendered samples for each are in
+[`docs/chart-types.md`](https://github.com/Ivan97/echarts-mcp/blob/main/docs/chart-types.md).
 
-- **直角坐标系**：`bar` `line` `scatter` `pictorialBar` `heatmap` `boxplot` `candlestick` `themeRiver`
-- **非直角坐标系**：`pie` `funnel` `gauge` `radar` `parallel` `treemap` `sunburst`
-- **结构型**：`sankey` `graph` `tree`
+- **Cartesian**: `bar` `line` `scatter` `pictorialBar` `heatmap` `boxplot` `candlestick` `themeRiver`
+- **Non-cartesian**: `pie` `funnel` `gauge` `radar` `parallel` `treemap` `sunburst`
+- **Structural**: `sankey` `graph` `tree`
 
-一期不含地图类（`map` / `geo`）与 3D 类：前者需要 GeoJSON 分发，是独立子系统；后者依赖 WebGL，SSR 环境不可用。
+Maps (`map` / `geo`) and 3D types are out of scope for now: maps need GeoJSON distribution, which is its own subsystem, and 3D depends on WebGL, which is unavailable in a server-side rendering environment.
 
-## 输出格式与交付通道
+## Output formats and delivery
 
-`output` 决定产物形态，`delivery` 决定怎么交给调用方。都不传时按传输方式取最省 token 的默认值：
+`output` decides what gets produced, `delivery` decides how it reaches the caller. Leave both unset and the defaults follow the transport, picking whichever costs the fewest tokens:
 
-| 传输 | 默认 delivery | 默认 output | 理由 |
+| Transport | Default delivery | Default output | Why |
 |---|---|---|---|
-| stdio | `file` | `svg` | 写本地盘返回路径，客户端可直接打开 |
-| HTTP | `url` | `svg` | 对话里只占一行链接 |
+| stdio | `file` | `svg` | Writes to disk and returns the path, which the client can open directly |
+| HTTP | `url` | `svg` | A single line in the conversation |
 
-两条需要知道的规则：
+Two rules worth knowing:
 
-- **`delivery: "inline"` 会强制输出 PNG。** 多数聊天客户端不渲染 `image/svg+xml`。
-- **`output: "html"` 不支持内联。** 它内联了 ECharts 运行时，达 MB 量级，只能走文件或链接。
+- **`delivery: "inline"` forces PNG.** Most chat clients do not render `image/svg+xml`.
+- **`output: "html"` cannot be inlined.** It bundles the ECharts runtime and weighs about 1.1 MB, so it goes to a file or a link.
 
-`html` 产物是一个不依赖外部网络的单文件页面，打开即是带 tooltip、图例交互与动画的真实图表。
+The `html` artifact is a single self-contained page with no external network dependencies. Open it and you get a real chart with tooltips, legend interaction and animation.
 
-## 配置
+## Configuration
 
-| 环境变量 | 默认值 | 说明 |
+| Variable | Default | Description |
 |---|---|---|
-| `ECHARTS_MCP_TOKEN` | 空 | 配置则启用 Bearer 鉴权，不配则开放 |
-| `ECHARTS_MCP_PORT` | 3000 | HTTP 端口 |
-| `ECHARTS_MCP_PUBLIC_URL` | 空 | `url` 通道生成链接的 base URL |
-| `ECHARTS_MCP_STORAGE_DIR` | 系统临时目录 | 图片落盘路径 |
-| `ECHARTS_MCP_STORAGE_TTL` | 3600 | 图片保留秒数 |
+| `ECHARTS_MCP_TOKEN` | empty | Set it to require a Bearer token; leave it unset for open access |
+| `ECHARTS_MCP_PORT` | 3000 | HTTP port |
+| `ECHARTS_MCP_PUBLIC_URL` | empty | Base URL for links produced by the `url` channel |
+| `ECHARTS_MCP_STORAGE_DIR` | system temp dir | Where chart files are written |
+| `ECHARTS_MCP_STORAGE_TTL` | 3600 | Seconds a chart file is kept before cleanup |
 | `ECHARTS_MCP_RENDERER` | `auto` | `auto` \| `svg` \| `resvg` \| `canvas` |
-| `ECHARTS_MCP_MAX_OPTION_BYTES` | 2000000 | option 序列化字节上限 |
-| `ECHARTS_MCP_MAX_DATA_POINTS` | 50000 | 数据点总量上限 |
-| `ECHARTS_MCP_FONT_FILES` | 空 | 逗号分隔的字体文件路径，覆盖自动探测 |
+| `ECHARTS_MCP_MAX_OPTION_BYTES` | 2000000 | Serialized option size limit |
+| `ECHARTS_MCP_MAX_DATA_POINTS` | 50000 | Total data point limit |
+| `ECHARTS_MCP_FONT_FILES` | empty | Comma-separated font file paths, overriding auto-detection |
 
-## 关于字体
+## About fonts
 
-PNG 由服务端栅格化，用的是**服务器上**的字体；SVG 里字体名原样写入，由**查看者**的设备解析。
-两条路径的可用字体不同。容器缺中文字体时会静默丢字而不报错，所以镜像里预装了 `fonts-noto-cjk`。
+PNG is rasterized on the server using **the server's** fonts. SVG carries font names verbatim and is resolved by **the viewer's** device. The two paths do not see the same fonts.
 
-渲染中文的 PNG 单图约 90ms，开销主要来自 CJK 字体文件本身的解析（Noto Sans CJK 有 20MB 量级），
-每次栅格化都要重新解析且无法复用。SVG 单图约 2ms，这也是默认走 SVG 的原因。
+A container without CJK fonts drops those glyphs silently rather than failing, which is why the image preinstalls `fonts-noto-cjk`.
 
-## 开发
+Rendering a PNG with CJK text takes roughly 90ms. Most of that is parsing the CJK font file itself: Noto Sans CJK is around 20MB and gets reparsed on every rasterization, with no way to reuse a font database. SVG takes about 2ms, which is why it is the default.
+
+## Development
 
 ```bash
 npm install
-npm test            # 单元测试、渲染回归、视觉回归、传输层集成测试
-npm run coverage    # 覆盖率
+npm test            # unit, render regression, visual regression, transport integration
+npm run coverage
 npm run build
 ```
 
-- 使用指南：[`docs/usage.md`](https://github.com/Ivan97/echarts-mcp/blob/main/docs/usage.md)
-- 图表类型清单与实测示例图：[`docs/chart-types.md`](https://github.com/Ivan97/echarts-mcp/blob/main/docs/chart-types.md)
-- 设计文档与实施计划：`docs/superpowers/`
+## Documentation
+
+- Usage guide: [`docs/usage.md`](https://github.com/Ivan97/echarts-mcp/blob/main/docs/usage.md)
+- Chart types with rendered samples: [`docs/chart-types.md`](https://github.com/Ivan97/echarts-mcp/blob/main/docs/chart-types.md)
+- Design docs and implementation plan: `docs/superpowers/`
 
 ## License
 
