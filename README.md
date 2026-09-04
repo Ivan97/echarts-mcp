@@ -9,6 +9,9 @@ Apache ECharts 的 MCP 服务。给 LLM 一个图表类型和一份数据，返�
 - 存储走 `StorageAdapter` 接口，**不绑定任何云厂商**
 - 输出为 Markdown 语法，支持 md 的客户端直接把图渲染出来
 
+> **完整使用指南见 [`docs/usage.md`](docs/usage.md)** —— 安装、各客户端接入配置、
+> 三个工具的全部参数、数据结构、出错时的表现，所有示例都是实际跑过的。
+
 ## 快速开始
 
 ### stdio
@@ -151,7 +154,9 @@ npm run coverage    # 覆盖率
 npm run build
 ```
 
-设计文档与实施计划在 `docs/superpowers/` 下。
+- 使用指南：[`docs/usage.md`](docs/usage.md)
+- 图表类型清单与实测示例图：[`docs/chart-types.md`](docs/chart-types.md)
+- 设计文档与实施计划：`docs/superpowers/`
 
 ## License
 
