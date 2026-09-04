@@ -1,0 +1,278 @@
+{
+  "$comment": "option 配置与效果目录。每条都会被 scripts/verify-option-effects.mjs 套到一张基准图上渲染，验证确实生效且不产生空图。effect 字段描述的是视觉结果。",
+  "base": {
+    "type": "bar",
+    "data": {
+      "dimensions": ["月份", "销量", "利润"],
+      "source": [["1月", 120, 30], ["2月", 200, 60], ["3月", 150, 45], ["4月", 180, 70]]
+    },
+    "title": "基准图"
+  },
+  "groups": [
+    {
+      "name": "布局与留白",
+      "items": [
+        {
+          "id": "grid-padding",
+          "effect": "调整绘图区四边留白。轴标签被截断时加大对应方向的值",
+          "overrides": { "grid": { "left": 90, "right": 60, "top": 80, "bottom": 90 } }
+        },
+        {
+          "id": "grid-contain-label",
+          "effect": "让 grid 自动把轴标签算进留白，长类目名不再被裁掉",
+          "overrides": { "grid": { "containLabel": true } }
+        }
+      ]
+    },
+    {
+      "name": "标题与图例",
+      "items": [
+        {
+          "id": "title-left",
+          "effect": "标题左对齐。默认居中，左对齐更像报表",
+          "overrides": { "title": { "left": "left" } }
+        },
+        {
+          "id": "legend-top-right",
+          "effect": "图例移到右上角，把底部空间让给数据",
+          "overrides": { "legend": { "top": 10, "right": 10, "bottom": "auto", "orient": "vertical" } }
+        },
+        {
+          "id": "legend-hidden",
+          "effect": "隐藏图例。只有一条系列时图例是噪音",
+          "overrides": { "legend": { "show": false } }
+        }
+      ]
+    },
+    {
+      "name": "坐标轴",
+      "items": [
+        {
+          "id": "axis-label-rotate",
+          "effect": "类目标签旋转 30 度并强制全部显示，解决长标签重叠",
+          "overrides": { "xAxis": { "axisLabel": { "rotate": 30, "interval": 0 } } }
+        },
+        {
+          "id": "axis-name",
+          "effect": "给坐标轴加单位说明，避免读者猜数量级",
+          "overrides": {
+            "xAxis": { "name": "月份" },
+            "yAxis": { "name": "万元", "nameLocation": "end" }
+          }
+        },
+        {
+          "id": "axis-range",
+          "effect": "固定 y 轴范围。多图对比时必须固定，否则各图刻度不同会误导",
+          "overrides": { "yAxis": { "min": 0, "max": 250 } }
+        },
+        {
+          "id": "axis-scale",
+          "effect": "不强制从 0 开始，放大数值间的相对差异。慎用，会夸大差距",
+          "overrides": { "yAxis": { "scale": true } }
+        },
+        {
+          "id": "axis-format-percent",
+          "effect": "y 轴刻度加百分号，用字符串模板而非函数",
+          "overrides": { "yAxis": { "axisLabel": { "formatter": "{value} %" } } }
+        },
+        {
+          "id": "splitline-off",
+          "effect": "去掉横向网格线，画面更干净",
+          "overrides": { "yAxis": { "splitLine": { "show": false } } }
+        }
+      ]
+    },
+    {
+      "name": "系列通用",
+      "items": [
+        {
+          "id": "stack",
+          "effect": "两条系列堆叠，看总量也看构成。有几条系列就要给几个条目",
+          "overrides": { "series": [{ "stack": "总量" }, { "stack": "总量" }] }
+        },
+        {
+          "id": "label-top",
+          "effect": "柱顶显示数值。类目少时比让读者去比高度更直接",
+          "overrides": { "series": [{ "label": { "show": true, "position": "top" } }] }
+        },
+        {
+          "id": "label-inside-format",
+          "effect": "标签显示在柱体内部并带单位，{c} 是数值占位符",
+          "overrides": {
+            "series": [{ "label": { "show": true, "position": "inside", "formatter": "{c} 万" } }]
+          }
+        },
+        {
+          "id": "item-radius",
+          "effect": "柱顶加圆角，观感更柔和",
+          "overrides": { "series": [{ "itemStyle": { "borderRadius": [6, 6, 0, 0] } }] }
+        },
+        {
+          "id": "bar-width",
+          "effect": "控制柱宽与柱间距。类目少时柱子过宽可用它收窄",
+          "overrides": { "series": [{ "barWidth": "35%", "barGap": "20%" }] }
+        },
+        {
+          "id": "color-palette",
+          "effect": "换整体配色。放在顶层而非 series 里，所有系列按顺序取色",
+          "overrides": { "color": ["#c23531", "#61a0a8"] }
+        },
+        {
+          "id": "single-series-color",
+          "effect": "只改某一条系列的颜色，其余系列仍走调色板",
+          "overrides": { "series": [{ "itemStyle": { "color": "#34c759" } }] }
+        }
+      ]
+    },
+    {
+      "name": "折线专属",
+      "items": [
+        {
+          "id": "line-smooth-area",
+          "effect": "平滑曲线加半透明面积填充，强调累积趋势",
+          "overrides": {
+            "series": [
+              { "type": "line", "smooth": true, "areaStyle": { "opacity": 0.15 } },
+              { "type": "line", "smooth": true }
+            ]
+          }
+        },
+        {
+          "id": "line-step",
+          "effect": "阶梯折线，适合状态跳变而非连续变化的数据",
+          "overrides": { "series": [{ "type": "line", "step": "end" }, { "type": "line" }] }
+        },
+        {
+          "id": "line-no-symbol",
+          "effect": "隐藏数据点标记。数据点密集时标记会糊成一片",
+          "overrides": { "series": [{ "type": "line", "symbol": "none" }, { "type": "line" }] }
+        },
+        {
+          "id": "line-dashed",
+          "effect": "虚线，常用来表示预测值或目标线",
+          "overrides": {
+            "series": [{ "type": "line", "lineStyle": { "type": "dashed", "width": 2 } }, { "type": "line" }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "标注",
+      "items": [
+        {
+          "id": "markline-average",
+          "effect": "画一条均值线，无需自己计算",
+          "overrides": { "series": [{ "markLine": { "data": [{ "type": "average", "name": "平均" }] } }] }
+        },
+        {
+          "id": "markline-custom",
+          "effect": "画一条指定数值的参考线，例如目标值",
+          "overrides": {
+            "series": [{ "markLine": { "data": [{ "yAxis": 160, "name": "目标" }], "label": { "show": true } } }]
+          }
+        },
+        {
+          "id": "markpoint-extremes",
+          "effect": "标出最大值与最小值，无需自己找极值点",
+          "overrides": {
+            "series": [
+              { "markPoint": { "data": [{ "type": "max", "name": "峰值" }, { "type": "min", "name": "谷值" }] } }
+            ]
+          }
+        },
+        {
+          "id": "markarea",
+          "effect": "给某个区间加背景色块，用来圈出关注区域",
+          "overrides": {
+            "series": [
+              {
+                "markArea": {
+                  "itemStyle": { "color": "rgba(0,122,255,0.08)" },
+                  "data": [[{ "xAxis": "2月" }, { "xAxis": "3月" }]]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "数据映射与缩放",
+      "items": [
+        {
+          "id": "visualmap-continuous",
+          "effect": "按数值大小连续着色，并带一个可拖动的图例条",
+          "overrides": {
+            "visualMap": {
+              "min": 0,
+              "max": 220,
+              "calculable": true,
+              "orient": "horizontal",
+              "left": "center",
+              "bottom": 0,
+              "inRange": { "color": ["#34c759", "#ffcc00", "#ff3b30"] }
+            },
+            "grid": { "bottom": 80 }
+          }
+        },
+        {
+          "id": "datazoom-inside",
+          "effect": "数据点很多时加缩放。注意静态图里看不出效果，只在 output 为 html 时可交互",
+          "overrides": { "dataZoom": [{ "type": "inside" }, { "type": "slider", "bottom": 10 }], "grid": { "bottom": 90 } }
+        }
+      ]
+    },
+    {
+      "name": "坐标系变换",
+      "items": [
+        {
+          "id": "horizontal",
+          "effect": "横向条形图。类目名长时首选。yAxis.data 必须填真实类目",
+          "overrides": {
+            "xAxis": { "type": "value", "data": null },
+            "yAxis": { "type": "category", "data": ["1月", "2月", "3月", "4月"] }
+          }
+        },
+        {
+          "id": "polar",
+          "effect": "极坐标柱状图。必须同时把 grid/xAxis/yAxis 置 null 并声明 polar",
+          "overrides": {
+            "grid": null,
+            "xAxis": null,
+            "yAxis": null,
+            "polar": { "radius": [30, "72%"] },
+            "angleAxis": { "type": "category", "data": ["1月", "2月", "3月", "4月"] },
+            "radiusAxis": {},
+            "series": [{ "coordinateSystem": "polar" }, { "coordinateSystem": "polar" }]
+          }
+        },
+        {
+          "id": "dual-y-axis",
+          "effect": "双 Y 轴。量纲不同的两条系列共存，第二条走右轴并改成折线",
+          "overrides": {
+            "yAxis": [
+              { "type": "value", "name": "销量" },
+              { "type": "value", "name": "利润" }
+            ],
+            "series": [{}, { "type": "line", "yAxisIndex": 1, "smooth": true }]
+          }
+        }
+      ]
+    },
+    {
+      "name": "主题与背景",
+      "items": [
+        {
+          "id": "background",
+          "effect": "改画布背景色。深色页面里嵌浅色图时需要一并调整",
+          "overrides": { "backgroundColor": "#f5f5f7" }
+        },
+        {
+          "id": "transparent-bg",
+          "effect": "背景透明，方便嵌进已有页面",
+          "overrides": { "backgroundColor": "transparent" }
+        }
+      ]
+    }
+  ]
+}

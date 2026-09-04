@@ -1,0 +1,131 @@
+---
+name: echarts-mcp
+description: "Generate charts with Apache ECharts through the echarts-mcp server. Use when the user asks to chart, plot, graph or visualize data, or mentions 画图/图表/柱状图/折线图/饼图/散点图/雷达图/热力图/桑基图/漏斗图/仪表盘/旭日图/树图/箱线图/K线图, or names generate_chart, render_option or list_chart_types. Covers chart type selection, the three data shapes, variants via optionOverrides, output and delivery choice, and recovering from silently empty charts."
+---
+
+# Charting with echarts-mcp
+
+Three tools. Reach for `generate_chart` first.
+
+| Tool | Use it when |
+|---|---|
+| `generate_chart` | Default. You have a chart type and data |
+| `render_option` | Templates cannot express it: multiple coordinate systems, custom series combinations |
+| `list_chart_types` | You are unsure of a type's data shape or want its ready-made variant fragments |
+
+**The one thing to internalize: ECharts does not throw on a bad option, it silently draws a blank chart.** A tool call that "succeeded" can still have produced nothing. The server detects this and prefixes the response with a note; read the note before doing anything else.
+
+## Pick the type from the question
+
+Match what the user is asking, not what the numbers look like.
+
+| The user is asking | Type |
+|---|---|
+| How does this change over time? | `line` |
+| How do these categories compare? | `bar` |
+| What share does each part hold? | `pie` |
+| Do these two measures relate? | `scatter` |
+| Where do people drop off? | `funnel` for linear stages, `sankey` when the flow branches |
+| How does one subject score across several axes? | `radar` |
+| Which cell is hot in a two-dimension grid? | `heatmap` |
+| How is a whole broken into nested parts? | `treemap` for area, `sunburst` for rings |
+| How far along is one metric? | `gauge` |
+| How is this distribution spread? | `boxplot` |
+| How did this price move? | `candlestick` |
+| How are these entities connected? | `graph` |
+| What is the hierarchy? | `tree` |
+| How do many samples compare across many measures? | `parallel` |
+| How do several series' volumes shift over time? | `themeRiver` |
+| Same as bar, drawn with repeated symbols | `pictorialBar` |
+
+`map`, `geo`, `lines` and 3D types are **not supported**. If the user wants a map, say so; do not substitute `scatter`.
+
+The table above picks a type. **When the choice is not obvious, or you want to know when a type is the wrong call, read `references/choosing-and-options.md`.** It covers, per type, what it is good for, what it is not, and the misuse that shows up most often — a pie chart with nine slices, a bar chart whose axis does not start at zero, a funnel used for a branching flow.
+
+## Three data shapes
+
+**Tabular** (15 types) — first dimension is the category axis, each remaining one becomes a series:
+
+```json
+{ "dimensions": ["Month", "Sales", "Profit"], "source": [["Jan", 120, 30], ["Feb", 200, 60]] }
+```
+
+Rows may be objects keyed by `dimensions` instead of arrays. Some types need an exact dimension count and will tell you the expected number if you get it wrong: `pie`/`funnel`/`gauge`/`treemap`/`sunburst` need 2, `heatmap`/`themeRiver` need 3, `candlestick` needs 5, `boxplot` needs 6 (a precomputed five-number summary, not raw observations).
+
+**Node-link** (`sankey`, `graph`) — `source` and `target` must name entries in `nodes`:
+
+```json
+{ "nodes": [{ "name": "Visit" }, { "name": "Signup" }],
+  "links": [{ "source": "Visit", "target": "Signup", "value": 60 }] }
+```
+
+**Tree** (`tree`) — one root, recursive `children`:
+
+```json
+{ "name": "Company", "children": [{ "name": "Engineering", "children": [{ "name": "Frontend" }] }] }
+```
+
+For anything beyond `bar`/`line`/`pie`/`scatter`, read `references/chart-types.md` rather than guessing. It is generated from the source, so it cannot drift.
+
+## Variants are option fragments, not new types
+
+Stacked, horizontal, polar, smooth, area, rose, dual-axis are the same `type` plus `optionOverrides`. Merging is recursive and **arrays merge by index**, so touching `series[0]` will not wipe its `data`.
+
+```json
+{ "type": "bar",
+  "data": { "dimensions": ["Month", "Sub", "Svc"], "source": [["Jan", 182, 61], ["Feb", 214, 74]] },
+  "optionOverrides": { "series": [{ "stack": "total" }, { "stack": "total" }] } }
+```
+
+Common fragments:
+
+| Want | `optionOverrides` |
+|---|---|
+| Stacked | `{"series":[{"stack":"t"},{"stack":"t"}]}` — one entry per series |
+| Area | `{"series":[{"areaStyle":{}}]}` |
+| Smooth | `{"series":[{"smooth":true}]}` |
+| Value labels | `{"series":[{"label":{"show":true,"position":"top"}}]}` |
+| Custom colors | `{"color":["#c23531","#2f4554"]}` |
+| Dual Y axis | `{"yAxis":[{"type":"value"},{"type":"value"}],"series":[{},{"yAxisIndex":1,"type":"line"}]}` |
+| Rose pie | `{"series":[{"roseType":"area","radius":["15%","72%"]}]}` |
+| Percent labels on pie | `{"series":[{"label":{"show":true,"formatter":"{b}: {d}%"}}]}` |
+| Mean line and extremes | `{"series":[{"markLine":{"data":[{"type":"average"}]},"markPoint":{"data":[{"type":"max"}]}}]}` |
+
+**Two fragments carry a placeholder you must replace.** The horizontal (`横向`) and polar (`极坐标`) variants for `bar` ship with `"data": ["替换为实际类目"]`. Paste one verbatim and the axis renders that literal text with none of the real categories — the chart looks plausible, has a normal file size, and triggers no warning. Substitute the actual categories first.
+
+## Output and delivery
+
+Leave both unset unless you have a reason; the defaults follow the transport and cost the fewest tokens.
+
+| Goal | Set |
+|---|---|
+| Just show a chart | nothing |
+| Show it inline in a chat window | `"delivery": "inline"` — forces PNG, since most clients do not render SVG |
+| Hand the config to a frontend | `"output": "option"` |
+| Interactive page with tooltips and animation | `"output": "html"` — about 1.1 MB, returned as a file or link, never inline |
+
+## Functions cannot be sent
+
+Tool arguments are JSON. Use string templates (`{b}`, `{c}`, `{d}%`) for labels, and per-point `symbolSize` on each data item for bubble charts. Function strings execute only under `"output": "html"`, where the browser runs them.
+
+## Do not
+
+- **Do not use `render_option` for an ordinary chart.** It bypasses the templates, so you lose sensible grid spacing, legends and theming, and must get every field right yourself.
+- **Do not fabricate data.** If numbers are missing, ask.
+- **Do not retry the same arguments after an empty-chart note.** The note names the field to fix.
+- **Do not restate the chart in prose.** The response is already `![title](path)`; pass it through and add only what the chart does not show.
+
+## Bundled files
+
+| Path | What it is | When to read it |
+|---|---|---|
+| `references/choosing-and-options.md` | Per type: what it suits, what it does not, the usual misuse. Then ~35 option fragments grouped by concern, each with its visual effect | Choosing between two types, or configuring anything beyond the basics |
+| `references/chart-types.md` | All 18 types: data shape, runnable example, every variant fragment. Generated from source, so it cannot drift | Working with a type not covered in this file |
+| `references/troubleshooting.md` | Every error code and silent-failure mode, with measured behavior | A chart came back empty or wrong |
+| `examples/examples.json` | 18 verified tool payloads, copy-pasteable | You want a working starting point |
+| `examples/option-effects.json` | ~35 option fragments with their described effect, machine-readable | Programmatic use, or regenerating the options table |
+| `scripts/verify-examples.mjs` | Runs every example through a live server, asserts non-empty output | After changing the examples or upgrading the server |
+| `scripts/verify-option-effects.mjs` | Applies each fragment to a baseline chart, asserts it renders **and differs from the baseline** — catching fragments that silently do nothing | Same |
+| `scripts/generate-references.mjs` | Regenerates `references/chart-types.md` from source | After the server adds types or variants |
+
+Both verification scripts are green as committed: 18/18 examples render, 33/33 option fragments take effect.
