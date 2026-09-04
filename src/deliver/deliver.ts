@@ -8,12 +8,16 @@ import type { StorageAdapter } from './types.js';
 import { markdownFor, markdownForOption } from './markdown.js';
 import type { Resolved } from './resolve.js';
 
-export interface McpContent {
-  type: 'text' | 'image';
-  text?: string;
-  data?: string;
-  mimeType?: string;
-}
+/**
+ * MCP 工具返回的内容块。
+ *
+ * 必须写成可辨识联合而不是「字段全可选」的单一接口 ——
+ * SDK 的 CallToolResult 要求 text 块必带 text、image 块必带 data 与 mimeType，
+ * 松散定义过不了类型检查。
+ */
+export type McpContent =
+  | { type: 'text'; text: string }
+  | { type: 'image'; data: string; mimeType: string };
 
 export interface DeliverArgs {
   option: object;
