@@ -1,6 +1,6 @@
 {
   "name": "@ivan97/echarts-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Apache ECharts MCP server. 18 chart types, stdio + Streamable HTTP, SVG/PNG/option/HTML output. Zero native dependencies by default.",
   "main": "dist/index.js",
   "scripts": {
