@@ -2597,6 +2597,25 @@ git commit -m "feat: StorageAdapter 接口与本地磁盘实现，随机文件�
 
 ## Task 13: 交付推导与执行
 
+### 输出必须是 Markdown（评审追加要求）
+
+需求方要求「优化输出的 md 渲染」。已实测对照 `antvis/mcp-server-chart`：
+**它返回的是一个裸 URL 字符串**（形如 `https://mdn.alipayobjects.com/one_clip/afts/img/...`），
+没有任何 markdown 包装。因此集成它无助于本目标，本项目要做得比它好。
+
+交付文本一律用 Markdown 语法，让支持 md 的客户端直接把图渲染出来：
+
+| 场景 | 输出 |
+|---|---|
+| 图片（svg/png）+ url 通道 | `![标题](https://.../abc.png)` |
+| 图片（svg/png）+ file 通道 | `![标题](file:///.../abc.svg)`，另起一行给出纯路径供 IDE 点击 |
+| html + 任意通道 | `[在浏览器中打开：标题](url)`，图片语法对页面无意义 |
+| option / raw | 用 ` ```json ` 围栏包裹，而不是裸 JSON 文本 |
+
+alt 文本取 `title`，缺省用「图表」。**alt 文本中的 `[` `]` 必须转义**，否则标题里带方括号会破坏 markdown 结构。
+
+
+
 落实 spec §8.1 推导表与 §16.3 的函数剥离提示。
 
 **Files:**
