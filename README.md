@@ -1,7 +1,8 @@
 # @ivan97/echarts-mcp
 
-[![npm](https://img.shields.io/npm/v/@ivan97/echarts-mcp)](https://www.npmjs.com/package/@ivan97/echarts-mcp)
-[![license](https://img.shields.io/npm/l/@ivan97/echarts-mcp)](LICENSE)
+[![npm](https://img.shields.io/npm/v/%40ivan97%2Fecharts-mcp)](https://www.npmjs.com/package/@ivan97/echarts-mcp)
+[![license](https://img.shields.io/badge/license-MIT-blue)](https://github.com/Ivan97/echarts-mcp/blob/main/LICENSE)
+[![node](https://img.shields.io/node/v/%40ivan97%2Fecharts-mcp)](https://nodejs.org)
 
 Apache ECharts 的 MCP 服务。给 LLM 一个图表类型和一份数据，返回可直接渲染的图。
 
