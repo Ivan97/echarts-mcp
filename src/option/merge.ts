@@ -23,8 +23,8 @@ function mergeValue(baseVal: unknown, patchVal: unknown): unknown {
  */
 export function deepMerge<T extends object>(base: T, patch?: Record<string, unknown>): T {
   const out: Record<string, unknown> = Array.isArray(base)
-    ? ([...(base as unknown[])] as never)
-    : { ...base };
+    ? ([...(base as unknown[])] as unknown as Record<string, unknown>)
+    : { ...(base as Record<string, unknown>) };
   if (!patch) return out as T;
   for (const key of Object.keys(patch)) {
     out[key] = mergeValue((base as Record<string, unknown>)[key], patch[key]);
