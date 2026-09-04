@@ -2,7 +2,7 @@ import type { EChartsOption } from 'echarts';
 import { DeliveryChannel, OutputFormat } from '../types.js';
 import { partitionFunctions } from '../option/functions.js';
 import { buildStandaloneHtml } from '../html/standalone.js';
-import { EMPTY_CHART_HINT, looksEmpty } from '../render/empty-check.js';
+import { inspectOption } from '../render/empty-check.js';
 import type { Renderer, RenderSize } from '../render/types.js';
 import type { StorageAdapter } from './types.js';
 import { markdownFor, markdownForOption } from './markdown.js';
@@ -50,12 +50,11 @@ async function produce(
     );
   }
 
-  const result = await args.renderer.render(sanitized as EChartsOption, args.size);
-  // ECharts 对非法 option 不抛错，只会静默画空图，所以必须主动检测
-  if (result.mimeType === 'image/svg+xml' && looksEmpty(result.bytes.toString('utf8'))) {
-    notes.push(EMPTY_CHART_HINT);
-  }
-  return result;
+  // ECharts 对非法 option 不抛错，只会静默画空图。检测放在渲染**之前**，
+  // 判据基于 option 本身，与主题、尺寸、渲染器都无关。
+  notes.push(...inspectOption(sanitized));
+
+  return args.renderer.render(sanitized as EChartsOption, args.size);
 }
 
 export async function deliver(args: DeliverArgs): Promise<McpContent[]> {

@@ -6,7 +6,7 @@ import type { Renderer } from './types.js';
 
 export type { Renderer, RenderResult, RenderSize } from './types.js';
 export { SvgRenderer, ResvgRenderer, CanvasRenderer, isCanvasAvailable };
-export { looksEmpty, countDrawables, EMPTY_CHART_HINT } from './empty-check.js';
+export { looksEmpty, unknownSeriesTypes, inspectOption } from './empty-check.js';
 
 /**
  * 选择渲染器。

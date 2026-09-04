@@ -7,7 +7,6 @@ import { registerStructuralTemplates } from '../../src/charts/structural.js';
 import { VARIANTS } from '../../src/charts/variants.js';
 import { buildOption } from '../../src/option/build.js';
 import { SvgRenderer } from '../../src/render/svg.js';
-import { looksEmpty } from '../../src/render/empty-check.js';
 
 const renderer = new SvgRenderer();
 const SIZE = { width: 600, height: 400 };
@@ -93,28 +92,4 @@ describe('SvgRenderer', () => {
     expect(out.bytes.toString('utf8').length).toBeLessThan(400);
   });
 
-  it('looksEmpty 能区分正常图与空图', async () => {
-    const good = await renderer.render(
-      buildOption({ type: ChartType.Bar, data: CHART_TEMPLATES[ChartType.Bar]!.example }),
-      SIZE,
-    );
-    const bad = await renderer.render({ series: 'not-an-array' } as never, SIZE);
-    const axesOnly = await renderer.render(
-      { xAxis: { type: 'category', data: ['A'] }, yAxis: { type: 'value' }, series: [{ type: 'bar', data: [] }] } as never,
-      SIZE,
-    );
-    expect(looksEmpty(good.bytes.toString('utf8'))).toBe(false);
-    expect(looksEmpty(bad.bytes.toString('utf8'))).toBe(true);
-    expect(looksEmpty(axesOnly.bytes.toString('utf8'))).toBe(true);
-  });
-
-  it('18 种类型的正常渲染结果都不会被误判为空图', async () => {
-    for (const type of Object.values(ChartType)) {
-      const out = await renderer.render(
-        buildOption({ type, data: CHART_TEMPLATES[type]!.example }),
-        SIZE,
-      );
-      expect(looksEmpty(out.bytes.toString('utf8')), `${type} 被误判为空图`).toBe(false);
-    }
-  });
 });

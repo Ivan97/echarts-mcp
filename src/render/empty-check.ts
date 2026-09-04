@@ -1,38 +1,71 @@
+import { countDataPoints } from './budget.js';
+
 /**
- * 空图检测。
+ * 空图与可疑 option 的检测。
  *
  * 存在的理由：实测发现 **ECharts 对非法 option 几乎从不抛异常**，
  * 而是静默渲染出一张空图。以下都不抛错：
- * `series` 传成字符串、series.type 拼错、data 为 null、option 完全为空。
+ * `series` 传成字符串、`series.type` 拼错、`data` 为 null、option 完全为空。
+ * 「捕获 setOption 异常再告诉 LLM 哪里错了」这条路走不通，必须主动检测。
  *
- * 因此「捕获 setOption 异常再告诉 LLM 哪里错了」这条路是走不通的，
- * 必须主动检测产物。实测各情形的可绘制元素数量：
- *
- * | 情形 | path 数 |
- * |---|---|
- * | 正常柱状图 | 8 |
- * | 单点折线 | 10 |
- * | 仪表盘 | 74 |
- * | series 传成字符串 | 0 |
- * | option 完全为空 | 0 |
- * | series.type 拼错 | 1 |
- * | data 为空数组 | 1 |
- *
- * 正常图最少 8 个，坏图最多 1 个，取阈值 2 有足够安全边界。
+ * 判据放在 **option 层面**而不是产物层面。曾经用「统计 SVG 里可绘制元素的数量」
+ * 做判据，标定时用的是无主题的图（正常图 ≥8 个、坏图 ≤1 个）；
+ * 主题引入网格线之后，一张没有任何数据的空图也能有 7 个可绘制元素，
+ * 阈值直接失效。option 层面的判据与主题、尺寸、渲染器都无关。
  */
-const DRAWABLE = /<(path|circle|polyline|polygon)[\s>]/g;
-const MIN_DRAWABLE = 2;
 
-export function countDrawables(svg: string): number {
-  return (svg.match(DRAWABLE) ?? []).length;
+/** ECharts 内置的 series.type 取值。用于识别拼写错误 —— 拼错时 ECharts 只在 console 警告。 */
+const KNOWN_SERIES_TYPES = new Set([
+  'line', 'bar', 'pie', 'scatter', 'effectScatter', 'radar', 'tree', 'treemap',
+  'sunburst', 'boxplot', 'candlestick', 'heatmap', 'map', 'parallel', 'lines',
+  'graph', 'sankey', 'funnel', 'gauge', 'pictorialBar', 'themeRiver', 'custom',
+]);
+
+function seriesList(option: object): Record<string, unknown>[] {
+  const s = (option as { series?: unknown }).series;
+  if (Array.isArray(s)) return s as Record<string, unknown>[];
+  if (s && typeof s === 'object') return [s as Record<string, unknown>];
+  return [];
 }
 
-export function looksEmpty(svg: string): boolean {
-  return countDrawables(svg) <= MIN_DRAWABLE;
+/** 没有任何数据点即为空图。确定性判断，不依赖渲染产物。 */
+export function looksEmpty(option: object): boolean {
+  return countDataPoints(option) === 0;
 }
 
-/** 检测到空图时给 LLM 的提示。要具体到「该检查哪些字段」，否则它只会原样重试。 */
-export const EMPTY_CHART_HINT =
-  '这份 option 渲染出的是一张空图。ECharts 对非法配置不会报错，只会画出空白，' +
-  '所以请检查：series 是否为数组、series.type 是否拼写正确、series.data 是否为空或 null、' +
-  '类目轴的 data 与 series.data 长度是否匹配。';
+/** 返回 series.type 中不认识的取值，多半是拼写错误。 */
+export function unknownSeriesTypes(option: object): string[] {
+  const bad: string[] = [];
+  for (const s of seriesList(option)) {
+    const t = s?.type;
+    if (typeof t === 'string' && !KNOWN_SERIES_TYPES.has(t)) bad.push(t);
+  }
+  return bad;
+}
+
+/**
+ * 检查 option 并返回要告知调用方的提示。没问题时返回空数组。
+ *
+ * 提示必须具体到「该检查哪个字段」，笼统地说「渲染失败」只会让 LLM 原样重试。
+ */
+export function inspectOption(option: object): string[] {
+  const notes: string[] = [];
+
+  const badTypes = unknownSeriesTypes(option);
+  if (badTypes.length > 0) {
+    notes.push(
+      `series.type 取值 ${badTypes.map((t) => `"${t}"`).join('、')} 不是 ECharts 支持的类型，` +
+        '多半是拼写错误。ECharts 遇到未知类型不会报错，只会画出一张没有数据的图。',
+    );
+  }
+
+  if (looksEmpty(option)) {
+    notes.push(
+      '这份 option 里没有任何数据点，渲染出来会是一张空图。ECharts 对非法配置不会报错，' +
+        '只会画出空白，所以请检查：series 是否为数组、series.data 是否为空或 null、' +
+        '数据是否放在了 dataset 而 series 未通过 encode 引用它。',
+    );
+  }
+
+  return notes;
+}
