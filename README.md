@@ -1,4 +1,7 @@
-# echarts-mcp
+# @ivan97/echarts-mcp
+
+[![npm](https://img.shields.io/npm/v/@ivan97/echarts-mcp)](https://www.npmjs.com/package/@ivan97/echarts-mcp)
+[![license](https://img.shields.io/npm/l/@ivan97/echarts-mcp)](LICENSE)
 
 Apache ECharts 的 MCP 服务。给 LLM 一个图表类型和一份数据，返回可直接渲染的图。
 
@@ -9,10 +12,18 @@ Apache ECharts 的 MCP 服务。给 LLM 一个图表类型和一份数据，返�
 - 存储走 `StorageAdapter` 接口，**不绑定任何云厂商**
 - 输出为 Markdown 语法，支持 md 的客户端直接把图渲染出来
 
-> **完整使用指南见 [`docs/usage.md`](docs/usage.md)** —— 安装、各客户端接入配置、
+> **完整使用指南见 [`docs/usage.md`](https://github.com/Ivan97/echarts-mcp/blob/main/docs/usage.md)** —— 安装、各客户端接入配置、
 > 三个工具的全部参数、数据结构、出错时的表现，所有示例都是实际跑过的。
 
 ## 快速开始
+
+### 安装
+
+```bash
+npm install -g @ivan97/echarts-mcp
+```
+
+也可以不装，接入配置里直接用 `npx`。
 
 ### stdio
 
@@ -23,7 +34,7 @@ Apache ECharts 的 MCP 服务。给 LLM 一个图表类型和一份数据，返�
   "mcpServers": {
     "echarts": {
       "command": "npx",
-      "args": ["-y", "echarts-mcp"]
+      "args": ["-y", "@ivan97/echarts-mcp"]
     }
   }
 }
@@ -32,7 +43,7 @@ Apache ECharts 的 MCP 服务。给 LLM 一个图表类型和一份数据，返�
 Claude Code 也可以一行命令加上：
 
 ```bash
-claude mcp add echarts -- npx -y echarts-mcp
+claude mcp add echarts -- npx -y @ivan97/echarts-mcp
 ```
 
 ### 远端 HTTP
@@ -67,7 +78,7 @@ docker run -d -p 3000:3000 \
 import { MultiServerMCPClient } from '@langchain/mcp-adapters';
 
 const client = new MultiServerMCPClient({
-  echarts: { transport: 'stdio', command: 'npx', args: ['-y', 'echarts-mcp'] },
+  echarts: { transport: 'stdio', command: 'npx', args: ['-y', '@ivan97/echarts-mcp'] },
 });
 const tools = await client.getTools();
 ```
@@ -99,7 +110,7 @@ const tools = await client.getTools();
 
 ## 支持的图表类型
 
-18 种，分三组。每种的 data 结构、示例数据与实测渲染图见 [`docs/chart-types.md`](docs/chart-types.md)。
+18 种，分三组。每种的 data 结构、示例数据与实测渲染图见 [`docs/chart-types.md`](https://github.com/Ivan97/echarts-mcp/blob/main/docs/chart-types.md)。
 
 - **直角坐标系**：`bar` `line` `scatter` `pictorialBar` `heatmap` `boxplot` `candlestick` `themeRiver`
 - **非直角坐标系**：`pie` `funnel` `gauge` `radar` `parallel` `treemap` `sunburst`
@@ -154,8 +165,8 @@ npm run coverage    # 覆盖率
 npm run build
 ```
 
-- 使用指南：[`docs/usage.md`](docs/usage.md)
-- 图表类型清单与实测示例图：[`docs/chart-types.md`](docs/chart-types.md)
+- 使用指南：[`docs/usage.md`](https://github.com/Ivan97/echarts-mcp/blob/main/docs/usage.md)
+- 图表类型清单与实测示例图：[`docs/chart-types.md`](https://github.com/Ivan97/echarts-mcp/blob/main/docs/chart-types.md)
 - 设计文档与实施计划：`docs/superpowers/`
 
 ## License

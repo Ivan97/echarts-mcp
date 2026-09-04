@@ -25,10 +25,19 @@
 
 ## 2. 安装
 
-### 从源码安装（当前方式）
+### 从 npm 安装
 
 ```bash
-cd /Users/ivan97/workspace/WebStormWorkspace/echarts-mcp
+npm install -g @ivan97/echarts-mcp
+```
+
+不想全局安装也可以直接用 `npx @ivan97/echarts-mcp`，接入配置里写 `npx` 即可。
+
+### 从源码安装
+
+```bash
+gh repo clone Ivan97/echarts-mcp     # 或 https://github.com/Ivan97/echarts-mcp.git
+cd echarts-mcp
 npm install
 npm run build
 npm link          # 把 echarts-mcp 命令装到全局
@@ -38,7 +47,7 @@ npm link          # 把 echarts-mcp 命令装到全局
 
 ```bash
 $ which echarts-mcp
-/Users/ivan97/.npm-global/bin/echarts-mcp
+/Users/you/.npm-global/bin/echarts-mcp
 ```
 
 `npm link` 会同时装上两个命令：
@@ -51,7 +60,7 @@ $ which echarts-mcp
 ### 卸载
 
 ```bash
-npm unlink -g echarts-mcp
+npm uninstall -g @ivan97/echarts-mcp
 ```
 
 ---
@@ -86,7 +95,7 @@ claude mcp add echarts -- echarts-mcp
     "echarts": {
       "command": "echarts-mcp",
       "env": {
-        "ECHARTS_MCP_STORAGE_DIR": "/Users/ivan97/Pictures/echarts"
+        "ECHARTS_MCP_STORAGE_DIR": "/path/to/your/charts"
       }
     }
   }
@@ -124,6 +133,35 @@ docker run -d -p 3000:3000 \
 }
 ```
 
+### 作为库嵌入
+
+需要把 MCP server 挂进已有的 Express 应用时：
+
+```ts
+import { createApp, loadConfig, LocalDiskStore, TransportKind } from '@ivan97/echarts-mcp';
+
+const config = loadConfig();
+const app = createApp({
+  config,
+  store: new LocalDiskStore(config.storageDir, config.storageTtlSeconds, config.publicUrl),
+  transport: TransportKind.Http,
+});
+app.listen(3000);
+```
+
+也可以只用出图能力，完全不走 MCP 协议：
+
+```ts
+import { buildOption, SvgRenderer, ChartType, registerCartesianTemplates } from '@ivan97/echarts-mcp';
+
+registerCartesianTemplates();
+const option = buildOption({
+  type: ChartType.Bar,
+  data: { dimensions: ['月份', '销量'], source: [['1月', 120], ['2月', 200]] },
+});
+const svg = (await new SvgRenderer().render(option, { width: 600, height: 400 })).bytes.toString('utf8');
+```
+
 ### 从 LangChain 调用
 
 本服务是标准 MCP server，不需要为 LangChain 做任何适配：
@@ -132,7 +170,7 @@ docker run -d -p 3000:3000 \
 import { MultiServerMCPClient } from '@langchain/mcp-adapters';
 
 const client = new MultiServerMCPClient({
-  echarts: { transport: 'stdio', command: 'echarts-mcp', args: [] },
+  echarts: { transport: 'stdio', command: 'npx', args: ['-y', '@ivan97/echarts-mcp'] },
 });
 const tools = await client.getTools();
 ```

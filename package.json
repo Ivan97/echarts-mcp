@@ -1,19 +1,27 @@
 {
-  "name": "echarts-mcp",
+  "name": "@ivan97/echarts-mcp",
   "version": "0.1.0",
-  "description": "Apache ECharts MCP server: stdio + Streamable HTTP",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs"
-  },
+  "description": "Apache ECharts MCP server. 18 chart types, stdio + Streamable HTTP, SVG/PNG/option/HTML output. Zero native dependencies by default.",
+  "main": "dist/index.js",
   "scripts": {
     "test": "vitest run",
     "build": "tsc -p tsconfig.json && chmod +x dist/transport/stdio.js dist/transport/http.js",
     "coverage": "vitest run --coverage",
     "prepublishOnly": "npm run build"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "echarts",
+    "mcp",
+    "model-context-protocol",
+    "chart",
+    "charts",
+    "visualization",
+    "data-visualization",
+    "svg",
+    "llm",
+    "ai"
+  ],
+  "author": "Ivan97",
   "license": "MIT",
   "type": "module",
   "engines": {
@@ -51,6 +59,25 @@
   "peerDependenciesMeta": {
     "canvas": {
       "optional": true
+    }
+  },
+  "homepage": "https://github.com/Ivan97/echarts-mcp#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ivan97/echarts-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ivan97/echarts-mcp/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     }
   }
 }
