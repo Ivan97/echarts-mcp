@@ -59,3 +59,41 @@ describe('使用文档与代码一致', () => {
     expect(readFileSync('README.md', 'utf8')).toContain('docs/usage.md');
   });
 });
+
+/**
+ * 双语 README 的同步守卫。
+ *
+ * 双语文档最容易出的问题是改了一边忘了另一边，读者拿到的信息就不一致。
+ * 这里只锁「事实性内容」—— 图表类型、环境变量、包名 —— 不管行文措辞。
+ */
+describe('中英文 README 同步', () => {
+  const en = readFileSync('README.md', 'utf8');
+  const cn = readFileSync('README_CN.md', 'utf8');
+
+  it('两份 README 都存在且互相链接', () => {
+    expect(en).toContain('README_CN.md');
+    expect(cn).toContain('README.md');
+  });
+
+  it('18 种图表类型在两份 README 中都完整列出', () => {
+    for (const t of Object.values(ChartType)) {
+      expect(en, `英文 README 未提到 ${t}`).toContain(`\`${t}\``);
+      expect(cn, `中文 README 未提到 ${t}`).toContain(`\`${t}\``);
+    }
+  });
+
+  it('环境变量在两份 README 中一致', () => {
+    const varsOf = (s: string) =>
+      new Set([...s.matchAll(/`(ECHARTS_MCP_[A-Z_]+)`/g)].map((m) => m[1]));
+    const enVars = varsOf(en);
+    const cnVars = varsOf(cn);
+    expect(enVars.size).toBeGreaterThan(5);
+    expect([...enVars].sort()).toEqual([...cnVars].sort());
+  });
+
+  it('两份 README 用的都是 scoped 包名', () => {
+    for (const [label, s] of [['英文', en], ['中文', cn]] as const) {
+      expect(s, `${label} README 缺少 scoped 包名`).toContain('@ivan97/echarts-mcp');
+    }
+  });
+});
