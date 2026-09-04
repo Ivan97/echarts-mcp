@@ -339,7 +339,7 @@ interface StorageAdapter {
 |---|---|
 | 入参不合法 | Zod 校验，错误信息精确指向出错字段 |
 | `setOption` 抛错 | 捕获并返回结构化 `isError`，**明确指出是哪个 option 字段不合法** |
-| 渲染超时 | 超时保护，返回明确错误 |
+| 渲染耗时过长 | **数据点配额**预防（见 §16.7），不做异步超时 |
 | option 体积超限 | 设上限，防止 LLM 塞入巨量数据打爆内存 |
 | 请求 PNG 但 canvas 未装 | 静默降级到 resvg，不报错 |
 
@@ -503,3 +503,28 @@ MCP 工具入参是 JSON，无法承载 JavaScript 函数。以下 6 项高级�
 字段仍留在 option 中 —— 该例经渲染确认 ECharts 会忽略它，结果正确。
 **但这不代表所有残留字段都无害。** 实现阶段需为每个细分样式补渲染回归测试，
 不得假设「合并不出错就等于渲染正确」。
+
+### 16.7 「渲染超时」的实现方式纠正
+
+§10 原写「渲染超时保护」。**按字面实现是无效的**：`echarts.setOption()`、
+`renderToSVGString()` 与 resvg 的 `render()` 全部是同步调用（已实测）。
+同步代码占住事件循环期间，`Promise.race` 中的定时器没有机会触发，
+这种「超时」只会在渲染结束后才报警，拦不住任何东西。
+
+改为**预防性数据点配额**：渲染前统计 `series.data` / `series.links` / `series.nodes` /
+`dataset.source` 的元素总数，超过 `ECHARTS_MCP_MAX_DATA_POINTS`（默认 50000）即拒绝。
+数据点总量是渲染耗时的主要驱动因素，卡住它即可覆盖绝大部分风险。
+
+`ECHARTS_MCP_RENDER_TIMEOUT_MS` 配置项保留，用于记录一次渲染的期望上限（供日志与后续演进），
+但不再用于构造假超时。
+
+能真正中断同步渲染的方案是 worker 线程隔离加强制终止，需引入 worker 池与序列化开销，
+属过度设计，本期不做。
+
+### 16.8 §11 配置表的增补
+
+| 环境变量 | 默认值 | 说明 |
+|---|---|---|
+| `ECHARTS_MCP_RENDER_TIMEOUT_MS` | 10000 | 单次渲染期望上限，仅作记录用途 |
+| `ECHARTS_MCP_MAX_OPTION_BYTES` | 2000000 | option 序列化后的字节上限 |
+| `ECHARTS_MCP_MAX_DATA_POINTS` | 50000 | 数据点总量上限，见 §16.7 |
