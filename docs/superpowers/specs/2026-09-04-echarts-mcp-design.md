@@ -554,3 +554,36 @@ MCP 工具入参是 JSON，无法承载 JavaScript 函数。以下 6 项高级�
 而不是笼统地说「渲染失败」—— 提示不具体，LLM 只会原样重试。
 
 实现见 `src/render/empty-check.ts`。
+
+### 16.10 PNG 渲染耗时的真实构成（实测，纠正 §3.3）
+
+§3.3 曾把 PNG 的 168ms 归因于「重复扫描系统字体」，并推测缓存字体可显著提速。
+**这个推测只对了一半。** 实测（macOS，600x400 含中文柱状图，输出 1200px 宽）：
+
+| 字体策略 | 单图耗时 | 中文 |
+|---|---|---|
+| `loadSystemFonts: true`（全量扫描） | 232ms | 正常 |
+| 显式 `fontFiles`，含 22.4MB 的 CJK 字体 | **95ms** | 正常 |
+| 只加载拉丁字体 | 18ms | **丢字** |
+| 不加载任何字体 | 10ms | **全部文字丢失** |
+
+真实收益是 **2.4 倍**（232 → 95ms）。开销的主体不是「扫描目录」，而是
+**每次构造 Resvg 都要重新解析 CJK 字体文件本身** —— Hiragino Sans GB 22.4MB，
+Noto Sans CJK 同量级。resvg-js 未提供复用 font database 的接口，无法绕开。
+
+把加载的字体文件从 4 个减到 1 个 CJK 字体并没有变快（94.7ms vs 108.6ms，噪声范围内），
+进一步印证瓶颈在字体体积而非文件数量。
+
+**结论：只要要渲染中文，PNG 单图就下不到 90ms 以内。**
+这也是默认输出走 SVG（2ms）的又一条理由。
+
+`ECHARTS_MCP_FONT_FILES` 保留为运维出口，供容器里自带精简字体的场景使用。
+
+### 16.11 字体名必须用单引号（实测踩坑）
+
+ECharts SSR 把 `textStyle.fontFamily` **原样**写进 SVG 的 `font-family="..."` 属性，
+不做任何转义。字体名若用双引号（如 `"SF Pro Text"`），内层双引号会直接截断 XML 属性，
+导致 resvg 报 `SVG data parsing failed cause invalid attribute`，**PNG 全线不可用**。
+
+字体栈中的字体名一律使用单引号。已加回归测试：扫描产物中所有 `font-family="..."`，
+断言其值内不含双引号。

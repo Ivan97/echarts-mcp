@@ -60,6 +60,20 @@ describe('SvgRenderer', () => {
     expect(out.bytes.toString('utf8').length).toBeGreaterThan(800);
   });
 
+  // 回归测试：字体名若用双引号，会截断 SVG 的 font-family 属性，导致 resvg 解析失败、
+  // PNG 全线不可用。ECharts SSR 不会转义这个属性值。
+  it('font-family 属性中不出现会截断 XML 属性的双引号', async () => {
+    const out = await renderer.render(
+      buildOption({ type: ChartType.Bar, data: CHART_TEMPLATES[ChartType.Bar]!.example, title: 'T' }),
+      SIZE,
+    );
+    const svg = out.bytes.toString('utf8');
+    for (const m of svg.matchAll(/font-family="([^"]*)"/g)) {
+      expect(m[1], 'font-family 值被双引号截断').not.toContain('"');
+    }
+    expect(svg).toContain('-apple-system');
+  });
+
   it('中文标题原样出现在 SVG 中', async () => {
     const out = await renderer.render(
       buildOption({

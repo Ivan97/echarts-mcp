@@ -8,9 +8,16 @@ import { ThemeName } from '../types.js';
  * - PNG 由服务端 resvg 栅格化，用的是**服务器**上装的字体，Linux 容器里会落到后面的回退项
  * 因此回退链必须一路兜到中文字体，否则容器里出图会丢字。
  */
+/**
+ * 字体名一律用**单引号**。
+ *
+ * ECharts SSR 把 fontFamily 原样写进 SVG 的 `font-family="..."` 属性且不做转义，
+ * 名字里带双引号会直接截断 XML 属性，导致 resvg 解析失败、PNG 全线不可用。
+ * 实测报错：`SVG data parsing failed cause invalid attribute`。
+ */
 const FONT_STACK =
-  '-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", ' +
-  '"PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif';
+  "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', " +
+  "'PingFang SC', 'Hiragino Sans GB', 'Noto Sans CJK SC', 'Microsoft YaHei', sans-serif";
 
 /**
  * Apple 系统色（Human Interface Guidelines 的 System Colors）。
