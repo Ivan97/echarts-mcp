@@ -3779,6 +3779,30 @@ tests
 .git
 ```
 
+### 标准接入产物（评审追加要求）
+
+需求方要求「用标准形式接入，不自己造轮子」，并确认**只做标准接入**，
+不引入 LangChain 依赖、不建 MCP 聚合网关子系统。
+
+事实澄清：`@langchain/mcp-adapters` 是把 MCP 工具转成 LangChain 工具的**客户端**适配器，
+供写 agent 的人使用。本项目是 MCP **server**，自身不需要它 ——
+任何符合协议的 server，LangChain 都能直接接。
+
+因此交付以下标准配置片段，全部放进 README：
+
+1. **stdio 接入**，标准 `mcpServers` 格式，覆盖 Claude Desktop / Claude Code / Cherry Studio：
+   ```json
+   { "mcpServers": { "echarts": { "command": "npx", "args": ["-y", "echarts-mcp"] } } }
+   ```
+2. **远端 HTTP 接入**，标准 `type: "http"` 形式：
+   ```json
+   { "mcpServers": { "echarts": { "type": "http", "url": "https://host/mcp",
+     "headers": { "Authorization": "Bearer <token>" } } } }
+   ```
+3. **LangChain 客户端接入示例**（`@langchain/mcp-adapters` 的 `MultiServerMCPClient`），
+   证明本 server 无需任何改动即可被 LangChain 消费。
+4. **Docker 一行启动命令**，含 volume 与端口映射。
+
 - [ ] **Step 4: 写 `README.md`**
 
 内容须覆盖：项目定位、两种集成方式的配置片段（stdio 的 `npx` 写法与 HTTP 的 URL 写法）、
