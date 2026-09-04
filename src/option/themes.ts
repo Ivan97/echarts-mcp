@@ -3,17 +3,14 @@ import { ThemeName } from '../types.js';
 /**
  * Apple 系统字体栈。
  *
- * 注意两种渲染路径的行为不同：
+ * 两种渲染路径的字体解析方不同：
  * - SVG 产物里字体名原样写入，由**查看者**的设备解析，Apple 设备会拿到 SF Pro
  * - PNG 由服务端 resvg 栅格化，用的是**服务器**上装的字体，Linux 容器里会落到后面的回退项
  * 因此回退链必须一路兜到中文字体，否则容器里出图会丢字。
- */
-/**
- * 字体名一律用**单引号**。
  *
- * ECharts SSR 把 fontFamily 原样写进 SVG 的 `font-family="..."` 属性且不做转义，
- * 名字里带双引号会直接截断 XML 属性，导致 resvg 解析失败、PNG 全线不可用。
- * 实测报错：`SVG data parsing failed cause invalid attribute`。
+ * 字体名一律用**单引号**：ECharts SSR 把 fontFamily 原样写进 SVG 的
+ * `font-family="..."` 属性且不做转义，名字里带双引号会直接截断 XML 属性，
+ * 导致 resvg 报 `SVG data parsing failed cause invalid attribute`，PNG 全线不可用。
  */
 const FONT_STACK =
   "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', " +
@@ -81,6 +78,11 @@ function axisStyle(hairline: string, muted: string) {
 /**
  * 内置主题。全部以纯 option 片段表达并经 deepMerge 叠加，
  * 不用 echarts.registerTheme —— 那是全局状态，多请求并发会互相干扰。
+ *
+ * **注意 THEMES 里不含 xAxis / yAxis 样式。**
+ * 无条件注入轴样式会让 ECharts 给饼图、仪表盘、雷达图这类没有直角坐标系的图表
+ * 也创建出默认坐标轴，在图的左侧和底部画出多余的轴线（已在饼图上实际观察到）。
+ * 轴样式放在 AXIS_THEMES 里，由 buildOption 在图表本身有轴时才叠加。
  */
 export const THEMES: Record<ThemeName, Record<string, unknown>> = {
   [ThemeName.Default]: {
@@ -99,8 +101,6 @@ export const THEMES: Record<ThemeName, Record<string, unknown>> = {
       textStyle: { fontFamily: FONT_STACK, color: LIGHT_TEXT },
       extraCssText: 'backdrop-filter: blur(20px); border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.10);',
     },
-    xAxis: axisStyle(LIGHT_HAIRLINE, LIGHT_MUTED),
-    yAxis: axisStyle(LIGHT_HAIRLINE, LIGHT_MUTED),
   },
 
   [ThemeName.Dark]: {
@@ -119,14 +119,31 @@ export const THEMES: Record<ThemeName, Record<string, unknown>> = {
       textStyle: { fontFamily: FONT_STACK, color: DARK_TEXT },
       extraCssText: 'backdrop-filter: blur(20px); border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.45);',
     },
-    xAxis: axisStyle(DARK_HAIRLINE, DARK_MUTED),
-    yAxis: axisStyle(DARK_HAIRLINE, DARK_MUTED),
   },
 
   [ThemeName.Vintage]: {
     color: PALETTE_VINTAGE,
     backgroundColor: '#fef8ef',
     textStyle: { fontFamily: FONT_STACK },
+  },
+};
+
+/**
+ * 轴样式，只对**真正有直角坐标系**的图表叠加。
+ * 由 buildOption 判断：模板产出的 option 里有 xAxis 或 yAxis 才应用。
+ */
+export const AXIS_THEMES: Record<ThemeName, Record<string, unknown>> = {
+  [ThemeName.Default]: {
+    xAxis: axisStyle(LIGHT_HAIRLINE, LIGHT_MUTED),
+    yAxis: axisStyle(LIGHT_HAIRLINE, LIGHT_MUTED),
+  },
+  [ThemeName.Dark]: {
+    xAxis: axisStyle(DARK_HAIRLINE, DARK_MUTED),
+    yAxis: axisStyle(DARK_HAIRLINE, DARK_MUTED),
+  },
+  [ThemeName.Vintage]: {
+    xAxis: axisStyle('#d8cbb4', '#6e7074'),
+    yAxis: axisStyle('#d8cbb4', '#6e7074'),
   },
 };
 

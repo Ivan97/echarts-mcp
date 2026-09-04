@@ -14,6 +14,8 @@ export interface Config {
   renderTimeoutMs: number;
   maxOptionBytes: number;
   maxDataPoints: number;
+  /** 显式字体文件路径。容器里自带精简字体时用它绕开自动探测。 */
+  fontFiles?: string[];
 }
 
 function intOf(env: NodeJS.ProcessEnv, key: string, fallback: number): number {
@@ -46,5 +48,8 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
     renderTimeoutMs: intOf(env, 'ECHARTS_MCP_RENDER_TIMEOUT_MS', 10000),
     maxOptionBytes: intOf(env, 'ECHARTS_MCP_MAX_OPTION_BYTES', 2_000_000),
     maxDataPoints: intOf(env, 'ECHARTS_MCP_MAX_DATA_POINTS', 50_000),
+    fontFiles: env.ECHARTS_MCP_FONT_FILES
+      ? env.ECHARTS_MCP_FONT_FILES.split(',').map((f) => f.trim()).filter(Boolean)
+      : undefined,
   };
 }

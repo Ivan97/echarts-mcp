@@ -2,7 +2,7 @@ import type { EChartsOption } from 'echarts';
 import { ThemeName, type ChartData, type ChartType } from '../types.js';
 import { getTemplate } from '../charts/registry.js';
 import { deepMerge } from './merge.js';
-import { THEMES } from './themes.js';
+import { AXIS_THEMES, THEMES } from './themes.js';
 
 export interface BuildOptionInput {
   type: ChartType;
@@ -26,7 +26,16 @@ export function buildOption(input: BuildOptionInput): EChartsOption {
     title: input.title,
     subtitle: input.subtitle,
   });
-  const themed = deepMerge(base as Record<string, unknown>, THEMES[input.theme ?? ThemeName.Default]);
+  const theme = input.theme ?? ThemeName.Default;
+  const baseRecord = base as Record<string, unknown>;
+
+  let themed = deepMerge(baseRecord, THEMES[theme]);
+  // 轴样式只对真正有直角坐标系的图表叠加。无条件注入会让 ECharts 给饼图、
+  // 仪表盘、雷达图创建出默认坐标轴，在左侧和底部画出多余的轴线。
+  if (baseRecord.xAxis !== undefined || baseRecord.yAxis !== undefined) {
+    themed = deepMerge(themed, AXIS_THEMES[theme]);
+  }
+
   const overridden = deepMerge(themed, input.optionOverrides);
   return { ...overridden, animation: false } as EChartsOption;
 }
