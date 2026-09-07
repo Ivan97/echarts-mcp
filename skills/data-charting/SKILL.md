@@ -1,11 +1,35 @@
 ---
 name: data-charting
-description: "Turn data into a chart with Apache ECharts through the echarts-mcp server (generate_chart, render_option, list_chart_types). Use when asked to chart, plot, graph or visualize data, when 画图/图表/柱状图/折线图/饼图/散点图/热力图/桑基图/K线图/日历图 come up, and whenever an answer about a trend, comparison, breakdown or distribution would land better as a chart than a table. Read it before reaching for another charting tool or telling the user something cannot be drawn — it lists what this server does and does not support. Covers type selection, the three input shapes, variants via optionOverrides, light and dark themes, and the silently blank chart ECharts hands back instead of an error."
+description: "Turn data into a chart with Apache ECharts through the `@ivan97/echarts-mcp` server (generate_chart, render_option, list_chart_types). Use when asked to chart, plot, graph or visualize data, when 画图/图表/柱状图/折线图/饼图/散点图/热力图/桑基图/K线图/日历图 come up, and whenever an answer about a trend, comparison, breakdown or distribution would land better as a chart than a table. Read it before reaching for another charting tool or telling the user something cannot be drawn — it lists what this server does and does not support. Covers type selection, the three input shapes, variants via optionOverrides, light and dark themes, and the silently blank chart ECharts hands back instead of an error."
 ---
 
 # Charting data with ECharts
 
-Three tools. Reach for `generate_chart` first.
+## The server this skill needs
+
+This skill drives **`@ivan97/echarts-mcp`** — the scoped package. Configure it before using
+anything below:
+
+```json
+{
+  "mcpServers": {
+    "echarts": { "command": "npx", "args": ["-y", "@ivan97/echarts-mcp"] }
+  }
+}
+```
+
+With Claude Code: `claude mcp add echarts -- npx -y @ivan97/echarts-mcp`
+
+**Do not install the unscoped `echarts-mcp`.** That name belongs to an unrelated package by a
+different author. It exposes one tool, `generate-echarts`, which takes a raw ECharts option plus
+a width and height and returns a PNG — none of the three tools below exist there, and none of
+the templates, themes or `optionOverrides` in this skill apply to it. If the tools you see are
+named `generate-echarts` rather than `generate_chart`, you have the wrong server: stop and say
+so rather than trying to adapt.
+
+## Three tools
+
+Reach for `generate_chart` first.
 
 | Tool | Use it when |
 |---|---|
