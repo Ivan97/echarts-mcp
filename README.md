@@ -83,7 +83,7 @@ const client = new MultiServerMCPClient({
 const tools = await client.getTools();
 ```
 
-## Optional: the charting skill for Claude Code
+## Optional: the charting skill
 
 The repository also ships a [Claude Code skill](https://github.com/Ivan97/echarts-mcp/tree/main/skills/data-charting)
 that teaches a model **when** to reach for each chart type, not just how to call the tools:
@@ -93,7 +93,18 @@ gallery examples pre-evaluated into plain options and render-tested in both ligh
 **It is not part of the npm package.** `npm install` gives you the server only — the skill is
 2.7 MB of reference material and lives in the repository. Install it separately.
 
-For every project (user level):
+The quickest way is the [`skills`](https://github.com/vercel-labs/skills) CLI, which reads the
+skill straight out of this repository — nothing is published to a registry:
+
+```bash
+npx skills add Ivan97/echarts-mcp@data-charting
+```
+
+That installs into `.agents/skills/` for the current project and symlinks it into every agent
+directory it detects, `.claude/skills/` included. Add `-g` to install for your user instead of
+one project, and `--list` to look before installing.
+
+If you would rather not use the CLI, pull the directory out of the GitHub tarball:
 
 ```bash
 mkdir -p ~/.claude/skills
@@ -104,17 +115,19 @@ curl -sL https://github.com/Ivan97/echarts-mcp/archive/refs/heads/main.tar.gz \
 
 For one project only, point `-C` at `<project>/.claude/skills` instead.
 
-If you already cloned the repository, symlink it so it follows your checkout — run this
-from the repository root:
+Already cloned the repository? Symlink it so it follows your checkout — run this from the
+repository root:
 
 ```bash
 ln -s "$PWD/skills/data-charting" ~/.claude/skills/data-charting
 ```
 
-Check it landed, then restart Claude Code — skills are read at startup:
+Check it landed — the path depends on which method you used — then restart your agent, since
+skills are read at startup:
 
 ```bash
-head -2 ~/.claude/skills/data-charting/SKILL.md   # name: data-charting
+npx skills list                                   # CLI install
+head -2 ~/.claude/skills/data-charting/SKILL.md   # manual install: name: data-charting
 ```
 
 The directory name must stay `data-charting`; it has to match the `name` in the skill's

@@ -86,7 +86,7 @@ const client = new MultiServerMCPClient({
 const tools = await client.getTools();
 ```
 
-## 可选：Claude Code 技能
+## 可选：绘图技能
 
 仓库里还带了一个 [Claude Code skill](https://github.com/Ivan97/echarts-mcp/tree/main/skills/data-charting)，
 教模型**什么时候**该用哪种图，而不只是怎么调工具：逐类型的选型依据、
@@ -96,7 +96,17 @@ const tools = await client.getTools();
 **它不在 npm 包里。** `npm install` 只给你服务端；技能是 2.7 MB 的参考资料，
 放在仓库里，需要单独安装。
 
-装给所有项目用（用户级）：
+最省事的是 [`skills`](https://github.com/vercel-labs/skills) CLI，它直接从本仓库读取，
+不需要发布到任何注册表：
+
+```bash
+npx skills add Ivan97/echarts-mcp@data-charting
+```
+
+它会装到当前项目的 `.agents/skills/`，并为检测到的每个 agent 目录建软链，
+其中包含 `.claude/skills/`。加 `-g` 装到用户级而不是单个项目，加 `--list` 可以只看不装。
+
+不想用 CLI 的话，从 GitHub tarball 里只取这个目录：
 
 ```bash
 mkdir -p ~/.claude/skills
@@ -107,16 +117,17 @@ curl -sL https://github.com/Ivan97/echarts-mcp/archive/refs/heads/main.tar.gz \
 
 只给单个项目用，把 `-C` 指向 `<项目>/.claude/skills` 即可。
 
-如果已经克隆了仓库，做软链更方便，跟着你的检出一起更新 —— 在仓库根目录执行：
+已经克隆了仓库？做软链更方便，跟着你的检出一起更新 —— 在仓库根目录执行：
 
 ```bash
 ln -s "$PWD/skills/data-charting" ~/.claude/skills/data-charting
 ```
 
-确认装好，然后重启 Claude Code —— 技能是在启动时读取的：
+确认装好 —— 路径取决于用的哪种装法 —— 然后重启 agent，技能是在启动时读取的：
 
 ```bash
-head -2 ~/.claude/skills/data-charting/SKILL.md   # name: data-charting
+npx skills list                                   # 用 CLI 装的
+head -2 ~/.claude/skills/data-charting/SKILL.md   # 手工装的，应显示 name: data-charting
 ```
 
 目录名必须保持 `data-charting`，要和技能 frontmatter 里的 `name` 一致。
