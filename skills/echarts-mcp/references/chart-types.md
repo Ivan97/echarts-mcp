@@ -3,7 +3,7 @@
 > 本文件由 `scripts/generate-references.mjs` 从 echarts-mcp 源码生成，不要手工编辑。
 > 代码改动后重新运行该脚本即可同步。
 
-共 15 种类型。
+共 17 种类型。
 
 ## 直角坐标系
 

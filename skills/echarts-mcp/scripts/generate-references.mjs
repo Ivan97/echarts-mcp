@@ -44,11 +44,13 @@ const { CHART_TEMPLATES } = await load('charts/registry.js');
 const { registerCartesianTemplates } = await load('charts/cartesian.js');
 const { registerCategoricalTemplates } = await load('charts/categorical.js');
 const { registerStructuralTemplates } = await load('charts/structural.js');
+const { registerCoordinateTemplates } = await load('charts/coordinate.js');
 const { VARIANTS } = await load('charts/variants.js');
 
 registerCartesianTemplates();
 registerCategoricalTemplates();
 registerStructuralTemplates();
+registerCoordinateTemplates();
 
 const GROUPS = {
   '直角坐标系': ['bar', 'line', 'scatter', 'pictorialBar', 'heatmap', 'boxplot', 'candlestick', 'themeRiver'],

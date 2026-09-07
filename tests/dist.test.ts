@@ -32,7 +32,7 @@ describe('分发配置', () => {
     }
   });
 
-  it('README 列出的 15 种类型与 ChartType 枚举一致', async () => {
+  it('README 列出的 17 种类型与 ChartType 枚举一致', async () => {
     const readme = readFileSync('README.md', 'utf8');
     const { ChartType } = await import('../src/types.js');
     for (const t of Object.values(ChartType)) {

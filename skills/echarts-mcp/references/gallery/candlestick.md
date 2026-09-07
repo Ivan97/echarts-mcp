@@ -11,7 +11,7 @@
 
 展开的适用性讨论与常见误用见 `references/choosing-and-options.md`。
 
-## 官方示例 9 个
+## 官方示例 8 个
 
 option 在 `examples/gallery/candlestick/<id>.json` 的 `option` 字段，
 直接作为 `render_option` 的参数即可。**只读你要用的那一个，不要把整个目录读进上下文。**
@@ -25,7 +25,6 @@ option 在 `examples/gallery/candlestick/<id>.json` 的 `option` 字段，
 | `candlestick-simple` | 基础 K 线图 | Basic Candlestick | — | 4 | — |
 | `candlestick-sh` | 上证指数 | ShangHai Index | 多系列、数据缩放、标注线/点、平滑、含函数 | 440 | 含函数 |
 | `candlestick-large` | 大数据量K线图 | Large Scale Candlestick | 多系列、双轴、数据缩放、视觉映射、dataset、多宫格、大数据量、encode 映射 | 196 | 抽稀 |
-| `matrix-stock` | 股市矩阵图 | Matrix Stock Application | 多系列、横向、双轴、时间轴、多宫格、标注线/点、面积、阶梯、富文本标签 | 272 | 抽稀 |
 | `candlestick-touch` | 触屏上的坐标轴指示器 | Axis Pointer Link and Touch | 多系列、双轴、数据缩放、多宫格、平滑、含函数 | 305 | 含函数 |
 | `intraday-breaks-1` | 断轴上的日内走势图 | Intraday Chart with Breaks | 时间轴、数据缩放、面积、富文本标签、含函数 | 784 | 抽稀、含函数 |
 | `intraday-breaks-2` | 断轴上的日内走势图 (II) | Intraday Chart with Breaks (II) | 时间轴、数据缩放、含函数 | 242 | 含函数 |

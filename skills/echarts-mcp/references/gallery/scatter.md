@@ -11,7 +11,7 @@
 
 展开的适用性讨论与常见误用见 `references/choosing-and-options.md`。
 
-## 官方示例 22 个
+## 官方示例 21 个
 
 option 在 `examples/gallery/scatter/<id>.json` 的 `option` 字段，
 直接作为 `render_option` 的参数即可。**只读你要用的那一个，不要把整个目录读进上下文。**
@@ -43,4 +43,3 @@ option 在 `examples/gallery/scatter/<id>.json` 的 `option` 字段，
 | `scatter-life-expectancy-timeline` | 各国人均寿命与GDP关系演变 | Life Expectancy and GDP | 时间线、含函数 | 0 | 抽稀、含函数 |
 | `scatter-painter-choice` | 历代绘画大师的色彩运用 | Master Painter Color Choices Throughout History | 含函数 | 1028 | 抽稀、含函数 |
 | `effectScatter-bmap` | 全国主要城市空气质量 - 百度地图 | Air Quality - Baidu Map | 多系列、encode 映射、含函数 | 196 | 含函数 |
-| `calendar-charts` | 日历图 | Calendar Charts | 多系列、视觉映射、含函数 | 745 | 抽稀、含函数 |

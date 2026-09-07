@@ -5,6 +5,7 @@ import type { StorageAdapter } from '../deliver/types.js';
 import { registerCartesianTemplates } from '../charts/cartesian.js';
 import { registerCategoricalTemplates } from '../charts/categorical.js';
 import { registerStructuralTemplates } from '../charts/structural.js';
+import { registerCoordinateTemplates } from '../charts/coordinate.js';
 import { registerGenerateChart } from '../tools/generate-chart.js';
 import { registerRenderOption } from '../tools/render-option.js';
 import { registerListChartTypes } from '../tools/list-chart-types.js';
@@ -26,6 +27,7 @@ export function createServer(deps: ServerDeps): McpServer {
   registerCartesianTemplates();
   registerCategoricalTemplates();
   registerStructuralTemplates();
+  registerCoordinateTemplates();
 
   const server = new McpServer({ name: SERVER_NAME, version: SERVER_VERSION });
   registerGenerateChart(server, deps);

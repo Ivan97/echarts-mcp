@@ -37,6 +37,7 @@ export { getVariants, VARIANTS, type ChartVariant } from './charts/variants.js';
 export { registerCartesianTemplates } from './charts/cartesian.js';
 export { registerCategoricalTemplates } from './charts/categorical.js';
 export { registerStructuralTemplates } from './charts/structural.js';
+export { registerCoordinateTemplates } from './charts/coordinate.js';
 
 export {
   selectRenderer,

@@ -42,17 +42,26 @@ process.on('unhandledRejection', (e) => { asyncError = e; });
 
 const here = dirname(fileURLToPath(import.meta.url));
 const skillRoot = join(here, '..');
-const cacheDir = join(skillRoot, '.cache');
+/**
+ * 抓下来的上游源码缓存放 node_modules/.cache 下，不放 skill 目录里。
+ *
+ * 缓存文件是官方例子的 .ts 原文。放在仓库内的话，IDE 会把它们当成项目里的
+ * TypeScript 源码去解析并报一堆错 —— 它们既不在 tsconfig 的编译范围里，
+ * 也不该被 lint。node_modules 是各类工具默认排除的目录，放这儿最省事。
+ * 代价是 `npm ci` 会清掉缓存，重跑一次多花一分钟下载，可以接受。
+ */
+const cacheDir = join(here, '../../..', 'node_modules/.cache/echarts-gallery');
 const outDir = join(skillRoot, 'examples/gallery');
 const refresh = process.argv.includes('--refresh');
 
 const SITE = 'https://echarts.apache.org/examples';
 const BUNDLE = `${SITE}/js/example-bundle.js`;
 
-/** 我们支持的 15 种类型，与 src/types.ts 的 ChartType 一一对应。 */
+/** 我们支持的 17 种类型，与 src/types.ts 的 ChartType 一一对应。 */
 const SUPPORTED = [
   'bar', 'line', 'pie', 'scatter', 'radar', 'heatmap', 'boxplot', 'candlestick',
   'funnel', 'sankey', 'treemap', 'sunburst', 'graph', 'tree', 'parallel',
+  'calendar', 'matrix',
 ];
 
 /**
@@ -89,6 +98,10 @@ const KNOWN_SKIP = {
   // —— custom 系列。renderItem 是函数，静态出图时被剥离，剥离后 ECharts 报 "series.render is required"。
   'custom-ohlc': 'custom 系列的 renderItem 是函数，静态渲染时被剥离后无法成图',
   'scatter-clustering-process': 'custom 系列的 renderItem 是函数，静态渲染时被剥离后无法成图',
+  'custom-calendar-icon': 'custom 系列的 renderItem 是函数，静态渲染时被剥离后无法成图',
+  'matrix-confusion': 'custom 系列的 renderItem 是函数，静态渲染时被剥离后无法成图；混淆矩阵请用 generate_chart 的 matrix 模板',
+  'matrix-periodic-table': 'custom 系列的 renderItem 是函数，静态渲染时被剥离后无法成图',
+  'matrix-mini-bar-data-collection': 'custom 系列的 renderItem 是函数，静态渲染时被剥离后无法成图',
 
   // —— 图案填充要在浏览器里用 Image 加载位图，SSR 下 resvg 要求显式宽高。
   'pie-pattern': '用位图做图案填充，需要浏览器的 Image 对象，svg-ssr 下报 Image width/height must be given',
@@ -191,6 +204,50 @@ function toPlain(value, seen = new WeakSet()) {
     out[k] = toPlain(v, seen);
   }
   return out;
+}
+
+/**
+ * 确定性的 Math.random 替身。
+ *
+ * 官方例子里有相当一部分用 Math.random() 现造数据（bar-race、dynamic-data、
+ * candlestick-large……）。用真的随机数，每次重建 gallery 这些文件的内容都会变，
+ * 于是 git diff 里全是噪声，看不出哪些是真改动。按例子 id 播种之后，
+ * 同一个例子每次都得到同一份数据，重建是幂等的。
+ */
+function seededRandom(seed) {
+  let a = seed >>> 0;
+  return () => {
+    a = (a + 0x6d2b79f5) >>> 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+/**
+ * 冻住「现在」。
+ *
+ * 和 Math.random 同一个问题：dynamic-data 这类例子用 `new Date()` 现造时间轴，
+ * 每次重建产出的 xAxis.data 都不一样。固定到一个具体时刻，重建才是幂等的。
+ */
+const FROZEN_NOW = Date.UTC(2026, 0, 1, 9, 0, 0);
+class FrozenDate extends Date {
+  constructor(...args) {
+    if (args.length === 0) super(FROZEN_NOW);
+    else super(...args);
+  }
+  static now() {
+    return FROZEN_NOW;
+  }
+}
+
+function seedOf(id) {
+  let h = 2166136261;
+  for (let i = 0; i < id.length; i++) {
+    h ^= id.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
 }
 
 /** jQuery 的极小替身：只实现例子里真正用到的 get / getJSON / when。 */
@@ -298,7 +355,11 @@ async function evaluateExample(id, source) {
     setTimeout: immediateTimer, setInterval: noopTimer,
     clearTimeout: () => {}, clearInterval: () => {},
     requestAnimationFrame: noopTimer, cancelAnimationFrame: () => {},
-    Math, Date, JSON, Object, Array, String, Number, Boolean, RegExp,
+    // Object.create(Math) 而不是 { ...Math }：Math 的方法都是不可枚举的，
+    // 展开出来是个空对象，例子里一调 Math.floor 就炸。原型链继承才拿得到它们。
+    Math: Object.assign(Object.create(Math), { random: seededRandom(seedOf(id)) }),
+    Date: FrozenDate,
+    JSON, Object, Array, String, Number, Boolean, RegExp,
     parseInt, parseFloat, isNaN, isFinite, encodeURIComponent, decodeURIComponent,
     Promise, Map, Set, Symbol, Error, TypeError, Intl, BigInt,
     option: undefined,
@@ -742,7 +803,7 @@ for (const cat of catalogue) {
 const entry = [
   '# 图表选型与官方示例总索引',
   '',
-  `覆盖 Apache ECharts 官方示例库里属于我们支持的 15 种类型的全部例子，共 ${catalogue.reduce((n, c) => n + c.count, 0)} 个。`,
+  `覆盖 Apache ECharts 官方示例库里属于我们支持的 17 种类型的全部例子，共 ${catalogue.reduce((n, c) => n + c.count, 0)} 个。`,
   '',
   '## 怎么用这份索引',
   '',
@@ -778,7 +839,7 @@ const entry = [
   '',
   '## 覆盖范围',
   '',
-  `官方示例库共 ${list.length} 个例子，其中 ${selected.length} 个属于我们支持的 15 种类型，已收录 ${catalogue.reduce((n, c) => n + c.count, 0)} 个。`,
+  `官方示例库共 ${list.length} 个例子，其中 ${selected.length} 个属于我们支持的 17 种类型，已收录 ${catalogue.reduce((n, c) => n + c.count, 0)} 个。`,
   '',
   '**画不出来的**（能力边界，理由逐条列在 `references/gallery-support.md`）：',
   '',

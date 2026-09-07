@@ -11,7 +11,7 @@
 
 展开的适用性讨论与常见误用见 `references/choosing-and-options.md`。
 
-## 官方示例 16 个
+## 官方示例 15 个
 
 option 在 `examples/gallery/pie/<id>.json` 的 `option` 字段，
 直接作为 `render_option` 的参数即可。**只读你要用的那一个，不要把整个目录读进上下文。**
@@ -37,4 +37,3 @@ option 在 `examples/gallery/pie/<id>.json` 的 `option` 字段，
 | `pie-legend` | 可滚动的图例 | Pie with Scrollable Legend | — | 50 | — |
 | `pie-rich-text` | 富文本标签 | Pie Special Label | 富文本标签 | 5 | — |
 | `pie-nest` | 嵌套环形图 | Nested Pies | 多系列、环形、富文本标签 | 11 | — |
-| `calendar-pie` | 日历饼图 | Calendar Pie | 多系列、含函数 | 112 | 含函数 |

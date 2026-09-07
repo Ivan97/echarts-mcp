@@ -1,7 +1,7 @@
 {
   "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
   "id": "calendar-pie",
-  "category": "pie",
+  "category": "calendar",
   "title": "Calendar Pie",
   "titleCN": "日历饼图",
   "difficulty": 6,
@@ -36,34 +36,34 @@
           "fontSize": 14
         },
         "data": [
-          ["2017-02-01",7912],
-          ["2017-02-02",5215],
-          ["2017-02-03",1730],
-          ["2017-02-04",7212],
-          ["2017-02-05",7591],
-          ["2017-02-06",6406],
-          ["2017-02-07",8245],
-          ["2017-02-08",558],
-          ["2017-02-09",5354],
-          ["2017-02-10",9107],
-          ["2017-02-11",4184],
-          ["2017-02-12",364],
-          ["2017-02-13",3629],
-          ["2017-02-14",637],
-          ["2017-02-15",628],
-          ["2017-02-16",4915],
-          ["2017-02-17",3540],
-          ["2017-02-18",3156],
-          ["2017-02-19",5548],
-          ["2017-02-20",7703],
-          ["2017-02-21",7634],
-          ["2017-02-22",3581],
-          ["2017-02-23",3399],
-          ["2017-02-24",4708],
-          ["2017-02-25",7237],
-          ["2017-02-26",6004],
-          ["2017-02-27",6898],
-          ["2017-02-28",3819]
+          ["2017-02-01",9753],
+          ["2017-02-02",2275],
+          ["2017-02-03",4371],
+          ["2017-02-04",7193],
+          ["2017-02-05",6195],
+          ["2017-02-06",1736],
+          ["2017-02-07",7800],
+          ["2017-02-08",2625],
+          ["2017-02-09",1580],
+          ["2017-02-10",5656],
+          ["2017-02-11",7222],
+          ["2017-02-12",3627],
+          ["2017-02-13",6000],
+          ["2017-02-14",3],
+          ["2017-02-15",5873],
+          ["2017-02-16",2720],
+          ["2017-02-17",7680],
+          ["2017-02-18",5208],
+          ["2017-02-19",8322],
+          ["2017-02-20",7539],
+          ["2017-02-21",6672],
+          ["2017-02-22",8273],
+          ["2017-02-23",9810],
+          ["2017-02-24",3459],
+          ["2017-02-25",3632],
+          ["2017-02-26",4656],
+          ["2017-02-27",5772],
+          ["2017-02-28",7441]
         ]
       },
       {
@@ -73,7 +73,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":6},{"name":"Entertainment","value":11},{"name":"Sleep","value":1}]
+        "data": [{"name":"Work","value":14},{"name":"Entertainment","value":14},{"name":"Sleep","value":12}]
       },
       {
         "type": "pie",
@@ -82,7 +82,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":2},{"name":"Entertainment","value":12},{"name":"Sleep","value":7}]
+        "data": [{"name":"Work","value":5},{"name":"Entertainment","value":17},{"name":"Sleep","value":3}]
       },
       {
         "type": "pie",
@@ -91,7 +91,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":11},{"name":"Entertainment","value":24},{"name":"Sleep","value":0}]
+        "data": [{"name":"Work","value":14},{"name":"Entertainment","value":12},{"name":"Sleep","value":14}]
       },
       {
         "type": "pie",
@@ -100,7 +100,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":18},{"name":"Entertainment","value":2},{"name":"Sleep","value":7}]
+        "data": [{"name":"Work","value":2},{"name":"Entertainment","value":3},{"name":"Sleep","value":22}]
       },
       {
         "type": "pie",
@@ -109,7 +109,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":8},{"name":"Entertainment","value":21},{"name":"Sleep","value":12}]
+        "data": [{"name":"Work","value":0},{"name":"Entertainment","value":22},{"name":"Sleep","value":18}]
       },
       {
         "type": "pie",
@@ -118,7 +118,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":15},{"name":"Entertainment","value":8},{"name":"Sleep","value":14}]
+        "data": [{"name":"Work","value":12},{"name":"Entertainment","value":16},{"name":"Sleep","value":17}]
       },
       {
         "type": "pie",
@@ -127,7 +127,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":13},{"name":"Entertainment","value":0},{"name":"Sleep","value":3}]
+        "data": [{"name":"Work","value":8},{"name":"Entertainment","value":3},{"name":"Sleep","value":11}]
       },
       {
         "type": "pie",
@@ -136,7 +136,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":7},{"name":"Entertainment","value":7},{"name":"Sleep","value":8}]
+        "data": [{"name":"Work","value":4},{"name":"Entertainment","value":14},{"name":"Sleep","value":12}]
       },
       {
         "type": "pie",
@@ -145,7 +145,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":15},{"name":"Entertainment","value":5},{"name":"Sleep","value":14}]
+        "data": [{"name":"Work","value":10},{"name":"Entertainment","value":2},{"name":"Sleep","value":16}]
       },
       {
         "type": "pie",
@@ -154,7 +154,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":22},{"name":"Entertainment","value":19},{"name":"Sleep","value":7}]
+        "data": [{"name":"Work","value":6},{"name":"Entertainment","value":2},{"name":"Sleep","value":2}]
       },
       {
         "type": "pie",
@@ -163,7 +163,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":21},{"name":"Entertainment","value":23},{"name":"Sleep","value":1}]
+        "data": [{"name":"Work","value":2},{"name":"Entertainment","value":21},{"name":"Sleep","value":9}]
       },
       {
         "type": "pie",
@@ -172,7 +172,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":2},{"name":"Entertainment","value":11},{"name":"Sleep","value":18}]
+        "data": [{"name":"Work","value":12},{"name":"Entertainment","value":22},{"name":"Sleep","value":12}]
       },
       {
         "type": "pie",
@@ -181,7 +181,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":5},{"name":"Entertainment","value":2},{"name":"Sleep","value":7}]
+        "data": [{"name":"Work","value":4},{"name":"Entertainment","value":15},{"name":"Sleep","value":3}]
       },
       {
         "type": "pie",
@@ -190,7 +190,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":11},{"name":"Entertainment","value":11},{"name":"Sleep","value":10}]
+        "data": [{"name":"Work","value":16},{"name":"Entertainment","value":6},{"name":"Sleep","value":2}]
       },
       {
         "type": "pie",
@@ -199,7 +199,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":21},{"name":"Entertainment","value":6},{"name":"Sleep","value":19}]
+        "data": [{"name":"Work","value":22},{"name":"Entertainment","value":4},{"name":"Sleep","value":6}]
       },
       {
         "type": "pie",
@@ -208,7 +208,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":5},{"name":"Entertainment","value":4},{"name":"Sleep","value":1}]
+        "data": [{"name":"Work","value":15},{"name":"Entertainment","value":9},{"name":"Sleep","value":8}]
       },
       {
         "type": "pie",
@@ -217,7 +217,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":11},{"name":"Entertainment","value":11},{"name":"Sleep","value":13}]
+        "data": [{"name":"Work","value":22},{"name":"Entertainment","value":14},{"name":"Sleep","value":5}]
       },
       {
         "type": "pie",
@@ -226,7 +226,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":23},{"name":"Entertainment","value":10},{"name":"Sleep","value":24}]
+        "data": [{"name":"Work","value":6},{"name":"Entertainment","value":17},{"name":"Sleep","value":11}]
       },
       {
         "type": "pie",
@@ -235,7 +235,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":23},{"name":"Entertainment","value":10},{"name":"Sleep","value":20}]
+        "data": [{"name":"Work","value":10},{"name":"Entertainment","value":24},{"name":"Sleep","value":1}]
       },
       {
         "type": "pie",
@@ -244,7 +244,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":16},{"name":"Entertainment","value":3},{"name":"Sleep","value":11}]
+        "data": [{"name":"Work","value":3},{"name":"Entertainment","value":24},{"name":"Sleep","value":19}]
       },
       {
         "type": "pie",
@@ -253,7 +253,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":10},{"name":"Entertainment","value":8},{"name":"Sleep","value":10}]
+        "data": [{"name":"Work","value":2},{"name":"Entertainment","value":7},{"name":"Sleep","value":6}]
       },
       {
         "type": "pie",
@@ -262,7 +262,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":11},{"name":"Entertainment","value":24},{"name":"Sleep","value":18}]
+        "data": [{"name":"Work","value":14},{"name":"Entertainment","value":8},{"name":"Sleep","value":7}]
       },
       {
         "type": "pie",
@@ -271,7 +271,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":19},{"name":"Entertainment","value":4},{"name":"Sleep","value":13}]
+        "data": [{"name":"Work","value":23},{"name":"Entertainment","value":1},{"name":"Sleep","value":24}]
       },
       {
         "type": "pie",
@@ -280,7 +280,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":11},{"name":"Entertainment","value":20},{"name":"Sleep","value":7}]
+        "data": [{"name":"Work","value":3},{"name":"Entertainment","value":17},{"name":"Sleep","value":18}]
       },
       {
         "type": "pie",
@@ -289,7 +289,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":8},{"name":"Entertainment","value":11},{"name":"Sleep","value":24}]
+        "data": [{"name":"Work","value":11},{"name":"Entertainment","value":11},{"name":"Sleep","value":20}]
       },
       {
         "type": "pie",
@@ -298,7 +298,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":18},{"name":"Entertainment","value":8},{"name":"Sleep","value":19}]
+        "data": [{"name":"Work","value":16},{"name":"Entertainment","value":23},{"name":"Sleep","value":11}]
       },
       {
         "type": "pie",
@@ -307,7 +307,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":11},{"name":"Entertainment","value":20},{"name":"Sleep","value":9}]
+        "data": [{"name":"Work","value":13},{"name":"Entertainment","value":7},{"name":"Sleep","value":17}]
       },
       {
         "type": "pie",
@@ -316,7 +316,7 @@
         "radius": 30,
         "coordinateSystem": "calendar",
         "label": {"formatter":"{c}","position":"inside"},
-        "data": [{"name":"Work","value":12},{"name":"Entertainment","value":21},{"name":"Sleep","value":13}]
+        "data": [{"name":"Work","value":9},{"name":"Entertainment","value":5},{"name":"Sleep","value":13}]
       }
     ]
   }

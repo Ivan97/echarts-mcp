@@ -11,7 +11,7 @@
 
 展开的适用性讨论与常见误用见 `references/choosing-and-options.md`。
 
-## 官方示例 38 个
+## 官方示例 37 个
 
 option 在 `examples/gallery/line/<id>.json` 的 `option` 字段，
 直接作为 `render_option` 的参数即可。**只读你要用的那一个，不要把整个目录读进上下文。**
@@ -45,7 +45,6 @@ option 在 `examples/gallery/line/<id>.json` 的 `option` 字段，
 | `dynamic-data2` | 动态数据 + 时间坐标轴 | Dynamic Data + Time Axis | 时间轴、含函数 | 250 | 抽稀、含函数 |
 | `line-function` | 函数绘图 | Function Plot | 数据缩放 | 501 | 抽稀 |
 | `line-race` | 动态排序折线图 | Line Race | 多系列、dataset、encode 映射、含函数 | 385 | 抽稀、含函数 |
-| `matrix-sparkline` | 矩阵中的微型折线图 | Mini Line Charts (Sparkline) in Matrix | 多系列、双轴、数据缩放、多宫格 | 150 | 抽稀 |
 | `line-markline` | 折线图的标记线 | Line with Marklines | 堆叠、标注线/点 | 5 | — |
 | `line-style` | 自定义折线图样式 | Line Style and Item Style | — | 7 | — |
 | `line-in-cartesian-coordinate-system` | 双数值轴折线图 | Line Chart in Cartesian Coordinate System | — | 3 | — |

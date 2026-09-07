@@ -66,7 +66,7 @@ describe('echarts-mcp skill', () => {
     }
   });
 
-  it('选型指南覆盖全部 15 种类型', () => {
+  it('选型指南覆盖全部 17 种类型', () => {
     const guide = readFileSync(join(ROOT, 'references/choosing-and-options.md'), 'utf8');
     for (const t of Object.values(ChartType)) {
       expect(guide, `选型指南未覆盖 ${t}`).toContain(`\`${t}\``);
@@ -135,7 +135,7 @@ describe('echarts-mcp skill', () => {
     }
   });
 
-  it('选型画像覆盖全部 15 种类型，且每项都言之有物', async () => {
+  it('选型画像覆盖全部 17 种类型，且每项都言之有物', async () => {
     const { CHART_PROFILES } = await import('../skills/echarts-mcp/scripts/chart-profiles.mjs');
     for (const t of Object.values(ChartType)) {
       const p = (CHART_PROFILES as Record<string, Record<string, string>>)[t];

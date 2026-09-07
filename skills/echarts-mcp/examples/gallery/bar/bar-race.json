@@ -23,7 +23,7 @@
         "realtimeSort": true,
         "name": "X",
         "type": "bar",
-        "data": [294,255,298,175,362],
+        "data": [99,214,205,255,975],
         "label": {"show":true,"position":"right","valueAnimation":true}
       }
     ],

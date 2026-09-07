@@ -61,8 +61,8 @@
 
 | 类型 | dimensions 数 |
 |---|---|
-| `pie` `funnel` `treemap` `sunburst` | 2 |
-| `heatmap` | 3 |
+| `pie` `funnel` `treemap` `sunburst` `calendar` | 2 |
+| `heatmap` `matrix` | 3 |
 | `candlestick` | 5 |
 | `boxplot` | 6 |
 

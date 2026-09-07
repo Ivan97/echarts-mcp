@@ -1,0 +1,699 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "matrix-mbti",
+  "category": "matrix",
+  "title": "MBTI Partner Compatibility",
+  "titleCN": "MBTI 伴侣相容性",
+  "difficulty": 11,
+  "tags": ["多系列","视觉映射","含函数"],
+  "points": 64,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/matrix-mbti.ts",
+  "trimmed": {
+    "stride": 8,
+    "floor": 200,
+    "originalPoints": 512,
+    "keptPoints": 64,
+    "originalBytes": 136092,
+    "exceedsDefaultBudget": false,
+    "note": "原始数据 512 个点、133KB，按步长 8 等距抽稀到 64 个点后收录。完整数据见 source。"
+  },
+  "functionFields": ["tooltip.formatter","series[1].label.formatter"],
+  "functionNote": "这些字段是函数字符串：svg/png 输出会被剥离，只有 output=html 由浏览器执行。",
+  "option": {
+    "backgroundColor": "#F0F7F9",
+    "textStyle": {"fontFamily":"Ubuntu Condensed, sans-serif"},
+    "title": {
+      "text": "MBTI Partner Compatibility",
+      "subtext": "Data from: https://www.personalitydata.org/16-types/enfj-relationships#partner-matrix",
+      "sublink": "https://www.personalitydata.org/16-types/enfj-relationships#partner-matrix",
+      "left": "center",
+      "top": 5,
+      "textStyle": {"fontSize":20,"color":"#57576A"},
+      "itemGap": 5
+    },
+    "tooltip": {
+      "formatter": "(params) => {\n            return `<span style=\"color:${getColor(params.value[1])};font-weight:bold\">${params.value[1]}</span> /\n                            <span style=\"color:${getColor(params.value[0])};font-weight:bold\">${params.value[0]}</span> :\n                            ${Math.round(params.value[2] * 100)}%`;\n        }",
+      "borderColor": "#eee",
+      "padding": [2,8]
+    },
+    "matrix": {
+      "x": {
+        "data": [
+          {
+            "value": "NF",
+            "label": {"color":"#2D9A69","fontSize":16,"fontWeight":"bolder","padding":0},
+            "children": [
+              {"value":"INFJ","label":{"color":"#2D9A69","fontSize":11,"fontWeight":"bold"}},
+              {"value":"INFP","label":{"color":"#2D9A69","fontSize":11,"fontWeight":"bold"}},
+              {"value":"ENFJ","label":{"color":"#2D9A69","fontSize":11,"fontWeight":"bold"}},
+              {"value":"ENFP","label":{"color":"#2D9A69","fontSize":11,"fontWeight":"bold"}}
+            ]
+          },
+          {
+            "value": "NT",
+            "label": {"color":"#7D568F","fontSize":16,"fontWeight":"bolder","padding":0},
+            "children": [
+              {"value":"INTJ","label":{"color":"#7D568F","fontSize":11,"fontWeight":"bold"}},
+              {"value":"INTP","label":{"color":"#7D568F","fontSize":11,"fontWeight":"bold"}},
+              {"value":"ENTJ","label":{"color":"#7D568F","fontSize":11,"fontWeight":"bold"}},
+              {"value":"ENTP","label":{"color":"#7D568F","fontSize":11,"fontWeight":"bold"}}
+            ]
+          },
+          {
+            "value": "SJ",
+            "label": {"color":"#3A8DAB","fontSize":16,"fontWeight":"bolder","padding":0},
+            "children": [
+              {"value":"ISFJ","label":{"color":"#3A8DAB","fontSize":11,"fontWeight":"bold"}},
+              {"value":"ISTJ","label":{"color":"#3A8DAB","fontSize":11,"fontWeight":"bold"}},
+              {"value":"ESFJ","label":{"color":"#3A8DAB","fontSize":11,"fontWeight":"bold"}},
+              {"value":"ESTJ","label":{"color":"#3A8DAB","fontSize":11,"fontWeight":"bold"}}
+            ]
+          },
+          {
+            "value": "SP",
+            "label": {"color":"#E0A433","fontSize":16,"fontWeight":"bolder","padding":0},
+            "children": [
+              {"value":"ISFP","label":{"color":"#E0A433","fontSize":11,"fontWeight":"bold"}},
+              {"value":"ISTP","label":{"color":"#E0A433","fontSize":11,"fontWeight":"bold"}},
+              {"value":"ESFP","label":{"color":"#E0A433","fontSize":11,"fontWeight":"bold"}},
+              {"value":"ESTP","label":{"color":"#E0A433","fontSize":11,"fontWeight":"bold"}}
+            ]
+          }
+        ],
+        "itemStyle": {"borderColor":"transparent","borderWidth":0},
+        "dividerLineStyle": {"width":0},
+        "label": {"fontFamily":"Ubuntu Condensed, sans-serif"},
+        "levels": [{"levelSize":25},{"levelSize":30}]
+      },
+      "y": {
+        "data": [
+          {
+            "value": "NF",
+            "label": {"color":"#2D9A69","fontSize":16,"fontWeight":"bolder","padding":0},
+            "children": [
+              {"value":"INFJ","label":{"color":"#2D9A69","fontSize":11,"fontWeight":"bold"}},
+              {"value":"INFP","label":{"color":"#2D9A69","fontSize":11,"fontWeight":"bold"}},
+              {"value":"ENFJ","label":{"color":"#2D9A69","fontSize":11,"fontWeight":"bold"}},
+              {"value":"ENFP","label":{"color":"#2D9A69","fontSize":11,"fontWeight":"bold"}}
+            ]
+          },
+          {
+            "value": "NT",
+            "label": {"color":"#7D568F","fontSize":16,"fontWeight":"bolder","padding":0},
+            "children": [
+              {"value":"INTJ","label":{"color":"#7D568F","fontSize":11,"fontWeight":"bold"}},
+              {"value":"INTP","label":{"color":"#7D568F","fontSize":11,"fontWeight":"bold"}},
+              {"value":"ENTJ","label":{"color":"#7D568F","fontSize":11,"fontWeight":"bold"}},
+              {"value":"ENTP","label":{"color":"#7D568F","fontSize":11,"fontWeight":"bold"}}
+            ]
+          },
+          {
+            "value": "SJ",
+            "label": {"color":"#3A8DAB","fontSize":16,"fontWeight":"bolder","padding":0},
+            "children": [
+              {"value":"ISFJ","label":{"color":"#3A8DAB","fontSize":11,"fontWeight":"bold"}},
+              {"value":"ISTJ","label":{"color":"#3A8DAB","fontSize":11,"fontWeight":"bold"}},
+              {"value":"ESFJ","label":{"color":"#3A8DAB","fontSize":11,"fontWeight":"bold"}},
+              {"value":"ESTJ","label":{"color":"#3A8DAB","fontSize":11,"fontWeight":"bold"}}
+            ]
+          },
+          {
+            "value": "SP",
+            "label": {"color":"#E0A433","fontSize":16,"fontWeight":"bolder","padding":0},
+            "children": [
+              {"value":"ISFP","label":{"color":"#E0A433","fontSize":11,"fontWeight":"bold"}},
+              {"value":"ISTP","label":{"color":"#E0A433","fontSize":11,"fontWeight":"bold"}},
+              {"value":"ESFP","label":{"color":"#E0A433","fontSize":11,"fontWeight":"bold"}},
+              {"value":"ESTP","label":{"color":"#E0A433","fontSize":11,"fontWeight":"bold"}}
+            ]
+          }
+        ],
+        "itemStyle": {"borderColor":"transparent","borderWidth":0},
+        "dividerLineStyle": {"width":0},
+        "label": {"fontFamily":"Ubuntu Condensed, sans-serif"}
+      },
+      "body": {"itemStyle":{"borderWidth":0},"label":{"fontFamily":"Ubuntu Condensed, sans-serif"}},
+      "width": 450,
+      "height": 450,
+      "left": 175,
+      "top": 50,
+      "backgroundStyle": {"color":"transparent","borderColor":"transparent","borderWidth":0}
+    },
+    "visualMap": [
+      {
+        "type": "continuous",
+        "min": 0,
+        "max": 1,
+        "dimension": 2,
+        "calculable": true,
+        "orient": "horizontal",
+        "top": 5,
+        "left": "center",
+        "inRange": {"opacity":[0,1]},
+        "seriesIndex": [0,2],
+        "show": false
+      }
+    ],
+    "series": [
+      {
+        "id": "detail-heatmap",
+        "type": "heatmap",
+        "coordinateSystem": "matrix",
+        "data": [
+          {
+            "value": ["ENFJ","ENFJ",0.86],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#0FB369",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ENFJ","INFJ",0.74],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#0FB369",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ENFP","ENFJ",0.91],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#0FB369",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ENFP","INFJ",0.51],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#0FB369",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ENTJ","ENFJ",0.42],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#854AA0",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ENTJ","INFJ",0.25],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#854AA0",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ENTP","ENFJ",0.73],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#854AA0",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ENTP","INFJ",0.11],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#854AA0",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ESFJ","ENFJ",0.64],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#2298C3",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ESFJ","INFJ",0.74],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#2298C3",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ESFP","ENFJ",0.8],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#F2A30D",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ESFP","INFJ",0.43],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#F2A30D",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ESTJ","ENFJ",0.22],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#2298C3",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ESTJ","INFJ",0.14],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#2298C3",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ESTP","ENFJ",0.41],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#F2A30D",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ESTP","INFJ",0.05],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#F2A30D",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["INFJ","ENFJ",0.74],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#0FB369",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["INFJ","INFJ",0.95],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#0FB369",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["INFP","ENFJ",0.73],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#0FB369",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["INFP","INFJ",0.85],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#0FB369",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["INTJ","ENFJ",0.16],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#854AA0",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["INTJ","INFJ",0.65],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#854AA0",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["INTP","ENFJ",0.35],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#854AA0",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["INTP","INFJ",0.5],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#854AA0",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ISFJ","ENFJ",0.3],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#2298C3",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ISFJ","INFJ",0.85],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#2298C3",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ISFP","ENFJ",0.4],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#F2A30D",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ISFP","INFJ",0.58],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#F2A30D",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ISTJ","ENFJ",0.18],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#2298C3",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ISTJ","INFJ",0.53],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#2298C3",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ISTP","ENFJ",0.09],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#F2A30D",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          },
+          {
+            "value": ["ISTP","INFJ",0.23],
+            "itemStyle": {
+              "decal": {
+                "shape": "circle",
+                "symbolSize": 1,
+                "color": "#F2A30D",
+                "backgroundColor": "#0FB369",
+                "dashArrayX": [[1,1],[0,1,1,0]],
+                "dashArrayY": [1,0]
+              },
+              "borderColor": "#2D9A69",
+              "borderWidth": 0
+            }
+          }
+        ],
+        "label": {"show":false},
+        "emphasis": {"itemStyle":{"borderWidth":5}}
+      },
+      {
+        "id": "detail-scatter",
+        "type": "scatter",
+        "coordinateSystem": "matrix",
+        "symbolSize": 0,
+        "data": [
+          {"value":["ENFJ","ENFJ",0.86],"label":{"color":"#fff","opacity":1}},
+          {"value":["ENFJ","INFJ",0.74],"label":{"color":"#fff","opacity":1}},
+          {"value":["ENFP","ENFJ",0.91],"label":{"color":"#fff","opacity":1}},
+          {"value":["ENFP","INFJ",0.51],"label":{"color":"#fff","opacity":1}},
+          {"value":["ENTJ","ENFJ",0.42],"label":{"color":"#fff","opacity":1}},
+          {"value":["ENTJ","INFJ",0.25],"label":{"color":"#fff","opacity":1}},
+          {"value":["ENTP","ENFJ",0.73],"label":{"color":"#fff","opacity":1}},
+          {"value":["ENTP","INFJ",0.11],"label":{"color":"#2D9A69","opacity":0.6}},
+          {"value":["ESFJ","ENFJ",0.64],"label":{"color":"#fff","opacity":1}},
+          {"value":["ESFJ","INFJ",0.74],"label":{"color":"#fff","opacity":1}},
+          {"value":["ESFP","ENFJ",0.8],"label":{"color":"#fff","opacity":1}},
+          {"value":["ESFP","INFJ",0.43],"label":{"color":"#fff","opacity":1}},
+          {"value":["ESTJ","ENFJ",0.22],"label":{"color":"#fff","opacity":1}},
+          {"value":["ESTJ","INFJ",0.14],"label":{"color":"#2D9A69","opacity":0.6}},
+          {"value":["ESTP","ENFJ",0.41],"label":{"color":"#fff","opacity":1}},
+          {"value":["ESTP","INFJ",0.05],"label":{"color":"#2D9A69","opacity":0.6}},
+          {"value":["INFJ","ENFJ",0.74],"label":{"color":"#fff","opacity":1}},
+          {"value":["INFJ","INFJ",0.95],"label":{"color":"#fff","opacity":1}},
+          {"value":["INFP","ENFJ",0.73],"label":{"color":"#fff","opacity":1}},
+          {"value":["INFP","INFJ",0.85],"label":{"color":"#fff","opacity":1}},
+          {"value":["INTJ","ENFJ",0.16],"label":{"color":"#2D9A69","opacity":1}},
+          {"value":["INTJ","INFJ",0.65],"label":{"color":"#fff","opacity":1}},
+          {"value":["INTP","ENFJ",0.35],"label":{"color":"#fff","opacity":1}},
+          {"value":["INTP","INFJ",0.5],"label":{"color":"#fff","opacity":1}},
+          {"value":["ISFJ","ENFJ",0.3],"label":{"color":"#fff","opacity":1}},
+          {"value":["ISFJ","INFJ",0.85],"label":{"color":"#fff","opacity":1}},
+          {"value":["ISFP","ENFJ",0.4],"label":{"color":"#fff","opacity":1}},
+          {"value":["ISFP","INFJ",0.58],"label":{"color":"#fff","opacity":1}},
+          {"value":["ISTJ","ENFJ",0.18],"label":{"color":"#2D9A69","opacity":1}},
+          {"value":["ISTJ","INFJ",0.53],"label":{"color":"#fff","opacity":1}},
+          {"value":["ISTP","ENFJ",0.09],"label":{"color":"#2D9A69","opacity":0.6}},
+          {"value":["ISTP","INFJ",0.23],"label":{"color":"#fff","opacity":1}}
+        ],
+        "color": "#fff",
+        "label": {
+          "show": true,
+          "formatter": "(params) => Math.round(params.value[2] * 100) + '%'",
+          "fontWeight": "bold",
+          "color": "inherit"
+        },
+        "silent": true
+      }
+    ],
+    "aria": {"enabled":true,"decal":{"show":true}},
+    "animation": 0
+  }
+}

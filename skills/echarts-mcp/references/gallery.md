@@ -1,6 +1,6 @@
 # 图表选型与官方示例总索引
 
-覆盖 Apache ECharts 官方示例库里属于我们支持的 15 种类型的全部例子，共 189 个。
+覆盖 Apache ECharts 官方示例库里属于我们支持的 17 种类型的全部例子，共 200 个。
 
 ## 怎么用这份索引
 
@@ -21,20 +21,22 @@ gallery 是**官方原样的 option**，覆盖面广但要自己管全部字段�
 | 类型 | 适合的数据 | 回答的问题 | 典型主题 | 例子 |
 |---|---|---|---|---|
 | `bar` 柱状图 | 离散类目 × 一到多个数值，类目 3~15 个最舒服 | 谁多谁少？各类目怎么比？总量里哪一块撑起来的？ | 销量与人数对比、分区域分渠道拆解、排行榜、预算构成 | [43 个](gallery/bar.md) |
-| `line` 折线图 | 有序的连续维度（时间、刻度）× 数值，可多条系列 | 怎么变的？趋势往哪走？几条序列谁涨得快？ | 时间序列监控、增长曲线、多指标走势对比、预测与置信区间 | [38 个](gallery/line.md) |
-| `pie` 饼图 | 一组互斥且加总有意义的部分，2~7 项，数值非负 | 谁占大头？份额怎么分？ | 市场份额、流量来源、预算与成本构成、投票结果 | [16 个](gallery/pie.md) |
-| `scatter` 散点图 | 每个观测两个数值维度，第三维可用点大小或颜色承载 | 这两个量有没有关系？有没有离群点？样本聚成几团？ | 相关性分析、性能与成本权衡、人群分布、回归与聚类 | [22 个](gallery/scatter.md) |
+| `line` 折线图 | 有序的连续维度（时间、刻度）× 数值，可多条系列 | 怎么变的？趋势往哪走？几条序列谁涨得快？ | 时间序列监控、增长曲线、多指标走势对比、预测与置信区间 | [37 个](gallery/line.md) |
+| `pie` 饼图 | 一组互斥且加总有意义的部分，2~7 项，数值非负 | 谁占大头？份额怎么分？ | 市场份额、流量来源、预算与成本构成、投票结果 | [15 个](gallery/pie.md) |
+| `scatter` 散点图 | 每个观测两个数值维度，第三维可用点大小或颜色承载 | 这两个量有没有关系？有没有离群点？样本聚成几团？ | 相关性分析、性能与成本权衡、人群分布、回归与聚类 | [21 个](gallery/scatter.md) |
 | `radar` 雷达图 | 少数几个对象 × 3~8 个可比维度，量纲需要先归一 | 这个对象强在哪、弱在哪？几个对象的画像差在哪？ | 能力模型、产品参数对比、评测得分、体检指标 | [5 个](gallery/radar.md) |
-| `heatmap` 热力图 | 两个类目维度交叉出的矩阵 × 一个数值，必须配 `visualMap` | 哪一格最热？有没有成行成列的规律？ | 星期×时段活跃度、渠道×品类转化、相关系数矩阵、日历打卡 | [5 个](gallery/heatmap.md) |
+| `heatmap` 热力图 | 两个类目维度交叉出的矩阵 × 一个数值，必须配 `visualMap` | 哪一格最热？有没有成行成列的规律？ | 星期×时段活跃度、渠道×品类转化、相关系数矩阵、日历打卡 | [3 个](gallery/heatmap.md) |
 | `boxplot` 箱线图 | 每组一份**已算好的**五数概括：min / Q1 / 中位数 / Q3 / max | 分布多散？中位数差多少？异常值落在哪？ | 多批次实验对比、接口耗时分位、成绩与薪酬分布 | [3 个](gallery/boxplot.md) |
-| `candlestick` K 线图 | 时间 × 开盘/收盘/最低/最高四个价格 | 这段时间价格怎么走的？振幅多大？在哪放量？ | 股票、期货、加密货币行情，常与均线和成交量副图同屏 | [9 个](gallery/candlestick.md) |
+| `candlestick` K 线图 | 时间 × 开盘/收盘/最低/最高四个价格 | 这段时间价格怎么走的？振幅多大？在哪放量？ | 股票、期货、加密货币行情，常与均线和成交量副图同屏 | [8 个](gallery/candlestick.md) |
 | `funnel` 漏斗图 | 一条**线性**流程的各阶段留存量，逐级递减 | 哪一步掉得最多？整体转化率多少？ | 注册到支付的转化、招聘流程、销售管线、活动参与 | [4 个](gallery/funnel.md) |
 | `sankey` 桑基图 | 节点 + 带权重的有向边，可多级，**不能有环** | 量从哪来、到哪去？哪条路径最粗？在哪分流或汇聚？ | 用户路径与流失、能源与资金流向、渠道归因、预算分配 | [7 个](gallery/sankey.md) |
 | `treemap` 矩形树图 | 带数值的层级结构，用面积表达量 | 哪一块占地最大？大类里是谁撑起来的？ | 磁盘与云成本占用、品类销售构成、代码体积、人口与经济体量 | [7 个](gallery/treemap.md) |
 | `sunburst` 旭日图 | 同 treemap 的层级数据，但更强调从根到叶的**路径** | 构成路径是什么？每一层各自怎么分？ | 组织与目录结构占比、多级分类构成、多级来源归因 | [7 个](gallery/sunburst.md) |
-| `graph` 关系图 | 节点 + 边，边可带权重，节点可分类或带坐标 | 谁和谁有关系？谁是中心？有几个社群？ | 依赖与调用关系、社交网络、知识图谱、共现分析 | [12 个](gallery/graph.md) |
+| `graph` 关系图 | 节点 + 边，边可带权重，节点可分类或带坐标 | 谁和谁有关系？谁是中心？有几个社群？ | 依赖与调用关系、社交网络、知识图谱、共现分析 | [11 个](gallery/graph.md) |
 | `tree` 树图 | 单根、每个节点只有一个父的严格层级 | 上下级或包含关系是什么？分支有多深？ | 组织架构、文件目录、决策树、分类体系、技能树 | [7 个](gallery/tree.md) |
 | `parallel` 平行坐标 | 多个样本 × 4~15 个数值维度 | 高维空间里样本分成几群？哪些维度是一起变的？ | 多指标筛选、参数与配置空间探索、营养成分与材料属性对比 | [4 个](gallery/parallel.md) |
+| `calendar` 日历图 | 日期 × 数值的长表，日期必须是 YYYY-MM-DD，跨年会自动拆成多个日历 | 哪几天最活跃？有没有周末效应、季节性或连续中断？ | 打卡与提交热力、日活与订单量、告警频次、出勤与排班 | [8 个](gallery/calendar.md) |
+| `matrix` 矩阵图 | 同 heatmap 的 [x 类目, y 类目, 数值]，但画成带行列表头的表格，逐格标数 | 这张表里哪一格大？对角线和非对角线差多少？ | 混淆矩阵、相关系数矩阵、渠道×品类交叉表、评分对照表 | [10 个](gallery/matrix.md) |
 
 ## 什么时候别用它
 
@@ -57,10 +59,12 @@ gallery 是**官方原样的 option**，覆盖面广但要自己管全部字段�
 | `graph` | 边远多于节点导致毛球（先过滤或聚合）；本质是严格层级（用 tree） |
 | `tree` | 节点有多个父（那是图，用 graph）；只关心量的占比（用 treemap） |
 | `parallel` | 维度少于 3（用散点）；样本上千又不做刷选（线糊成一片） |
+| `calendar` | 时间粒度不是「天」（小时级用热力图，月度用柱状图）；只关心总量走势（用折线） |
+| `matrix` | 类目多到读不完每一格（改 heatmap 看色块分布）；行列没有对应关系（那就是普通表格） |
 
 ## 覆盖范围
 
-官方示例库共 377 个例子，其中 212 个属于我们支持的 15 种类型，已收录 189 个。
+官方示例库共 377 个例子，其中 227 个属于我们支持的 17 种类型，已收录 200 个。
 
 **画不出来的**（能力边界，理由逐条列在 `references/gallery-support.md`）：
 
@@ -72,6 +76,7 @@ gallery 是**官方原样的 option**，覆盖面广但要自己管全部字段�
 - `scatter-linear-regression` —— 需要服务端注册 echarts-stat 的 regression 变换
 - `scatter-polynomial-regression` —— 需要服务端注册 echarts-stat 的 regression 变换
 - `geo-graph` —— 画在 geo 坐标系上，本工具不支持 map / geo
+- `matrix-confusion` —— custom 系列的 renderItem 是函数，静态渲染时被剥离后无法成图；混淆矩阵请用 generate_chart 的 matrix 模板
 - `data-transform-aggregate` —— 需要服务端注册 echarts-simple-transform 的 aggregate 变换
 - `geo-choropleth-scatter` —— 画在 geo 坐标系上，本工具不支持 map / geo
 - `map-iceland-pie` —— 画在 geo 坐标系上，本工具不支持 map / geo
@@ -79,11 +84,14 @@ gallery 是**官方原样的 option**，覆盖面广但要自己管全部字段�
 - `bar-race-country` —— 数据要在浏览器里对 CDN 资源做二次解析，构建期沙箱拿不到可用的 dataset
 - `matrix-mini-bar-geo` —— 画在 geo 坐标系上，本工具不支持 map / geo
 - `watermark` —— 水印用 canvas 现画图案，服务端没有 canvas 2d 上下文
+- `custom-calendar-icon` —— custom 系列的 renderItem 是函数，静态渲染时被剥离后无法成图
+- `matrix-periodic-table` —— custom 系列的 renderItem 是函数，静态渲染时被剥离后无法成图
 - `scatter-world-population` —— 画在 geo 坐标系上，本工具不支持 map / geo
 - `scatter-logarithmic-regression` —— 需要服务端注册 echarts-stat 的 regression 变换
 - `effectScatter-map` —— 画在 geo 坐标系上，本工具不支持 map / geo
 - `heatmap-bmap` —— 画在百度地图（bmap）上，需要地图扩展与 API key
 - `heatmap-map` —— 画在 geo 坐标系上，本工具不支持 map / geo
+- `matrix-mini-bar-data-collection` —— custom 系列的 renderItem 是函数，静态渲染时被剥离后无法成图
 - `scatter-map` —— 画在 geo 坐标系上，本工具不支持 map / geo
 - `scatter-map-brush` —— 画在 geo 坐标系上，本工具不支持 map / geo
 - `scatter-weibo` —— 画在 geo 坐标系上，本工具不支持 map / geo

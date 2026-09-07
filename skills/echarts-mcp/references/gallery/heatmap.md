@@ -11,7 +11,7 @@
 
 展开的适用性讨论与常见误用见 `references/choosing-and-options.md`。
 
-## 官方示例 5 个
+## 官方示例 3 个
 
 option 在 `examples/gallery/heatmap/<id>.json` 的 `option` 字段，
 直接作为 `render_option` 的参数即可。**只读你要用的那一个，不要把整个目录读进上下文。**
@@ -23,7 +23,5 @@ option 在 `examples/gallery/heatmap/<id>.json` 的 `option` 字段，
 | id | 名称 | English | 标签 | 数据点 | 备注 |
 |---|---|---|---|---|---|
 | `heatmap-cartesian` | 笛卡尔坐标系上的热力图 | Heatmap on Cartesian | 视觉映射 | 168 | — |
-| `calendar-heatmap` | 日历热力图 | Calendar Heatmap | 视觉映射 | 366 | — |
-| `calendar-vertical` | 纵向日历图 | Calendar Heatmap Vertical | 多系列、视觉映射、含函数 | 549 | 抽稀、含函数 |
 | `heatmap-large` | 热力图 - 2w 数据 | Heatmap - 20K data | 视觉映射 | 635 | 抽稀 |
 | `heatmap-large-piecewise` | 热力图 - 颜色的离散映射 | Heatmap - Discrete Mapping of Color | 视觉映射 | 635 | 抽稀 |
