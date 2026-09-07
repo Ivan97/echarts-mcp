@@ -1,5 +1,4 @@
-import { createRequire } from 'node:module';
-import Module from 'node:module';
+import Module, { createRequire } from 'node:module';
 import * as echarts from 'echarts';
 import { ChartError, ErrorCode } from '../errors.js';
 
