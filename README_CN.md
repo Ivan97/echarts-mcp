@@ -95,7 +95,7 @@ const tools = await client.getTools();
 
 仓库里还带了一个 [Claude Code skill](https://github.com/Ivan97/echarts-mcp/tree/main/skills/data-charting)，
 教模型**什么时候**该用哪种图，而不只是怎么调工具：逐类型的选型依据、
-22 个实测通过的 `generate_chart` payload，以及 200 个官方 ECharts 示例
+23 个实测通过的 payload，以及 200 个官方 ECharts 示例
 ——都已预先求值成纯 option，并在浅色深色两种主题下实测渲染过。
 
 **它不在 npm 包里。** `npm install` 只给你服务端；技能是 2.7 MB 的参考资料，
