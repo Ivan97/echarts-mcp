@@ -14,11 +14,18 @@ import { countDataPoints, optionLayers } from './budget.js';
  * 阈值直接失效。option 层面的判据与主题、尺寸、渲染器都无关。
  */
 
-/** ECharts 内置的 series.type 取值。用于识别拼写错误 —— 拼错时 ECharts 只在 console 警告。 */
+/**
+ * 认得的 series.type 取值。用于识别拼写错误 —— 拼错时 ECharts 只在 console 警告。
+ *
+ * 末尾那一组来自第三方扩展（见 charts/extensions.ts）。它们必须列在这里：
+ * 少列一个，用户画出的正常图会被扣上「类型拼写错误」的帽子，
+ * 而这条提示是加在返回内容最前面的，比没有提示更糟。
+ */
 const KNOWN_SERIES_TYPES = new Set([
   'line', 'bar', 'pie', 'scatter', 'effectScatter', 'radar', 'tree', 'treemap',
   'sunburst', 'boxplot', 'candlestick', 'heatmap', 'map', 'parallel', 'lines',
   'graph', 'sankey', 'funnel', 'gauge', 'pictorialBar', 'themeRiver', 'custom',
+  'liquidFill',
 ]);
 
 /** 收集所有层里的 series，timeline 的 baseOption / options 也算在内。 */

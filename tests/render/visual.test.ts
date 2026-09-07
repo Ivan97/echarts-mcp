@@ -9,6 +9,7 @@ import { registerCartesianTemplates } from '../../src/charts/cartesian.js';
 import { registerCategoricalTemplates } from '../../src/charts/categorical.js';
 import { registerStructuralTemplates } from '../../src/charts/structural.js';
 import { registerCoordinateTemplates } from '../../src/charts/coordinate.js';
+import { registerLiquidTemplates } from '../../src/charts/liquid.js';
 import { buildOption } from '../../src/option/build.js';
 import { ResvgRenderer } from '../../src/render/resvg.js';
 
@@ -24,6 +25,7 @@ beforeAll(() => {
   registerCategoricalTemplates();
   registerStructuralTemplates();
   registerCoordinateTemplates();
+  registerLiquidTemplates();
   mkdirSync(BASELINE, { recursive: true });
 });
 

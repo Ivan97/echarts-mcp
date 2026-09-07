@@ -45,18 +45,43 @@ const { registerCartesianTemplates } = await load('charts/cartesian.js');
 const { registerCategoricalTemplates } = await load('charts/categorical.js');
 const { registerStructuralTemplates } = await load('charts/structural.js');
 const { registerCoordinateTemplates } = await load('charts/coordinate.js');
+const { registerLiquidTemplates } = await load('charts/liquid.js');
 const { VARIANTS } = await load('charts/variants.js');
 
 registerCartesianTemplates();
 registerCategoricalTemplates();
 registerStructuralTemplates();
 registerCoordinateTemplates();
+registerLiquidTemplates();
 
+/**
+ * 文档里的分组与顺序。分组本身有阅读价值（同组的 data 结构相近），
+ * 所以保留人工编排，不按注册顺序硬排。
+ *
+ * 但它必须和注册表对得上。这张表曾经两头都过期过：既留着早已删除的
+ * pictorialBar / themeRiver / gauge，又漏掉了后来新增的 calendar / matrix ——
+ * 于是生成出来的文档悄悄少了两种类型，脚本照常退出 0，没有任何人发现。
+ * 下面的完整性检查就是为了让这种漂移当场报错，而不是变成一份不完整的文档。
+ */
 const GROUPS = {
-  '直角坐标系': ['bar', 'line', 'scatter', 'pictorialBar', 'heatmap', 'boxplot', 'candlestick', 'themeRiver'],
-  '非直角坐标系': ['pie', 'funnel', 'gauge', 'radar', 'parallel', 'treemap', 'sunburst'],
+  '直角坐标系': ['bar', 'line', 'scatter', 'heatmap', 'boxplot', 'candlestick'],
+  '非直角坐标系': ['pie', 'funnel', 'radar', 'parallel', 'treemap', 'sunburst'],
+  '坐标系型': ['calendar', 'matrix'],
   '结构型': ['sankey', 'graph', 'tree'],
+  '扩展型': ['liquid'],
 };
+
+const grouped = new Set(Object.values(GROUPS).flat());
+const registered = Object.keys(CHART_TEMPLATES);
+const missing = registered.filter((t) => !grouped.has(t));
+const stale = [...grouped].filter((t) => !registered.includes(t));
+if (missing.length || stale.length) {
+  throw new Error(
+    '生成脚本的 GROUPS 与已注册模板不一致，产出的文档会不完整：' +
+      (missing.length ? `\n  未分组（会从文档里消失）：${missing.join(', ')}` : '') +
+      (stale.length ? `\n  已分组但没有模板（多半是删掉的类型）：${stale.join(', ')}` : ''),
+  );
+}
 
 const B = String.fromCharCode(96);
 const FENCE = B + B + B;

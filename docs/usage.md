@@ -16,7 +16,7 @@
 
 它能做的：
 
-- 17 种图表类型，从柱状图到桑基图
+- 18 种图表类型，从柱状图到桑基图
 - 堆叠、横向、极坐标、双 Y 轴、玫瑰图等细分样式，**不需要换工具**
 - 四种产物：SVG、PNG、ECharts option JSON、可交互的单文件 HTML
 - 两种集成方式：本地 stdio 进程、远端 HTTP 服务
@@ -215,7 +215,7 @@ const tools = await client.getTools();
 
 | 参数 | 必填 | 说明 |
 |---|---|---|
-| `type` | 是 | 图表类型，17 种之一 |
+| `type` | 是 | 图表类型，18 种之一 |
 | `data` | 是 | 数据，结构随类型而异，见第 5 节 |
 | `title` | 否 | 主标题 |
 | `subtitle` | 否 | 副标题 |
@@ -255,7 +255,7 @@ const tools = await client.getTools();
 
 ### 4.3 `list_chart_types`
 
-不带参数时返回全部 17 种类型的概览。带上 `type` 返回该类型的详情：
+不带参数时返回全部 18 种类型的概览。带上 `type` 返回该类型的详情：
 
 ```json
 { "type": "bar" }
@@ -290,7 +290,7 @@ const tools = await client.getTools();
 
 ## 5. 数据怎么传
 
-17 种类型分四组，每组的 `data` 结构不同。
+18 种类型分五组，每组的 `data` 结构不同。
 
 ### 5.1 表格型（15 种）
 
@@ -319,6 +319,7 @@ const tools = await client.getTools();
 | `bar` `line` `scatter` | 第 1 项为类目轴，其余每项一条系列 |
 | `calendar` | 恰好 2 项：`[日期, 数值]`，日期须为 `YYYY-MM-DD` |
 | `matrix` | 恰好 3 项：`[x 类目, y 类目, 数值]` |
+| `liquid` | 恰好 2 项：`[名称, 比例]`，比例可写 0–1 或 0–100 |
 | `radar` `parallel` | 第 1 项为系列名，其余每项一个指标或坐标轴 |
 | `pie` `funnel` | 恰好 2 项：`[名称, 数值]` |
 | `treemap` `sunburst` | 恰好 2 项：`[层级路径, 数值]`，路径用 `/` 分隔 |

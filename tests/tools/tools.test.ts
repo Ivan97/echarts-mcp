@@ -169,10 +169,10 @@ describe('render_option', () => {
 });
 
 describe('list_chart_types', () => {
-  it('不带参数时列出全部 17 种类型', async () => {
+  it('不带参数时列出全部 18 种类型', async () => {
     const { client, close } = await connect();
     const data = JSON.parse(textOf(await client.callTool({ name: 'list_chart_types', arguments: {} })));
-    expect(data.types).toHaveLength(17);
+    expect(data.types).toHaveLength(18);
     expect(data.types.map((t: { type: string }) => t.type)).toContain('sankey');
     await close();
   });

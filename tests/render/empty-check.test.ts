@@ -5,6 +5,7 @@ import { registerCartesianTemplates } from '../../src/charts/cartesian.js';
 import { registerCategoricalTemplates } from '../../src/charts/categorical.js';
 import { registerStructuralTemplates } from '../../src/charts/structural.js';
 import { registerCoordinateTemplates } from '../../src/charts/coordinate.js';
+import { registerLiquidTemplates } from '../../src/charts/liquid.js';
 import { buildOption } from '../../src/option/build.js';
 import { looksEmpty, unknownSeriesTypes, inspectOption } from '../../src/render/empty-check.js';
 
@@ -13,6 +14,7 @@ beforeAll(() => {
   registerCategoricalTemplates();
   registerStructuralTemplates();
   registerCoordinateTemplates();
+  registerLiquidTemplates();
 });
 
 describe('空图检测', () => {
@@ -56,7 +58,7 @@ describe('空图检测', () => {
     expect(inspectOption(option).join()).toMatch(/空图/);
   });
 
-  it('17 种类型的正常 example 都不会被误判为空图', () => {
+  it('18 种类型的正常 example 都不会被误判为空图', () => {
     for (const type of Object.values(ChartType)) {
       const option = buildOption({ type, data: CHART_TEMPLATES[type]!.example });
       expect(looksEmpty(option), `${type} 被误判为空图`).toBe(false);
