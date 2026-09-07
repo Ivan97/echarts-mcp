@@ -86,6 +86,42 @@ const client = new MultiServerMCPClient({
 const tools = await client.getTools();
 ```
 
+## 可选：Claude Code 技能
+
+仓库里还带了一个 [Claude Code skill](https://github.com/Ivan97/echarts-mcp/tree/main/skills/data-charting)，
+教模型**什么时候**该用哪种图，而不只是怎么调工具：逐类型的选型依据、
+22 个实测通过的 `generate_chart` payload，以及 200 个官方 ECharts 示例
+——都已预先求值成纯 option，并在浅色深色两种主题下实测渲染过。
+
+**它不在 npm 包里。** `npm install` 只给你服务端；技能是 2.7 MB 的参考资料，
+放在仓库里，需要单独安装。
+
+装给所有项目用（用户级）：
+
+```bash
+mkdir -p ~/.claude/skills
+curl -sL https://github.com/Ivan97/echarts-mcp/archive/refs/heads/main.tar.gz \
+  | tar xz --strip-components=2 -C ~/.claude/skills \
+    echarts-mcp-main/skills/data-charting
+```
+
+只给单个项目用，把 `-C` 指向 `<项目>/.claude/skills` 即可。
+
+如果已经克隆了仓库，做软链更方便，跟着你的检出一起更新 —— 在仓库根目录执行：
+
+```bash
+ln -s "$PWD/skills/data-charting" ~/.claude/skills/data-charting
+```
+
+确认装好，然后重启 Claude Code —— 技能是在启动时读取的：
+
+```bash
+head -2 ~/.claude/skills/data-charting/SKILL.md   # name: data-charting
+```
+
+目录名必须保持 `data-charting`，要和技能 frontmatter 里的 `name` 一致。
+技能默认上面的 MCP 服务已经配好；没配的话，它提到的那几个工具根本不存在。
+
 ## 三个工具
 
 | 工具 | 用途 |
@@ -172,6 +208,7 @@ npm run build
 
 - 使用指南：[`docs/usage.md`](https://github.com/Ivan97/echarts-mcp/blob/main/docs/usage.md)
 - 图表类型清单与实测示例图：[`docs/chart-types.md`](https://github.com/Ivan97/echarts-mcp/blob/main/docs/chart-types.md)
+- Claude Code 技能：[`skills/data-charting/`](https://github.com/Ivan97/echarts-mcp/tree/main/skills/data-charting)
 - 设计文档与实施计划：`docs/superpowers/`
 
 ## License

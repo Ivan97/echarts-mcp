@@ -83,6 +83,44 @@ const client = new MultiServerMCPClient({
 const tools = await client.getTools();
 ```
 
+## Optional: the charting skill for Claude Code
+
+The repository also ships a [Claude Code skill](https://github.com/Ivan97/echarts-mcp/tree/main/skills/data-charting)
+that teaches a model **when** to reach for each chart type, not just how to call the tools:
+selection guidance per type, 22 verified `generate_chart` payloads, and 200 official ECharts
+gallery examples pre-evaluated into plain options and render-tested in both light and dark.
+
+**It is not part of the npm package.** `npm install` gives you the server only — the skill is
+2.7 MB of reference material and lives in the repository. Install it separately.
+
+For every project (user level):
+
+```bash
+mkdir -p ~/.claude/skills
+curl -sL https://github.com/Ivan97/echarts-mcp/archive/refs/heads/main.tar.gz \
+  | tar xz --strip-components=2 -C ~/.claude/skills \
+    echarts-mcp-main/skills/data-charting
+```
+
+For one project only, point `-C` at `<project>/.claude/skills` instead.
+
+If you already cloned the repository, symlink it so it follows your checkout — run this
+from the repository root:
+
+```bash
+ln -s "$PWD/skills/data-charting" ~/.claude/skills/data-charting
+```
+
+Check it landed, then restart Claude Code — skills are read at startup:
+
+```bash
+head -2 ~/.claude/skills/data-charting/SKILL.md   # name: data-charting
+```
+
+The directory name must stay `data-charting`; it has to match the `name` in the skill's
+frontmatter. The skill assumes the MCP server above is already configured — without it, the
+tools the skill names do not exist.
+
 ## Three tools
 
 | Tool | What it is for |
@@ -171,6 +209,7 @@ npm run build
 
 - Usage guide: [`docs/usage.md`](https://github.com/Ivan97/echarts-mcp/blob/main/docs/usage.md)
 - Chart types with rendered samples: [`docs/chart-types.md`](https://github.com/Ivan97/echarts-mcp/blob/main/docs/chart-types.md)
+- The Claude Code skill: [`skills/data-charting/`](https://github.com/Ivan97/echarts-mcp/tree/main/skills/data-charting)
 - Design docs and implementation plan: `docs/superpowers/`
 
 ## License
