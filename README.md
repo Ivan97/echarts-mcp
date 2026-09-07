@@ -92,7 +92,7 @@ const tools = await client.getTools();
 
 The repository also ships a [Claude Code skill](https://github.com/Ivan97/echarts-mcp/tree/main/skills/data-charting)
 that teaches a model **when** to reach for each chart type, not just how to call the tools:
-selection guidance per type, 22 verified `generate_chart` payloads, and 200 official ECharts
+selection guidance per type, 23 verified payloads, and 200 official ECharts
 gallery examples pre-evaluated into plain options and render-tested in both light and dark.
 
 **It is not part of the npm package.** `npm install` gives you the server only — the skill is

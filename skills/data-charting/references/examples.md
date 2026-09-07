@@ -2,7 +2,7 @@
 
 > 本文件由 `scripts/generate-references.mjs` 从 `examples/examples.json` 生成，不要手工编辑。
 
-共 22 条，全部由 `scripts/verify-examples.mjs` 实测渲染通过。
+共 23 条，全部由 `scripts/verify-examples.mjs` 实测渲染通过。
 在这里挑中一条之后，再去 `examples/examples.json` 里按 `id` 取它的完整 payload ——
 **不要为了拿一条 payload 把整份 JSON 读进上下文。**
 
@@ -30,3 +30,4 @@
 | `matrix-confusion` | 矩阵图：混淆矩阵，逐格读数 | `generate_chart` | `matrix` | 第一维是 x（列），第二维是 y（行）。行列顺序按首次出现，不会被重排 |
 | `matrix-cross-tab` | 矩阵图：渠道 × 品类交叉表 | `generate_chart` | `matrix` | 同样的数据给 heatmap 也画得出来，区别是 matrix 带表头且逐格标数，适合要读具体数值的场合 |
 | `liquid-progress` | 水波图：季度目标完成率 | `generate_chart` | `liquid` | 只表达比例。比例写 62 或 0.62 都行，但同一列会按统一口径解释——整列里出现过大于 1 的数就全按百分数算。要比较多个指标请改用 bar |
+| `bar-waterfall-signed` | 瀑布图：有增有减的利润拆解 | `render_option` | — | 减少的那格**不要传负数**。ECharts 把正负分成两个堆叠，负值会无视下面的透明占位柱、从 0 往下垂。占位取相邻两个累计值里较小的那个，可见高度取差的绝对值，符号靠 label.formatter 补回来 |

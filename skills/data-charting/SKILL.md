@@ -143,10 +143,20 @@ that reads as "cannot do it". All four are an existing type plus a few lines of
 
 | Want | Type | `optionOverrides` |
 |---|---|---|
-| Waterfall | `bar` | Two series stacked, the lower one invisible. Give each row a `[placeholder, delta]` pair: `{"series":[{"stack":"t","itemStyle":{"color":"transparent"},"emphasis":{"itemStyle":{"color":"transparent"}}},{"stack":"t","label":{"show":true,"position":"top"}}],"legend":{"show":false}}` |
+| Waterfall | `bar` | Two series stacked, the lower one invisible — see the rule below it, decreases are the trap: `{"series":[{"stack":"t","silent":true,"itemStyle":{"color":"transparent"}},{"stack":"t","label":{"show":true,"position":"top"}}],"legend":{"show":false}}` |
 | Histogram | `bar` | `{"series":[{"barCategoryGap":"0%","itemStyle":{"borderColor":"#fff","borderWidth":1}}],"legend":{"show":false}}` — **bin the data yourself**, ECharts does no automatic bucketing |
 | Org chart | `tree` | `{"series":[{"orient":"TB","symbol":"rect","symbolSize":[58,26],"edgeShape":"polyline","initialTreeDepth":-1,"label":{"position":"inside","align":"center","verticalAlign":"middle","color":"#fff"}}]}` — shrink `symbolSize` or widen the canvas when sibling boxes touch |
 | Mind map | `tree` | `{"series":[{"orient":"LR","edgeShape":"curve","symbol":"emptyCircle","symbolSize":9,"initialTreeDepth":-1,"label":{"position":"right"},"right":"22%"}]}` — branches fan out one side only, not both |
+
+**Waterfall: never put a negative number in the visible series.** ECharts stacks positives and
+negatives into *separate* stacks, so a `-10` ignores the transparent spacer under it and hangs
+down from zero instead of stepping down from the running total — the chart looks plausible and
+the totals on either side are still right, which is what makes it easy to miss. Feed the
+magnitude and let the spacer carry the position: for a step from `prev` to `next`, spacer is
+`min(prev, next)` and the visible bar is `abs(next - prev)`. A drop from 150 to 140 is spacer
+`140`, bar `10` — not `-10`. Restore the sign in the label with a per-item
+`{"value":10,"label":{"formatter":"-10","position":"bottom"}}`, and colour decreases separately
+with a per-item `itemStyle`; `position: "bottom"` keeps that label out of the bar above it.
 
 Flowcharts and fishbone diagrams are technically reachable through `graph` with
 hand-placed `x`/`y`, but edge labels come out rotated and the diagonal arrowheads
@@ -206,7 +216,7 @@ Tool arguments are JSON. Use string templates (`{b}`, `{c}`, `{d}%`) for labels,
 | `references/gallery/<type>.md` | One per type: that type's selection profile plus its examples with feature tags | You know the type and want the closest example |
 | `references/gallery-support.md` | What actually rendered, light and dark, and the 27 official examples we cannot draw with the reason for each | Asked whether some official example works here |
 | `references/examples.md` | Index of the curated examples: id, purpose, type, the gotcha for each. Generated from the JSON | Picking a starting point — read this before the JSON |
-| `examples/examples.json` | The 22 curated `generate_chart` payloads themselves, copy-pasteable | You picked an id and want its full payload |
+| `examples/examples.json` | The 23 curated payloads themselves, copy-pasteable | You picked an id and want its full payload |
 | `examples/gallery/<type>/<id>.json` | One official example: its `option` plus tags, upstream link and any trimming note | Step 3 of the drill-down — read exactly one |
 | `examples/option-effects.json` | The 33 option fragments with their described effect. The readable version is the options table in `choosing-and-options.md` | Programmatic use, or regenerating that table |
 | `scripts/verify-examples.mjs` | Runs every example through a live server, asserts non-empty output | After changing the examples or upgrading the server |
@@ -216,4 +226,4 @@ Tool arguments are JSON. Use string templates (`{b}`, `{c}`, `{d}%`) for labels,
 | `scripts/verify-gallery.mjs` | Renders every gallery example in both themes and rewrites `references/gallery-support.md` | After rebuilding the gallery or upgrading the server |
 | `scripts/chart-profiles.mjs` | The per-type selection profiles that feed the catalogues | Changing the selection guidance |
 
-All verification scripts are green as committed: 22/22 curated examples render, 33/33 option fragments take effect, and 200/200 gallery examples render in both light and dark.
+All verification scripts are green as committed: 23/23 curated examples render, 33/33 option fragments take effect, and 200/200 gallery examples render in both light and dark.

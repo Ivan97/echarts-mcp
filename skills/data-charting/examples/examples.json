@@ -1092,6 +1092,143 @@
         },
         "title": "季度目标完成情况"
       }
+    },
+    {
+      "id": "bar-waterfall-signed",
+      "title": "瀑布图：有增有减的利润拆解",
+      "note": "减少的那格**不要传负数**。ECharts 把正负分成两个堆叠，负值会无视下面的透明占位柱、从 0 往下垂。占位取相邻两个累计值里较小的那个，可见高度取差的绝对值，符号靠 label.formatter 补回来",
+      "tool": "render_option",
+      "arguments": {
+        "option": {
+          "title": {
+            "text": "月度营收瀑布图",
+            "left": "center"
+          },
+          "xAxis": {
+            "type": "category",
+            "data": [
+              "期初",
+              "1月",
+              "2月",
+              "3月",
+              "4月",
+              "5月",
+              "6月",
+              "期末"
+            ]
+          },
+          "yAxis": {
+            "type": "value"
+          },
+          "grid": {
+            "top": 70,
+            "bottom": 50,
+            "left": 60,
+            "right": 30
+          },
+          "legend": {
+            "show": false
+          },
+          "series": [
+            {
+              "type": "bar",
+              "stack": "t",
+              "silent": true,
+              "itemStyle": {
+                "color": "transparent"
+              },
+              "data": [
+                0,
+                100,
+                130,
+                140,
+                140,
+                155,
+                155,
+                0
+              ]
+            },
+            {
+              "type": "bar",
+              "stack": "t",
+              "label": {
+                "show": true,
+                "position": "top"
+              },
+              "data": [
+                {
+                  "value": 100,
+                  "itemStyle": {
+                    "color": "#5470c6"
+                  }
+                },
+                {
+                  "value": 30,
+                  "itemStyle": {
+                    "color": "#91cc75"
+                  },
+                  "label": {
+                    "formatter": "+30"
+                  }
+                },
+                {
+                  "value": 20,
+                  "itemStyle": {
+                    "color": "#91cc75"
+                  },
+                  "label": {
+                    "formatter": "+20"
+                  }
+                },
+                {
+                  "value": 10,
+                  "itemStyle": {
+                    "color": "#ee6666"
+                  },
+                  "label": {
+                    "formatter": "-10",
+                    "position": "bottom"
+                  }
+                },
+                {
+                  "value": 40,
+                  "itemStyle": {
+                    "color": "#91cc75"
+                  },
+                  "label": {
+                    "formatter": "+40"
+                  }
+                },
+                {
+                  "value": 25,
+                  "itemStyle": {
+                    "color": "#ee6666"
+                  },
+                  "label": {
+                    "formatter": "-25",
+                    "position": "bottom"
+                  }
+                },
+                {
+                  "value": 15,
+                  "itemStyle": {
+                    "color": "#91cc75"
+                  },
+                  "label": {
+                    "formatter": "+15"
+                  }
+                },
+                {
+                  "value": 170,
+                  "itemStyle": {
+                    "color": "#5470c6"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
     }
   ]
 }
