@@ -40,7 +40,17 @@ export function ensureLiquidFill(): void {
   if (liquidFillLoaded) return;
 
   try {
-    const echartsCjsPath = require.resolve('echarts');
+    // 注意解析的**起点**：必须是 liquidfill 自己看到的那个 echarts，
+    // 而不是我们看到的那个。这两者在真实安装里会是不同的文件。
+    //
+    // 发布前用打包产物实测才发现：消费者装完之后树是这样的 ——
+    //   node_modules/echarts                                  5.6.0  ← liquidfill 解析到这份
+    //   node_modules/@ivan97/echarts-mcp/node_modules/echarts  6.1.0  ← 我们解析到这份
+    // npm 为了满足 liquidfill 的 peer echarts@^5 单独装了一份 5，把我们的 6 挤进了
+    // 嵌套目录。于是注入打在一个路径、扩展从另一个路径取，注册全部落空，
+    // 水波图变成「Unknown series」的空图 —— 而仓库里两者同路径，测不出来。
+    const liquidFillEntry = require.resolve('echarts-liquidfill');
+    const echartsCjsPath = createRequire(liquidFillEntry).resolve('echarts');
 
     // 只在缓存里还没有这一项时注入。若宿主程序已经 require 过 echarts，
     // 覆盖它会把别人手上的实例换掉，那是越界的副作用。

@@ -88,5 +88,8 @@
     "echarts-liquidfill": {
       "echarts": "$echarts"
     }
-  }
+  },
+  "bundleDependencies": [
+    "echarts-liquidfill"
+  ]
 }
