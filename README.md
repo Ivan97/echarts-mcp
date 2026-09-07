@@ -25,6 +25,11 @@ npm install -g @ivan97/echarts-mcp
 
 You can also skip the installation and point your client at `npx`.
 
+> **Mind the scope.** The unscoped `echarts-mcp` on npm is a different package by another
+> author — one tool, `generate-echarts`, raw option in, PNG out. Everything below assumes
+> `@ivan97/echarts-mcp`. If your client shows a tool named `generate-echarts`, you installed
+> the other one.
+
 ### stdio
 
 Standard `mcpServers` config, works with Claude Desktop, Claude Code, Cherry Studio and others:

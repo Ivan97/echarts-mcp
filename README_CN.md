@@ -28,6 +28,11 @@ npm install -g @ivan97/echarts-mcp
 
 也可以不装，接入配置里直接用 `npx`。
 
+> **注意 scope。** npm 上无 scope 的 `echarts-mcp` 是另一位作者的另一个包 ——
+> 只有一个工具 `generate-echarts`，传原始 option 加宽高，返回 PNG。
+> 本文下面讲的全部是 `@ivan97/echarts-mcp`。如果你的客户端里看到的工具叫
+> `generate-echarts`，那就是装错了。
+
 ### stdio
 
 标准 `mcpServers` 配置，适用于 Claude Desktop、Claude Code、Cherry Studio 等：
