@@ -2,7 +2,7 @@ import type { EChartsOption } from 'echarts';
 import { DeliveryChannel, OutputFormat } from '../types.js';
 import { partitionFunctions } from '../option/functions.js';
 import { buildStandaloneHtml } from '../html/standalone.js';
-import { inspectOption } from '../render/empty-check.js';
+import { inspectOption } from '../render/index.js';
 import type { Renderer, RenderSize } from '../render/types.js';
 import type { StorageAdapter } from './types.js';
 import { markdownFor, markdownForOption } from './markdown.js';
