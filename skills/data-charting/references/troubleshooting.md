@@ -52,7 +52,7 @@
 | `INVALID_INPUT` | 参数不合法 | 按提示里的字段名改。类型不支持时会列出全部可用类型 |
 | `INVALID_OPTION` | ECharts 拒绝了该 option | 看提示里 ECharts 的原话 |
 | `OPTION_TOO_LARGE` | 数据点或序列化体积超限 | 先聚合或采样再出图，默认上限 50000 个数据点 |
-| `RENDERER_UNAVAILABLE` | 栅格化失败 | 通常是服务端字体或环境问题，改用 `output: "svg"` 绕开 |
+| `RENDERER_UNAVAILABLE` | 两种成因，看提示里的原话区分 | **栅格化失败**（服务端字体或环境问题）：改用 `output: "svg"` 绕开。**扩展加载失败**（提示里会点名 `echarts-liquidfill`）：只影响 `liquid` 一种类型，换输出格式没有用，改用 `bar` 或直接给数字；其余类型不受影响 |
 | `STORAGE_FAILED` | 写盘失败 | 检查 `ECHARTS_MCP_STORAGE_DIR` 的权限 |
 
 ### 「要求 dimensions 恰好 N 项」

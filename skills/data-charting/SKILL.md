@@ -40,7 +40,9 @@ Match what the user is asking, not what the numbers look like.
 
 `map`, `geo`, `lines` and 3D types are **not supported**. If the user wants a map, say so; do not substitute `scatter`.
 
-`gauge`, `pictorialBar` and `themeRiver` were **deliberately dropped**: the first two are skeuomorphic or infographic decoration (dashboards, clocks, bars made of repeated icons) and the third cannot be read to an exact value. For a single metric against a target, give the number or a bar; for several series shifting over time, use a stacked area chart.
+`gauge`, `pictorialBar` and `themeRiver` were **deliberately dropped**: the first two are skeuomorphic or infographic decoration (dials, clocks, bars made of repeated icons) and the third cannot be read to an exact value. For several series shifting over time, use a stacked area chart.
+
+For a single metric against a target, a plain number or a `bar` is usually the honest answer. `liquid` is the one exception kept, and only for progress boards, which are read for the "how full" impression rather than for the value. The moment the reader has to compare that metric with anything else, it is the wrong pick — that is the same reason `gauge` is gone.
 
 The table above picks a type. **When the choice is not obvious, or you want to know when a type is the wrong call, read `references/choosing-and-options.md`.** It covers, per type, what it is good for, what it is not, and the misuse that shows up most often — a pie chart with nine slices, a bar chart whose axis does not start at zero, a funnel used for a branching flow.
 
