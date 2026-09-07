@@ -78,6 +78,19 @@ describe('data-charting skill', () => {
     }
   });
 
+  it('点名 scoped 包，不留下无 scope 的歧义写法', () => {
+    // npm 上无 scope 的 `echarts-mcp` 是另一位作者的另一个包，只有一个
+    // generate-echarts 工具。skill 原来通篇写「the echarts-mcp server」，
+    // 又从不说该装哪个包 —— 有人照着装，装到的就是那个，三个工具一个都没有。
+    // 真实发生过一次，所以这里钉死。
+    expect(skill, 'SKILL.md 未点名 @ivan97/echarts-mcp').toContain('@ivan97/echarts-mcp');
+    expect(skill, 'SKILL.md 未提醒无 scope 的同名包').toMatch(/unscoped `echarts-mcp`/);
+    // 除了那句警告本身，正文不该再出现独立的、不带 scope 的 echarts-mcp
+    const bare = skill.match(/(?<![@/\w-])echarts-mcp/g) ?? [];
+    expect(bare.length, `出现了 ${bare.length} 处无 scope 的 echarts-mcp，应只在警告里出现一次`)
+      .toBeLessThanOrEqual(1);
+  });
+
   it('选型指南覆盖全部 18 种类型', () => {
     const guide = readFileSync(join(ROOT, 'references/choosing-and-options.md'), 'utf8');
     for (const t of Object.values(ChartType)) {
