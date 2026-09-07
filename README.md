@@ -10,7 +10,7 @@ An MCP server for Apache ECharts. Give an LLM a chart type and some data, get ba
 
 Works over **stdio** and **Streamable HTTP**, and produces SVG, PNG, ECharts option JSON, or a self-contained interactive HTML page.
 
-- **18 chart types.** Variants like stacked, horizontal, polar, dual-axis and rose need no separate tool
+- **15 chart types.** Variants like stacked, horizontal, polar, dual-axis and rose need no separate tool
 - **No native dependencies by default.** ECharts renders SVG server-side; PNG goes through `@resvg/resvg-js`, which ships prebuilt binaries, so there is nothing to compile
 - **No cloud vendor lock-in.** Storage sits behind a `StorageAdapter` interface with a local-disk implementation built in
 - **Markdown output.** Clients that render Markdown show the chart inline instead of a bare path
@@ -23,7 +23,7 @@ Works over **stdio** and **Streamable HTTP**, and produces SVG, PNG, ECharts opt
 npm install -g @ivan97/echarts-mcp
 ```
 
-You can also skip the install and point your client at `npx`.
+You can also skip the installation and point your client at `npx`.
 
 ### stdio
 
@@ -109,11 +109,11 @@ Ready-made fragments come from `list_chart_types`: pass a `type` and it returns 
 
 ## Supported chart types
 
-18 in three groups. Data shapes, example data and rendered samples for each are in
+15 in three groups. Data shapes, example data and rendered samples for each are in
 [`docs/chart-types.md`](https://github.com/Ivan97/echarts-mcp/blob/main/docs/chart-types.md).
 
-- **Cartesian**: `bar` `line` `scatter` `pictorialBar` `heatmap` `boxplot` `candlestick` `themeRiver`
-- **Non-cartesian**: `pie` `funnel` `gauge` `radar` `parallel` `treemap` `sunburst`
+- **Cartesian**: `bar` `line` `scatter` `heatmap` `boxplot` `candlestick`
+- **Non-cartesian**: `pie` `funnel` `radar` `parallel` `treemap` `sunburst`
 - **Structural**: `sankey` `graph` `tree`
 
 Maps (`map` / `geo`) and 3D types are out of scope for now: maps need GeoJSON distribution, which is its own subsystem, and 3D depends on WebGL, which is unavailable in a server-side rendering environment.

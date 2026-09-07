@@ -1,0 +1,39 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "sunburst-simple",
+  "category": "sunburst",
+  "title": "Basic Sunburst",
+  "titleCN": "基础旭日图",
+  "difficulty": 1,
+  "tags": ["环形"],
+  "points": 2,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/sunburst-simple.ts",
+  "option": {
+    "series": {
+      "type": "sunburst",
+      "data": [
+        {
+          "name": "Grandpa",
+          "children": [
+            {
+              "name": "Uncle Leo",
+              "value": 15,
+              "children": [
+                {"name":"Cousin Jack","value":2},
+                {"name":"Cousin Mary","value":5,"children":[{"name":"Jackson","value":2}]},
+                {"name":"Cousin Ben","value":4}
+              ]
+            },
+            {"name":"Father","value":10,"children":[{"name":"Me","value":5},{"name":"Brother Peter","value":1}]}
+          ]
+        },
+        {
+          "name": "Nancy",
+          "children": [{"name":"Uncle Nike","children":[{"name":"Cousin Betty","value":1},{"name":"Cousin Jenny","value":2}]}]
+        }
+      ],
+      "radius": [0,"90%"],
+      "label": {"rotate":"radial"}
+    }
+  }
+}

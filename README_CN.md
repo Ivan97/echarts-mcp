@@ -10,7 +10,7 @@ Apache ECharts 的 MCP 服务。给 LLM 一个图表类型和一份数据，返�
 
 支持 **stdio** 与 **Streamable HTTP** 两种集成方式，输出 SVG / PNG / ECharts option JSON / 自包含 HTML 四种格式。
 
-- 覆盖 18 种图表类型，细分样式（堆叠、横向、极坐标、双 Y 轴、玫瑰图……）不需要换工具
+- 覆盖 15 种图表类型，细分样式（堆叠、横向、极坐标、双 Y 轴、玫瑰图……）不需要换工具
 - 默认渲染链路**零原生依赖**：ECharts SSR 出 SVG，需要位图时经 `@resvg/resvg-js` 栅格化，无需编译 cairo/pango
 - 存储走 `StorageAdapter` 接口，**不绑定任何云厂商**
 - 输出为 Markdown 语法，支持 md 的客户端直接把图渲染出来
@@ -113,10 +113,10 @@ const tools = await client.getTools();
 
 ## 支持的图表类型
 
-18 种，分三组。每种的 data 结构、示例数据与实测渲染图见 [`docs/chart-types.md`](https://github.com/Ivan97/echarts-mcp/blob/main/docs/chart-types.md)。
+15 种，分三组。每种的 data 结构、示例数据与实测渲染图见 [`docs/chart-types.md`](https://github.com/Ivan97/echarts-mcp/blob/main/docs/chart-types.md)。
 
-- **直角坐标系**：`bar` `line` `scatter` `pictorialBar` `heatmap` `boxplot` `candlestick` `themeRiver`
-- **非直角坐标系**：`pie` `funnel` `gauge` `radar` `parallel` `treemap` `sunburst`
+- **直角坐标系**：`bar` `line` `scatter` `heatmap` `boxplot` `candlestick`
+- **非直角坐标系**：`pie` `funnel` `radar` `parallel` `treemap` `sunburst`
 - **结构型**：`sankey` `graph` `tree`
 
 一期不含地图类（`map` / `geo`）与 3D 类：前者需要 GeoJSON 分发，是独立子系统；后者依赖 WebGL，SSR 环境不可用。

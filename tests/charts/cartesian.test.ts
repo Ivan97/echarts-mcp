@@ -12,8 +12,6 @@ const CARTESIAN = [
   ChartType.Heatmap,
   ChartType.Boxplot,
   ChartType.Candlestick,
-  ChartType.PictorialBar,
-  ChartType.ThemeRiver,
 ];
 
 describe('直角坐标系模板', () => {

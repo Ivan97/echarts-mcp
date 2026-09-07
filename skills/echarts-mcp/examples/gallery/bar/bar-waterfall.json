@@ -1,0 +1,45 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "bar-waterfall",
+  "category": "bar",
+  "title": "Waterfall Chart",
+  "titleCN": "瀑布图（柱状图模拟）",
+  "difficulty": 1,
+  "tags": ["多系列","堆叠","含函数"],
+  "points": 12,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/bar-waterfall.ts",
+  "functionFields": ["tooltip.formatter"],
+  "functionNote": "这些字段是函数字符串：svg/png 输出会被剥离，只有 output=html 由浏览器执行。",
+  "option": {
+    "title": {"text":"Waterfall Chart","subtext":"Living Expenses in Shenzhen"},
+    "tooltip": {
+      "trigger": "axis",
+      "axisPointer": {"type":"shadow"},
+      "formatter": "function (params) {\n            var tar = params[1];\n            return tar.name + '<br/>' + tar.seriesName + ' : ' + tar.value;\n        }"
+    },
+    "grid": {"left":"3%","right":"4%","bottom":"3%","containLabel":true},
+    "xAxis": {
+      "type": "category",
+      "splitLine": {"show":false},
+      "data": ["Total","Rent","Utilities","Transportation","Meals","Other"]
+    },
+    "yAxis": {"type":"value"},
+    "series": [
+      {
+        "name": "Placeholder",
+        "type": "bar",
+        "stack": "Total",
+        "itemStyle": {"borderColor":"transparent","color":"transparent"},
+        "emphasis": {"itemStyle":{"borderColor":"transparent","color":"transparent"}},
+        "data": [0,1700,1400,1200,300,0]
+      },
+      {
+        "name": "Life Cost",
+        "type": "bar",
+        "stack": "Total",
+        "label": {"show":true,"position":"inside"},
+        "data": [2900,1200,300,200,900,300]
+      }
+    ]
+  }
+}

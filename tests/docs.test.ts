@@ -29,7 +29,7 @@ describe('使用文档与代码一致', () => {
     }
   });
 
-  it('18 种图表类型都在文档中出现', () => {
+  it('15 种图表类型都在文档中出现', () => {
     for (const t of Object.values(ChartType)) {
       expect(usage, `文档未提到类型 ${t}`).toContain(`\`${t}\``);
     }
@@ -75,7 +75,7 @@ describe('中英文 README 同步', () => {
     expect(cn).toContain('README.md');
   });
 
-  it('18 种图表类型在两份 README 中都完整列出', () => {
+  it('15 种图表类型在两份 README 中都完整列出', () => {
     for (const t of Object.values(ChartType)) {
       expect(en, `英文 README 未提到 ${t}`).toContain(`\`${t}\``);
       expect(cn, `中文 README 未提到 ${t}`).toContain(`\`${t}\``);

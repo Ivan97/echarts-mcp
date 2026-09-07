@@ -1,0 +1,1083 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "matrix-sparkline",
+  "category": "line",
+  "title": "Mini Line Charts (Sparkline) in Matrix",
+  "titleCN": "矩阵中的微型折线图",
+  "difficulty": 5,
+  "tags": ["多系列","双轴","数据缩放","多宫格"],
+  "points": 150,
+  "upstream": "https://echarts.apache.org/examples/examples/js/matrix-sparkline.js",
+  "trimmed": {
+    "stride": 64,
+    "floor": 200,
+    "originalPoints": 9125,
+    "keptPoints": 150,
+    "originalBytes": 271667,
+    "exceedsDefaultBudget": false,
+    "note": "原始数据 9125 个点、265KB，按步长 64 等距抽稀到 150 个点后收录。完整数据见 source。"
+  },
+  "option": {
+    "matrix": {
+      "x": {"data":["Mon","Tue","Wed","Thu","Fri"],"levelSize":40,"label":{"fontSize":16,"color":"#555"}},
+      "y": {
+        "data": [
+          {"value":"8:00\n~\n10:00"},
+          {"value":"10:00\n~\n12:00"},
+          {"value":"12:00\n~\n14:00","size":55},
+          {"value":"14:00\n~\n16:00"},
+          {"value":"16:00\n~\n18:00"},
+          {"value":"18:00\n~\n20:00"}
+        ],
+        "levelSize": 70,
+        "label": {"fontSize":14,"color":"#777"}
+      },
+      "corner": {"data":[{"coord":[-1,-1],"value":"Time"}],"label":{"fontSize":16,"color":"#777"}},
+      "body": {
+        "data": [
+          {"coord":[null,2],"coordClamp":true,"mergeCells":true,"value":"Break","label":{"color":"#999","fontSize":16}}
+        ]
+      },
+      "top": 30,
+      "bottom": 80,
+      "width": "90%",
+      "left": "center"
+    },
+    "tooltip": {"trigger":"axis"},
+    "dataZoom": [
+      {"type":"slider","xAxisIndex":"all","left":"10%","right":"10%","bottom":30,"height":30,"throttle":120},
+      {"type":"inside","xAxisIndex":"all","throttle":120}
+    ],
+    "grid": [
+      {
+        "id": "0|0",
+        "coordinateSystem": "matrix",
+        "coord": ["Mon","8:00\n~\n10:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "1|0",
+        "coordinateSystem": "matrix",
+        "coord": ["Tue","8:00\n~\n10:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "2|0",
+        "coordinateSystem": "matrix",
+        "coord": ["Wed","8:00\n~\n10:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "3|0",
+        "coordinateSystem": "matrix",
+        "coord": ["Thu","8:00\n~\n10:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "4|0",
+        "coordinateSystem": "matrix",
+        "coord": ["Fri","8:00\n~\n10:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "0|1",
+        "coordinateSystem": "matrix",
+        "coord": ["Mon","10:00\n~\n12:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "1|1",
+        "coordinateSystem": "matrix",
+        "coord": ["Tue","10:00\n~\n12:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "2|1",
+        "coordinateSystem": "matrix",
+        "coord": ["Wed","10:00\n~\n12:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "3|1",
+        "coordinateSystem": "matrix",
+        "coord": ["Thu","10:00\n~\n12:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "4|1",
+        "coordinateSystem": "matrix",
+        "coord": ["Fri","10:00\n~\n12:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "0|3",
+        "coordinateSystem": "matrix",
+        "coord": ["Mon","14:00\n~\n16:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "1|3",
+        "coordinateSystem": "matrix",
+        "coord": ["Tue","14:00\n~\n16:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "2|3",
+        "coordinateSystem": "matrix",
+        "coord": ["Wed","14:00\n~\n16:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "3|3",
+        "coordinateSystem": "matrix",
+        "coord": ["Thu","14:00\n~\n16:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "4|3",
+        "coordinateSystem": "matrix",
+        "coord": ["Fri","14:00\n~\n16:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "0|4",
+        "coordinateSystem": "matrix",
+        "coord": ["Mon","16:00\n~\n18:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "1|4",
+        "coordinateSystem": "matrix",
+        "coord": ["Tue","16:00\n~\n18:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "2|4",
+        "coordinateSystem": "matrix",
+        "coord": ["Wed","16:00\n~\n18:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "3|4",
+        "coordinateSystem": "matrix",
+        "coord": ["Thu","16:00\n~\n18:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "4|4",
+        "coordinateSystem": "matrix",
+        "coord": ["Fri","16:00\n~\n18:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "0|5",
+        "coordinateSystem": "matrix",
+        "coord": ["Mon","18:00\n~\n20:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "1|5",
+        "coordinateSystem": "matrix",
+        "coord": ["Tue","18:00\n~\n20:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "2|5",
+        "coordinateSystem": "matrix",
+        "coord": ["Wed","18:00\n~\n20:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "3|5",
+        "coordinateSystem": "matrix",
+        "coord": ["Thu","18:00\n~\n20:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      },
+      {
+        "id": "4|5",
+        "coordinateSystem": "matrix",
+        "coord": ["Fri","18:00\n~\n20:00"],
+        "top": 10,
+        "bottom": 10,
+        "left": "center",
+        "width": "90%",
+        "containLabel": true
+      }
+    ],
+    "xAxis": [
+      {
+        "type": "category",
+        "id": "0|0",
+        "gridId": "0|0",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "1|0",
+        "gridId": "1|0",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "2|0",
+        "gridId": "2|0",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "3|0",
+        "gridId": "3|0",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "4|0",
+        "gridId": "4|0",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "0|1",
+        "gridId": "0|1",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "1|1",
+        "gridId": "1|1",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "2|1",
+        "gridId": "2|1",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "3|1",
+        "gridId": "3|1",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "4|1",
+        "gridId": "4|1",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "0|3",
+        "gridId": "0|3",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "1|3",
+        "gridId": "1|3",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "2|3",
+        "gridId": "2|3",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "3|3",
+        "gridId": "3|3",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "4|3",
+        "gridId": "4|3",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "0|4",
+        "gridId": "0|4",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "1|4",
+        "gridId": "1|4",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "2|4",
+        "gridId": "2|4",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "3|4",
+        "gridId": "3|4",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "4|4",
+        "gridId": "4|4",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "0|5",
+        "gridId": "0|5",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "1|5",
+        "gridId": "1|5",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "2|5",
+        "gridId": "2|5",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "3|5",
+        "gridId": "3|5",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      },
+      {
+        "type": "category",
+        "id": "4|5",
+        "gridId": "4|5",
+        "scale": true,
+        "axisTick": {"show":false},
+        "axisLabel": {"show":false},
+        "axisLine": {"show":false},
+        "splitLine": {"show":false}
+      }
+    ],
+    "yAxis": [
+      {
+        "id": "0|0",
+        "gridId": "0|0",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "1|0",
+        "gridId": "1|0",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "2|0",
+        "gridId": "2|0",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "3|0",
+        "gridId": "3|0",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "4|0",
+        "gridId": "4|0",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "0|1",
+        "gridId": "0|1",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "1|1",
+        "gridId": "1|1",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "2|1",
+        "gridId": "2|1",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "3|1",
+        "gridId": "3|1",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "4|1",
+        "gridId": "4|1",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "0|3",
+        "gridId": "0|3",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "1|3",
+        "gridId": "1|3",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "2|3",
+        "gridId": "2|3",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "3|3",
+        "gridId": "3|3",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "4|3",
+        "gridId": "4|3",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "0|4",
+        "gridId": "0|4",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "1|4",
+        "gridId": "1|4",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "2|4",
+        "gridId": "2|4",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "3|4",
+        "gridId": "3|4",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "4|4",
+        "gridId": "4|4",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "0|5",
+        "gridId": "0|5",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "1|5",
+        "gridId": "1|5",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "2|5",
+        "gridId": "2|5",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "3|5",
+        "gridId": "3|5",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      },
+      {
+        "id": "4|5",
+        "gridId": "4|5",
+        "interval": 9007199254740991,
+        "scale": true,
+        "axisLabel": {"showMaxLabel":true,"fontSize":9},
+        "axisLine": {"show":false},
+        "axisTick": {"show":false}
+      }
+    ],
+    "series": [
+      {
+        "xAxisId": "0|0",
+        "yAxisId": "0|0",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [
+          ["2025-05-05",160],
+          ["2026-07-27",303],
+          ["2027-10-18",118],
+          ["2029-01-08",381],
+          ["2030-04-01",379],
+          ["2031-06-23",358]
+        ]
+      },
+      {
+        "xAxisId": "1|0",
+        "yAxisId": "1|0",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [
+          ["2025-05-06",323],
+          ["2026-07-28",132],
+          ["2027-10-19",146],
+          ["2029-01-09",328],
+          ["2030-04-02",285],
+          ["2031-06-24",6]
+        ]
+      },
+      {
+        "xAxisId": "2|0",
+        "yAxisId": "2|0",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [
+          ["2025-05-07",260],
+          ["2026-07-29",210],
+          ["2027-10-20",19],
+          ["2029-01-10",109],
+          ["2030-04-03",285],
+          ["2031-06-25",437]
+        ]
+      },
+      {
+        "xAxisId": "3|0",
+        "yAxisId": "3|0",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [
+          ["2025-05-08",299],
+          ["2026-07-30",204],
+          ["2027-10-21",209],
+          ["2029-01-11",93],
+          ["2030-04-04",281],
+          ["2031-06-26",136]
+        ]
+      },
+      {
+        "xAxisId": "4|0",
+        "yAxisId": "4|0",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [["2025-05-09",88],["2026-07-31",102],["2027-10-22",0],["2029-01-12",0],["2030-04-05",0],["2031-06-27",0]]
+      },
+      {
+        "xAxisId": "0|1",
+        "yAxisId": "0|1",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [
+          ["2025-05-05",286],
+          ["2026-07-27",461],
+          ["2027-10-18",484],
+          ["2029-01-08",405],
+          ["2030-04-01",291],
+          ["2031-06-23",404]
+        ]
+      },
+      {
+        "xAxisId": "1|1",
+        "yAxisId": "1|1",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [
+          ["2025-05-06",199],
+          ["2026-07-28",502],
+          ["2027-10-19",580],
+          ["2029-01-09",555],
+          ["2030-04-02",631],
+          ["2031-06-24",575]
+        ]
+      },
+      {
+        "xAxisId": "2|1",
+        "yAxisId": "2|1",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [
+          ["2025-05-07",158],
+          ["2026-07-29",182],
+          ["2027-10-20",124],
+          ["2029-01-10",142],
+          ["2030-04-03",332],
+          ["2031-06-25",186]
+        ]
+      },
+      {
+        "xAxisId": "3|1",
+        "yAxisId": "3|1",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [["2025-05-08",184],["2026-07-30",105],["2027-10-21",145],["2029-01-11",0],["2030-04-04",0],["2031-06-26",0]]
+      },
+      {
+        "xAxisId": "4|1",
+        "yAxisId": "4|1",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [["2025-05-09",57],["2026-07-31",208],["2027-10-22",253],["2029-01-12",94],["2030-04-05",3],["2031-06-27",89]]
+      },
+      {
+        "xAxisId": "0|3",
+        "yAxisId": "0|3",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [
+          ["2025-05-05",239],
+          ["2026-07-27",293],
+          ["2027-10-18",191],
+          ["2029-01-08",442],
+          ["2030-04-01",303],
+          ["2031-06-23",230]
+        ]
+      },
+      {
+        "xAxisId": "1|3",
+        "yAxisId": "1|3",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [["2025-05-06",257],["2026-07-28",400],["2027-10-19",168],["2029-01-09",15],["2030-04-02",0],["2031-06-24",0]]
+      },
+      {
+        "xAxisId": "2|3",
+        "yAxisId": "2|3",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [
+          ["2025-05-07",201],
+          ["2026-07-29",109],
+          ["2027-10-20",26],
+          ["2029-01-10",312],
+          ["2030-04-03",241],
+          ["2031-06-25",0]
+        ]
+      },
+      {
+        "xAxisId": "3|3",
+        "yAxisId": "3|3",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [["2025-05-08",44],["2026-07-30",0],["2027-10-21",0],["2029-01-11",0],["2030-04-04",30],["2031-06-26",0]]
+      },
+      {
+        "xAxisId": "4|3",
+        "yAxisId": "4|3",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [
+          ["2025-05-09",206],
+          ["2026-07-31",359],
+          ["2027-10-22",327],
+          ["2029-01-12",153],
+          ["2030-04-05",130],
+          ["2031-06-27",15]
+        ]
+      },
+      {
+        "xAxisId": "0|4",
+        "yAxisId": "0|4",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [
+          ["2025-05-05",37],
+          ["2026-07-27",258],
+          ["2027-10-18",361],
+          ["2029-01-08",420],
+          ["2030-04-01",369],
+          ["2031-06-23",247]
+        ]
+      },
+      {
+        "xAxisId": "1|4",
+        "yAxisId": "1|4",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [
+          ["2025-05-06",229],
+          ["2026-07-28",325],
+          ["2027-10-19",271],
+          ["2029-01-09",393],
+          ["2030-04-02",237],
+          ["2031-06-24",228]
+        ]
+      },
+      {
+        "xAxisId": "2|4",
+        "yAxisId": "2|4",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [["2025-05-07",62],["2026-07-29",92],["2027-10-20",3],["2029-01-10",178],["2030-04-03",0],["2031-06-25",0]]
+      },
+      {
+        "xAxisId": "3|4",
+        "yAxisId": "3|4",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [["2025-05-08",244],["2026-07-30",0],["2027-10-21",0],["2029-01-11",0],["2030-04-04",0],["2031-06-26",0]]
+      },
+      {
+        "xAxisId": "4|4",
+        "yAxisId": "4|4",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [
+          ["2025-05-09",297],
+          ["2026-07-31",488],
+          ["2027-10-22",490],
+          ["2029-01-12",361],
+          ["2030-04-05",230],
+          ["2031-06-27",0]
+        ]
+      },
+      {
+        "xAxisId": "0|5",
+        "yAxisId": "0|5",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [["2025-05-05",92],["2026-07-27",0],["2027-10-18",0],["2029-01-08",0],["2030-04-01",0],["2031-06-23",0]]
+      },
+      {
+        "xAxisId": "1|5",
+        "yAxisId": "1|5",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [
+          ["2025-05-06",180],
+          ["2026-07-28",273],
+          ["2027-10-19",302],
+          ["2029-01-09",121],
+          ["2030-04-02",245],
+          ["2031-06-24",135]
+        ]
+      },
+      {
+        "xAxisId": "2|5",
+        "yAxisId": "2|5",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [["2025-05-07",241],["2026-07-29",202],["2027-10-20",187],["2029-01-10",0],["2030-04-03",0],["2031-06-25",54]]
+      },
+      {
+        "xAxisId": "3|5",
+        "yAxisId": "3|5",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [["2025-05-08",103],["2026-07-30",23],["2027-10-21",0],["2029-01-11",0],["2030-04-04",0],["2031-06-26",0]]
+      },
+      {
+        "xAxisId": "4|5",
+        "yAxisId": "4|5",
+        "type": "line",
+        "symbol": "none",
+        "lineStyle": {"lineWidth":1},
+        "data": [["2025-05-09",262],["2026-07-31",156],["2027-10-22",37],["2029-01-12",65],["2030-04-05",0],["2031-06-27",0]]
+      }
+    ]
+  }
+}

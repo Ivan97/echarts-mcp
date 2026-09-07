@@ -1,0 +1,31 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "line-pen",
+  "category": "line",
+  "title": "Click to Add Points",
+  "titleCN": "点击添加折线图拐点",
+  "difficulty": 9,
+  "tags": ["平滑","含函数"],
+  "points": 5,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/line-pen.ts",
+  "functionFields": ["tooltip.formatter"],
+  "functionNote": "这些字段是函数字符串：svg/png 输出会被剥离，只有 output=html 由浏览器执行。",
+  "option": {
+    "title": {"text":"Click to Add Points"},
+    "tooltip": {
+      "formatter": "function (params) {\n            var data = params.data || [0, 0];\n            return data[0].toFixed(2) + ', ' + data[1].toFixed(2);\n        }"
+    },
+    "grid": {"left":"3%","right":"4%","bottom":"3%","containLabel":true},
+    "xAxis": {"min":-60,"max":20,"type":"value","axisLine":{"onZero":false}},
+    "yAxis": {"min":0,"max":40,"type":"value","axisLine":{"onZero":false}},
+    "series": [
+      {
+        "id": "a",
+        "type": "line",
+        "smooth": true,
+        "symbolSize": 20,
+        "data": [[15,0],[-50,10],[-56.5,20],[-46.5,30],[-22.1,40]]
+      }
+    ]
+  }
+}

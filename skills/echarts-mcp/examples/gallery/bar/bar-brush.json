@@ -1,0 +1,56 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "bar-brush",
+  "category": "bar",
+  "title": "Brush Select on Column Chart",
+  "titleCN": "柱状图框选",
+  "difficulty": 4,
+  "tags": ["多系列","堆叠"],
+  "points": 40,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/bar-brush.ts",
+  "option": {
+    "legend": {"data":["bar","bar2","bar3","bar4"],"left":"10%"},
+    "brush": {"toolbox":["rect","polygon","lineX","lineY","keep","clear"],"xAxisIndex":0},
+    "toolbox": {"feature":{"magicType":{"type":["stack"]},"dataView":{}}},
+    "tooltip": {},
+    "xAxis": {
+      "data": ["Class0","Class1","Class2","Class3","Class4","Class5","Class6","Class7","Class8","Class9"],
+      "name": "X Axis",
+      "axisLine": {"onZero":true},
+      "splitLine": {"show":false},
+      "splitArea": {"show":false}
+    },
+    "yAxis": {},
+    "grid": {"bottom":100},
+    "series": [
+      {
+        "name": "bar",
+        "type": "bar",
+        "stack": "one",
+        "emphasis": {"itemStyle":{"shadowBlur":10,"shadowColor":"rgba(0,0,0,0.3)"}},
+        "data": [1.2,0.66,1.68,0.78,1.45,0.24,1.28,0.64,0.34,1.84]
+      },
+      {
+        "name": "bar2",
+        "type": "bar",
+        "stack": "one",
+        "emphasis": null,
+        "data": [1.2,4.61,3.63,2.16,4.11,1.85,1.72,2.82,3.72,3.84]
+      },
+      {
+        "name": "bar3",
+        "type": "bar",
+        "stack": "two",
+        "emphasis": null,
+        "data": [1.19,0.96,1.16,0.63,0.65,1.27,1.21,0.95,1.08,0.89]
+      },
+      {
+        "name": "bar4",
+        "type": "bar",
+        "stack": "two",
+        "emphasis": null,
+        "data": [0.25,0.35,0.54,0.63,0.28,0.64,0.52,0.88,0.92,0.71]
+      }
+    ]
+  }
+}

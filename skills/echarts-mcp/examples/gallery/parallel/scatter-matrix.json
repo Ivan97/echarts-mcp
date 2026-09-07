@@ -1,0 +1,711 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "scatter-matrix",
+  "category": "parallel",
+  "title": "Scatter Matrix",
+  "titleCN": "散点矩阵和平行坐标",
+  "difficulty": 10,
+  "tags": ["多系列","双轴","视觉映射","多宫格","平滑"],
+  "points": 192,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/scatter-matrix.ts",
+  "trimmed": {
+    "stride": 8,
+    "floor": 60,
+    "originalPoints": 1488,
+    "keptPoints": 192,
+    "originalBytes": 83356,
+    "exceedsDefaultBudget": false,
+    "note": "原始数据 1488 个点、81KB，按步长 8 等距抽稀到 192 个点后收录。完整数据见 source。"
+  },
+  "option": {
+    "animation": false,
+    "brush": {
+      "brushLink": "all",
+      "xAxisIndex": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+      "yAxisIndex": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+      "inBrush": {"opacity":1}
+    },
+    "visualMap": {
+      "type": "piecewise",
+      "categories": ["北京","上海","广州"],
+      "dimension": 7,
+      "orient": "horizontal",
+      "top": 0,
+      "left": "center",
+      "inRange": {"color":["#51689b","#ce5c5c","#fbc357"]},
+      "outOfRange": {"color":"#ddd"},
+      "seriesIndex": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]
+    },
+    "tooltip": {"trigger":"item"},
+    "parallelAxis": [
+      {"dim":0,"name":"AQI"},
+      {"dim":1,"name":"PM 2.5"},
+      {"dim":2,"name":"PM 10"},
+      {"dim":3,"name":"CO"},
+      {"dim":4,"name":"NO₂"},
+      {"dim":5,"name":"SO₂"},
+      {"dim":6,"name":"等级","type":"category","data":["优","良","轻度","中度","重度","严重"]}
+    ],
+    "parallel": {
+      "bottom": "5%",
+      "left": "2%",
+      "height": "30%",
+      "width": "55%",
+      "parallelAxisDefault": {
+        "type": "value",
+        "name": "AQI指数",
+        "nameLocation": "end",
+        "nameGap": 20,
+        "splitNumber": 3,
+        "nameTextStyle": {"fontSize":14},
+        "axisLine": {"lineStyle":{"color":"#555"}},
+        "axisTick": {"lineStyle":{"color":"#555"}},
+        "splitLine": {"show":false},
+        "axisLabel": {"color":"#555"}
+      }
+    },
+    "xAxis": [
+      {
+        "splitNumber": 3,
+        "position": "top",
+        "axisLine": {"show":true,"onZero":false},
+        "axisTick": {"show":true,"inside":true},
+        "axisLabel": {"show":true},
+        "type": "value",
+        "gridIndex": 0,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "top",
+        "axisLine": {"show":true,"onZero":false},
+        "axisTick": {"show":true,"inside":true},
+        "axisLabel": {"show":true},
+        "type": "value",
+        "gridIndex": 1,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "top",
+        "axisLine": {"show":false,"onZero":false},
+        "axisTick": {"show":false,"inside":true},
+        "axisLabel": {"show":false},
+        "type": "value",
+        "gridIndex": 2,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "top",
+        "axisLine": {"show":true,"onZero":false},
+        "axisTick": {"show":true,"inside":true},
+        "axisLabel": {"show":true},
+        "type": "value",
+        "gridIndex": 3,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "top",
+        "axisLine": {"show":false,"onZero":false},
+        "axisTick": {"show":false,"inside":true},
+        "axisLabel": {"show":false},
+        "type": "value",
+        "gridIndex": 4,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "top",
+        "axisLine": {"show":false,"onZero":false},
+        "axisTick": {"show":false,"inside":true},
+        "axisLabel": {"show":false},
+        "type": "value",
+        "gridIndex": 5,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "top",
+        "axisLine": {"show":true,"onZero":false},
+        "axisTick": {"show":true,"inside":true},
+        "axisLabel": {"show":true},
+        "type": "value",
+        "gridIndex": 6,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "top",
+        "axisLine": {"show":false,"onZero":false},
+        "axisTick": {"show":false,"inside":true},
+        "axisLabel": {"show":false},
+        "type": "value",
+        "gridIndex": 7,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "top",
+        "axisLine": {"show":false,"onZero":false},
+        "axisTick": {"show":false,"inside":true},
+        "axisLabel": {"show":false},
+        "type": "value",
+        "gridIndex": 8,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "top",
+        "axisLine": {"show":false,"onZero":false},
+        "axisTick": {"show":false,"inside":true},
+        "axisLabel": {"show":false},
+        "type": "value",
+        "gridIndex": 9,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "top",
+        "axisLine": {"show":true,"onZero":false},
+        "axisTick": {"show":true,"inside":true},
+        "axisLabel": {"show":true},
+        "type": "value",
+        "gridIndex": 10,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "top",
+        "axisLine": {"show":false,"onZero":false},
+        "axisTick": {"show":false,"inside":true},
+        "axisLabel": {"show":false},
+        "type": "value",
+        "gridIndex": 11,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "top",
+        "axisLine": {"show":false,"onZero":false},
+        "axisTick": {"show":false,"inside":true},
+        "axisLabel": {"show":false},
+        "type": "value",
+        "gridIndex": 12,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "top",
+        "axisLine": {"show":false,"onZero":false},
+        "axisTick": {"show":false,"inside":true},
+        "axisLabel": {"show":false},
+        "type": "value",
+        "gridIndex": 13,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "top",
+        "axisLine": {"show":false,"onZero":false},
+        "axisTick": {"show":false,"inside":true},
+        "axisLabel": {"show":false},
+        "type": "value",
+        "gridIndex": 14,
+        "scale": true
+      }
+    ],
+    "yAxis": [
+      {
+        "splitNumber": 3,
+        "position": "right",
+        "axisLine": {"show":false,"onZero":false},
+        "axisTick": {"show":false,"inside":true},
+        "axisLabel": {"show":false},
+        "type": "value",
+        "gridIndex": 0,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "right",
+        "axisLine": {"show":false,"onZero":false},
+        "axisTick": {"show":false,"inside":true},
+        "axisLabel": {"show":false},
+        "type": "value",
+        "gridIndex": 1,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "right",
+        "axisLine": {"show":false,"onZero":false},
+        "axisTick": {"show":false,"inside":true},
+        "axisLabel": {"show":false},
+        "type": "value",
+        "gridIndex": 2,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "right",
+        "axisLine": {"show":false,"onZero":false},
+        "axisTick": {"show":false,"inside":true},
+        "axisLabel": {"show":false},
+        "type": "value",
+        "gridIndex": 3,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "right",
+        "axisLine": {"show":false,"onZero":false},
+        "axisTick": {"show":false,"inside":true},
+        "axisLabel": {"show":false},
+        "type": "value",
+        "gridIndex": 4,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "right",
+        "axisLine": {"show":false,"onZero":false},
+        "axisTick": {"show":false,"inside":true},
+        "axisLabel": {"show":false},
+        "type": "value",
+        "gridIndex": 5,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "right",
+        "axisLine": {"show":false,"onZero":false},
+        "axisTick": {"show":false,"inside":true},
+        "axisLabel": {"show":false},
+        "type": "value",
+        "gridIndex": 6,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "right",
+        "axisLine": {"show":false,"onZero":false},
+        "axisTick": {"show":false,"inside":true},
+        "axisLabel": {"show":false},
+        "type": "value",
+        "gridIndex": 7,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "right",
+        "axisLine": {"show":false,"onZero":false},
+        "axisTick": {"show":false,"inside":true},
+        "axisLabel": {"show":false},
+        "type": "value",
+        "gridIndex": 8,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "right",
+        "axisLine": {"show":false,"onZero":false},
+        "axisTick": {"show":false,"inside":true},
+        "axisLabel": {"show":false},
+        "type": "value",
+        "gridIndex": 9,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "right",
+        "axisLine": {"show":true,"onZero":false},
+        "axisTick": {"show":true,"inside":true},
+        "axisLabel": {"show":true},
+        "type": "value",
+        "gridIndex": 10,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "right",
+        "axisLine": {"show":true,"onZero":false},
+        "axisTick": {"show":true,"inside":true},
+        "axisLabel": {"show":true},
+        "type": "value",
+        "gridIndex": 11,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "right",
+        "axisLine": {"show":true,"onZero":false},
+        "axisTick": {"show":true,"inside":true},
+        "axisLabel": {"show":true},
+        "type": "value",
+        "gridIndex": 12,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "right",
+        "axisLine": {"show":true,"onZero":false},
+        "axisTick": {"show":true,"inside":true},
+        "axisLabel": {"show":true},
+        "type": "value",
+        "gridIndex": 13,
+        "scale": true
+      },
+      {
+        "splitNumber": 3,
+        "position": "right",
+        "axisLine": {"show":true,"onZero":false},
+        "axisTick": {"show":true,"inside":true},
+        "axisLabel": {"show":true},
+        "type": "value",
+        "gridIndex": 14,
+        "scale": true
+      }
+    ],
+    "grid": [
+      {"left":"20.5%","top":"10%","width":"13.5%","height":"12.666666666666666%"},
+      {"left":"36%","top":"10%","width":"13.5%","height":"12.666666666666666%"},
+      {"left":"36%","top":"24.666666666666664%","width":"13.5%","height":"12.666666666666666%"},
+      {"left":"51.5%","top":"10%","width":"13.5%","height":"12.666666666666666%"},
+      {"left":"51.5%","top":"24.666666666666664%","width":"13.5%","height":"12.666666666666666%"},
+      {"left":"51.5%","top":"39.33333333333333%","width":"13.5%","height":"12.666666666666666%"},
+      {"left":"67%","top":"10%","width":"13.5%","height":"12.666666666666666%"},
+      {"left":"67%","top":"24.666666666666664%","width":"13.5%","height":"12.666666666666666%"},
+      {"left":"67%","top":"39.33333333333333%","width":"13.5%","height":"12.666666666666666%"},
+      {"left":"67%","top":"54%","width":"13.5%","height":"12.666666666666666%"},
+      {"left":"82.5%","top":"10%","width":"13.5%","height":"12.666666666666666%"},
+      {"left":"82.5%","top":"24.666666666666664%","width":"13.5%","height":"12.666666666666666%"},
+      {"left":"82.5%","top":"39.33333333333333%","width":"13.5%","height":"12.666666666666666%"},
+      {"left":"82.5%","top":"54%","width":"13.5%","height":"12.666666666666666%"},
+      {"left":"82.5%","top":"68.66666666666666%","width":"13.5%","height":"12.666666666666666%"}
+    ],
+    "series": [
+      {
+        "name": "parallel",
+        "type": "parallel",
+        "smooth": true,
+        "lineStyle": {"width":1,"opacity":0.3},
+        "data": [
+          [55,9,56,0.46,18,6,"良","北京"],
+          [267,216,280,4.8,108,64,"重度","北京"],
+          [94,66,110,1.54,62,31,"良","北京"],
+          [42,27,43,1,53,22,"优","北京"],
+          [85,62,71,1.195,60,8,"良","广州"],
+          [91,81,104,1.041,56,40,"良","广州"],
+          [51,61,97,0.811,65,19,"良","广州"],
+          [113,108,137,1.481,48,15,"轻度","广州"],
+          [83,60,84,1.09,73,27,"良","上海"],
+          [117,81,124,1.03,45,24,"轻度","上海"],
+          [97,71,113,1.17,88,31,"良","上海"],
+          [39,24,39,0.59,50,19,"优","上海"]
+        ]
+      },
+      {
+        "type": "scatter",
+        "symbolSize": 4,
+        "xAxisIndex": 0,
+        "yAxisIndex": 0,
+        "data": [
+          [9,55,null,null,null,null,null,"北京"],
+          [216,267,null,null,null,null,null,"北京"],
+          [66,94,null,null,null,null,null,"北京"],
+          [27,42,null,null,null,null,null,"北京"],
+          [62,85,null,null,null,null,null,"广州"],
+          [81,91,null,null,null,null,null,"广州"],
+          [61,51,null,null,null,null,null,"广州"],
+          [108,113,null,null,null,null,null,"广州"],
+          [60,83,null,null,null,null,null,"上海"],
+          [81,117,null,null,null,null,null,"上海"],
+          [71,97,null,null,null,null,null,"上海"],
+          [24,39,null,null,null,null,null,"上海"]
+        ]
+      },
+      {
+        "type": "scatter",
+        "symbolSize": 4,
+        "xAxisIndex": 1,
+        "yAxisIndex": 1,
+        "data": [
+          [56,55,null,null,null,null,null,"北京"],
+          [280,267,null,null,null,null,null,"北京"],
+          [110,94,null,null,null,null,null,"北京"],
+          [43,42,null,null,null,null,null,"北京"],
+          [71,85,null,null,null,null,null,"广州"],
+          [104,91,null,null,null,null,null,"广州"],
+          [97,51,null,null,null,null,null,"广州"],
+          [137,113,null,null,null,null,null,"广州"],
+          [84,83,null,null,null,null,null,"上海"],
+          [124,117,null,null,null,null,null,"上海"],
+          [113,97,null,null,null,null,null,"上海"],
+          [39,39,null,null,null,null,null,"上海"]
+        ]
+      },
+      {
+        "type": "scatter",
+        "symbolSize": 4,
+        "xAxisIndex": 2,
+        "yAxisIndex": 2,
+        "data": [
+          [56,9,null,null,null,null,null,"北京"],
+          [280,216,null,null,null,null,null,"北京"],
+          [110,66,null,null,null,null,null,"北京"],
+          [43,27,null,null,null,null,null,"北京"],
+          [71,62,null,null,null,null,null,"广州"],
+          [104,81,null,null,null,null,null,"广州"],
+          [97,61,null,null,null,null,null,"广州"],
+          [137,108,null,null,null,null,null,"广州"],
+          [84,60,null,null,null,null,null,"上海"],
+          [124,81,null,null,null,null,null,"上海"],
+          [113,71,null,null,null,null,null,"上海"],
+          [39,24,null,null,null,null,null,"上海"]
+        ]
+      },
+      {
+        "type": "scatter",
+        "symbolSize": 4,
+        "xAxisIndex": 3,
+        "yAxisIndex": 3,
+        "data": [
+          [0.46,55,null,null,null,null,null,"北京"],
+          [4.8,267,null,null,null,null,null,"北京"],
+          [1.54,94,null,null,null,null,null,"北京"],
+          [1,42,null,null,null,null,null,"北京"],
+          [1.195,85,null,null,null,null,null,"广州"],
+          [1.041,91,null,null,null,null,null,"广州"],
+          [0.811,51,null,null,null,null,null,"广州"],
+          [1.481,113,null,null,null,null,null,"广州"],
+          [1.09,83,null,null,null,null,null,"上海"],
+          [1.03,117,null,null,null,null,null,"上海"],
+          [1.17,97,null,null,null,null,null,"上海"],
+          [0.59,39,null,null,null,null,null,"上海"]
+        ]
+      },
+      {
+        "type": "scatter",
+        "symbolSize": 4,
+        "xAxisIndex": 4,
+        "yAxisIndex": 4,
+        "data": [
+          [0.46,9,null,null,null,null,null,"北京"],
+          [4.8,216,null,null,null,null,null,"北京"],
+          [1.54,66,null,null,null,null,null,"北京"],
+          [1,27,null,null,null,null,null,"北京"],
+          [1.195,62,null,null,null,null,null,"广州"],
+          [1.041,81,null,null,null,null,null,"广州"],
+          [0.811,61,null,null,null,null,null,"广州"],
+          [1.481,108,null,null,null,null,null,"广州"],
+          [1.09,60,null,null,null,null,null,"上海"],
+          [1.03,81,null,null,null,null,null,"上海"],
+          [1.17,71,null,null,null,null,null,"上海"],
+          [0.59,24,null,null,null,null,null,"上海"]
+        ]
+      },
+      {
+        "type": "scatter",
+        "symbolSize": 4,
+        "xAxisIndex": 5,
+        "yAxisIndex": 5,
+        "data": [
+          [0.46,56,null,null,null,null,null,"北京"],
+          [4.8,280,null,null,null,null,null,"北京"],
+          [1.54,110,null,null,null,null,null,"北京"],
+          [1,43,null,null,null,null,null,"北京"],
+          [1.195,71,null,null,null,null,null,"广州"],
+          [1.041,104,null,null,null,null,null,"广州"],
+          [0.811,97,null,null,null,null,null,"广州"],
+          [1.481,137,null,null,null,null,null,"广州"],
+          [1.09,84,null,null,null,null,null,"上海"],
+          [1.03,124,null,null,null,null,null,"上海"],
+          [1.17,113,null,null,null,null,null,"上海"],
+          [0.59,39,null,null,null,null,null,"上海"]
+        ]
+      },
+      {
+        "type": "scatter",
+        "symbolSize": 4,
+        "xAxisIndex": 6,
+        "yAxisIndex": 6,
+        "data": [
+          [18,55,null,null,null,null,null,"北京"],
+          [108,267,null,null,null,null,null,"北京"],
+          [62,94,null,null,null,null,null,"北京"],
+          [53,42,null,null,null,null,null,"北京"],
+          [60,85,null,null,null,null,null,"广州"],
+          [56,91,null,null,null,null,null,"广州"],
+          [65,51,null,null,null,null,null,"广州"],
+          [48,113,null,null,null,null,null,"广州"],
+          [73,83,null,null,null,null,null,"上海"],
+          [45,117,null,null,null,null,null,"上海"],
+          [88,97,null,null,null,null,null,"上海"],
+          [50,39,null,null,null,null,null,"上海"]
+        ]
+      },
+      {
+        "type": "scatter",
+        "symbolSize": 4,
+        "xAxisIndex": 7,
+        "yAxisIndex": 7,
+        "data": [
+          [18,9,null,null,null,null,null,"北京"],
+          [108,216,null,null,null,null,null,"北京"],
+          [62,66,null,null,null,null,null,"北京"],
+          [53,27,null,null,null,null,null,"北京"],
+          [60,62,null,null,null,null,null,"广州"],
+          [56,81,null,null,null,null,null,"广州"],
+          [65,61,null,null,null,null,null,"广州"],
+          [48,108,null,null,null,null,null,"广州"],
+          [73,60,null,null,null,null,null,"上海"],
+          [45,81,null,null,null,null,null,"上海"],
+          [88,71,null,null,null,null,null,"上海"],
+          [50,24,null,null,null,null,null,"上海"]
+        ]
+      },
+      {
+        "type": "scatter",
+        "symbolSize": 4,
+        "xAxisIndex": 8,
+        "yAxisIndex": 8,
+        "data": [
+          [18,56,null,null,null,null,null,"北京"],
+          [108,280,null,null,null,null,null,"北京"],
+          [62,110,null,null,null,null,null,"北京"],
+          [53,43,null,null,null,null,null,"北京"],
+          [60,71,null,null,null,null,null,"广州"],
+          [56,104,null,null,null,null,null,"广州"],
+          [65,97,null,null,null,null,null,"广州"],
+          [48,137,null,null,null,null,null,"广州"],
+          [73,84,null,null,null,null,null,"上海"],
+          [45,124,null,null,null,null,null,"上海"],
+          [88,113,null,null,null,null,null,"上海"],
+          [50,39,null,null,null,null,null,"上海"]
+        ]
+      },
+      {
+        "type": "scatter",
+        "symbolSize": 4,
+        "xAxisIndex": 9,
+        "yAxisIndex": 9,
+        "data": [
+          [18,0.46,null,null,null,null,null,"北京"],
+          [108,4.8,null,null,null,null,null,"北京"],
+          [62,1.54,null,null,null,null,null,"北京"],
+          [53,1,null,null,null,null,null,"北京"],
+          [60,1.195,null,null,null,null,null,"广州"],
+          [56,1.041,null,null,null,null,null,"广州"],
+          [65,0.811,null,null,null,null,null,"广州"],
+          [48,1.481,null,null,null,null,null,"广州"],
+          [73,1.09,null,null,null,null,null,"上海"],
+          [45,1.03,null,null,null,null,null,"上海"],
+          [88,1.17,null,null,null,null,null,"上海"],
+          [50,0.59,null,null,null,null,null,"上海"]
+        ]
+      },
+      {
+        "type": "scatter",
+        "symbolSize": 4,
+        "xAxisIndex": 10,
+        "yAxisIndex": 10,
+        "data": [
+          [6,55,null,null,null,null,null,"北京"],
+          [64,267,null,null,null,null,null,"北京"],
+          [31,94,null,null,null,null,null,"北京"],
+          [22,42,null,null,null,null,null,"北京"],
+          [8,85,null,null,null,null,null,"广州"],
+          [40,91,null,null,null,null,null,"广州"],
+          [19,51,null,null,null,null,null,"广州"],
+          [15,113,null,null,null,null,null,"广州"],
+          [27,83,null,null,null,null,null,"上海"],
+          [24,117,null,null,null,null,null,"上海"],
+          [31,97,null,null,null,null,null,"上海"],
+          [19,39,null,null,null,null,null,"上海"]
+        ]
+      },
+      {
+        "type": "scatter",
+        "symbolSize": 4,
+        "xAxisIndex": 11,
+        "yAxisIndex": 11,
+        "data": [
+          [6,9,null,null,null,null,null,"北京"],
+          [64,216,null,null,null,null,null,"北京"],
+          [31,66,null,null,null,null,null,"北京"],
+          [22,27,null,null,null,null,null,"北京"],
+          [8,62,null,null,null,null,null,"广州"],
+          [40,81,null,null,null,null,null,"广州"],
+          [19,61,null,null,null,null,null,"广州"],
+          [15,108,null,null,null,null,null,"广州"],
+          [27,60,null,null,null,null,null,"上海"],
+          [24,81,null,null,null,null,null,"上海"],
+          [31,71,null,null,null,null,null,"上海"],
+          [19,24,null,null,null,null,null,"上海"]
+        ]
+      },
+      {
+        "type": "scatter",
+        "symbolSize": 4,
+        "xAxisIndex": 12,
+        "yAxisIndex": 12,
+        "data": [
+          [6,56,null,null,null,null,null,"北京"],
+          [64,280,null,null,null,null,null,"北京"],
+          [31,110,null,null,null,null,null,"北京"],
+          [22,43,null,null,null,null,null,"北京"],
+          [8,71,null,null,null,null,null,"广州"],
+          [40,104,null,null,null,null,null,"广州"],
+          [19,97,null,null,null,null,null,"广州"],
+          [15,137,null,null,null,null,null,"广州"],
+          [27,84,null,null,null,null,null,"上海"],
+          [24,124,null,null,null,null,null,"上海"],
+          [31,113,null,null,null,null,null,"上海"],
+          [19,39,null,null,null,null,null,"上海"]
+        ]
+      },
+      {
+        "type": "scatter",
+        "symbolSize": 4,
+        "xAxisIndex": 13,
+        "yAxisIndex": 13,
+        "data": [
+          [6,0.46,null,null,null,null,null,"北京"],
+          [64,4.8,null,null,null,null,null,"北京"],
+          [31,1.54,null,null,null,null,null,"北京"],
+          [22,1,null,null,null,null,null,"北京"],
+          [8,1.195,null,null,null,null,null,"广州"],
+          [40,1.041,null,null,null,null,null,"广州"],
+          [19,0.811,null,null,null,null,null,"广州"],
+          [15,1.481,null,null,null,null,null,"广州"],
+          [27,1.09,null,null,null,null,null,"上海"],
+          [24,1.03,null,null,null,null,null,"上海"],
+          [31,1.17,null,null,null,null,null,"上海"],
+          [19,0.59,null,null,null,null,null,"上海"]
+        ]
+      },
+      {
+        "type": "scatter",
+        "symbolSize": 4,
+        "xAxisIndex": 14,
+        "yAxisIndex": 14,
+        "data": [
+          [6,18,null,null,null,null,null,"北京"],
+          [64,108,null,null,null,null,null,"北京"],
+          [31,62,null,null,null,null,null,"北京"],
+          [22,53,null,null,null,null,null,"北京"],
+          [8,60,null,null,null,null,null,"广州"],
+          [40,56,null,null,null,null,null,"广州"],
+          [19,65,null,null,null,null,null,"广州"],
+          [15,48,null,null,null,null,null,"广州"],
+          [27,73,null,null,null,null,null,"上海"],
+          [24,45,null,null,null,null,null,"上海"],
+          [31,88,null,null,null,null,null,"上海"],
+          [19,50,null,null,null,null,null,"上海"]
+        ]
+      }
+    ]
+  }
+}

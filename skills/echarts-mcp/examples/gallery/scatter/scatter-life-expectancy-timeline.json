@@ -1,0 +1,1029 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "scatter-life-expectancy-timeline",
+  "category": "scatter",
+  "title": "Life Expectancy and GDP",
+  "titleCN": "各国人均寿命与GDP关系演变",
+  "difficulty": 9,
+  "tags": ["时间线","含函数"],
+  "points": 0,
+  "upstream": "https://echarts.apache.org/examples/examples/js/scatter-life-expectancy-timeline.js",
+  "trimmed": {
+    "stride": 32,
+    "floor": 8,
+    "originalPoints": 0,
+    "keptPoints": 0,
+    "originalBytes": 104939,
+    "exceedsDefaultBudget": false,
+    "note": "原始数据 0 个点、102KB，按步长 32 等距抽稀到 0 个点后收录。完整数据见 source。"
+  },
+  "functionFields": [
+    "baseOption.tooltip.formatter",
+    "baseOption.series[0].symbolSize",
+    "options[0].series.symbolSize",
+    "options[1].series.symbolSize",
+    "options[2].series.symbolSize",
+    "options[3].series.symbolSize",
+    "options[4].series.symbolSize",
+    "options[5].series.symbolSize",
+    "options[6].series.symbolSize",
+    "options[7].series.symbolSize",
+    "options[8].series.symbolSize",
+    "options[9].series.symbolSize",
+    "options[10].series.symbolSize",
+    "options[11].series.symbolSize",
+    "options[12].series.symbolSize",
+    "options[13].series.symbolSize",
+    "options[14].series.symbolSize",
+    "options[15].series.symbolSize",
+    "options[16].series.symbolSize",
+    "options[17].series.symbolSize",
+    "options[18].series.symbolSize",
+    "options[19].series.symbolSize",
+    "options[20].series.symbolSize",
+    "options[21].series.symbolSize",
+    "options[22].series.symbolSize",
+    "options[23].series.symbolSize",
+    "options[24].series.symbolSize",
+    "options[25].series.symbolSize",
+    "options[26].series.symbolSize",
+    "options[27].series.symbolSize",
+    "options[28].series.symbolSize",
+    "options[29].series.symbolSize",
+    "options[30].series.symbolSize",
+    "options[31].series.symbolSize",
+    "options[32].series.symbolSize",
+    "options[33].series.symbolSize",
+    "options[34].series.symbolSize",
+    "options[35].series.symbolSize",
+    "options[36].series.symbolSize",
+    "options[37].series.symbolSize",
+    "options[38].series.symbolSize",
+    "options[39].series.symbolSize",
+    "options[40].series.symbolSize",
+    "options[41].series.symbolSize",
+    "options[42].series.symbolSize",
+    "options[43].series.symbolSize",
+    "options[44].series.symbolSize",
+    "options[45].series.symbolSize",
+    "options[46].series.symbolSize",
+    "options[47].series.symbolSize",
+    "options[48].series.symbolSize",
+    "options[49].series.symbolSize",
+    "options[50].series.symbolSize",
+    "options[51].series.symbolSize",
+    "options[52].series.symbolSize",
+    "options[53].series.symbolSize",
+    "options[54].series.symbolSize",
+    "options[55].series.symbolSize",
+    "options[56].series.symbolSize",
+    "options[57].series.symbolSize",
+    "options[58].series.symbolSize",
+    "options[59].series.symbolSize",
+    "options[60].series.symbolSize",
+    "options[61].series.symbolSize",
+    "options[62].series.symbolSize",
+    "options[63].series.symbolSize",
+    "options[64].series.symbolSize",
+    "options[65].series.symbolSize",
+    "options[66].series.symbolSize",
+    "options[67].series.symbolSize",
+    "options[68].series.symbolSize",
+    "options[69].series.symbolSize",
+    "options[70].series.symbolSize",
+    "options[71].series.symbolSize",
+    "options[72].series.symbolSize",
+    "options[73].series.symbolSize",
+    "options[74].series.symbolSize",
+    "options[75].series.symbolSize",
+    "options[76].series.symbolSize",
+    "options[77].series.symbolSize",
+    "options[78].series.symbolSize",
+    "options[79].series.symbolSize",
+    "options[80].series.symbolSize"
+  ],
+  "functionNote": "这些字段是函数字符串：svg/png 输出会被剥离，只有 output=html 由浏览器执行。",
+  "option": {
+    "baseOption": {
+      "timeline": {
+        "axisType": "category",
+        "orient": "vertical",
+        "autoPlay": true,
+        "inverse": true,
+        "playInterval": 1000,
+        "left": null,
+        "right": 0,
+        "top": 20,
+        "bottom": 20,
+        "width": 55,
+        "height": null,
+        "symbol": "none",
+        "checkpointStyle": {"borderWidth":2},
+        "controlStyle": {"showNextBtn":false,"showPrevBtn":false},
+        "data": [1800,1967,1999]
+      },
+      "title": [
+        {"text":1800,"textAlign":"center","left":"63%","top":"55%","textStyle":{"fontSize":100}},
+        {"text":"各国人均寿命与GDP关系演变","left":"center","top":10,"textStyle":{"fontWeight":"normal","fontSize":20}}
+      ],
+      "tooltip": {
+        "padding": 5,
+        "borderWidth": 1,
+        "formatter": "function (obj) {\n                    var value = obj.value;\n                    // prettier-ignore\n                    return schema[3].text + '：' + value[3] + '<br>'\n                        + schema[1].text + '：' + value[1] + schema[1].unit + '<br>'\n                        + schema[0].text + '：' + value[0] + schema[0].unit + '<br>'\n                        + schema[2].text + '：' + value[2] + '<br>';\n                }"
+      },
+      "grid": {"top":100,"containLabel":true,"left":30,"right":"110"},
+      "xAxis": {
+        "type": "log",
+        "name": "人均收入",
+        "max": 100000,
+        "min": 300,
+        "nameGap": 25,
+        "nameLocation": "middle",
+        "nameTextStyle": {"fontSize":18},
+        "splitLine": {"show":false},
+        "axisLabel": {"formatter":"{value} $"}
+      },
+      "yAxis": {
+        "type": "value",
+        "name": "平均寿命",
+        "max": 100,
+        "nameTextStyle": {"fontSize":18},
+        "splitLine": {"show":false},
+        "axisLabel": {"formatter":"{value} 岁"}
+      },
+      "visualMap": [
+        {
+          "show": false,
+          "dimension": 3,
+          "categories": [
+            "China",
+            "United States",
+            "United Kingdom",
+            "Russia",
+            "India",
+            "France",
+            "Germany",
+            "Australia",
+            "Canada",
+            "Cuba",
+            "Finland",
+            "Iceland",
+            "Japan",
+            "North Korea",
+            "South Korea",
+            "New Zealand",
+            "Norway",
+            "Poland",
+            "Turkey"
+          ],
+          "inRange": {
+            "color": [
+              "#51689b",
+              "#ce5c5c",
+              "#fbc357",
+              "#8fbf8f",
+              "#659d84",
+              "#fb8e6a",
+              "#c77288",
+              "#786090",
+              "#91c4c5",
+              "#6890ba",
+              "#51689b",
+              "#ce5c5c",
+              "#fbc357",
+              "#8fbf8f",
+              "#659d84",
+              "#fb8e6a",
+              "#c77288",
+              "#786090",
+              "#91c4c5",
+              "#6890ba"
+            ]
+          }
+        }
+      ],
+      "series": [
+        {
+          "type": "scatter",
+          "itemStyle": {"opacity":0.8},
+          "data": [[815,34.05,351014,"Australia",1800]],
+          "symbolSize": "function (val) {\n                        return sizeFunction(val[2]);\n                    }"
+        }
+      ],
+      "animationDurationUpdate": 1000,
+      "animationEasingUpdate": "quinticInOut"
+    },
+    "options": [
+      {
+        "title": {"show":true,"text":"1800"},
+        "series": {
+          "name": 1800,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[815,34.05,351014,"Australia",1800]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1810"},
+        "series": {
+          "name": 1810,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[834,34.05,342440,"Australia",1810]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1820"},
+        "series": {
+          "name": 1820,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[853,34.05,334002,"Australia",1820]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1830"},
+        "series": {
+          "name": 1830,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[1399,34.05,348143,"Australia",1830]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1840"},
+        "series": {
+          "name": 1840,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[2269,34.05,434095,"Australia",1840]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1850"},
+        "series": {
+          "name": 1850,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[3267,34.05,742619,"Australia",1850]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1860"},
+        "series": {
+          "name": 1860,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[4795,34.05,1256048,"Australia",1860]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1870"},
+        "series": {
+          "name": 1870,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[5431,34.05,1724213,"Australia",1870]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1880"},
+        "series": {
+          "name": 1880,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[7120,39.34215686,2253007,"Australia",1880]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1890"},
+        "series": {
+          "name": 1890,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[7418,44.63431373,3088808,"Australia",1890]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1900"},
+        "series": {
+          "name": 1900,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[6688,49.92647059,3743708,"Australia",1900]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1910"},
+        "series": {
+          "name": 1910,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[8695,55.21862745,4408209,"Australia",1910]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1920"},
+        "series": {
+          "name": 1920,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[7867,60.51078431,5345428,"Australia",1920]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1930"},
+        "series": {
+          "name": 1930,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[7714,64.998,6473803,"Australia",1930]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1940"},
+        "series": {
+          "name": 1940,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[10057,66.336,7052012,"Australia",1940]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1950"},
+        "series": {
+          "name": 1950,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[12073,69.134,8177344,"Australia",1950]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1951"},
+        "series": {
+          "name": 1951,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[12229,68.8378,8417640,"Australia",1951]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1952"},
+        "series": {
+          "name": 1952,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[12084,69.2416,8627052,"Australia",1952]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1953"},
+        "series": {
+          "name": 1953,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[12228,69.8254,8821938,"Australia",1953]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1954"},
+        "series": {
+          "name": 1954,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[12694,69.9792,9014508,"Australia",1954]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1955"},
+        "series": {
+          "name": 1955,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[13082,70.303,9212824,"Australia",1955]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1956"},
+        "series": {
+          "name": 1956,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[13217,70.1868,9420602,"Australia",1956]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1957"},
+        "series": {
+          "name": 1957,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[13191,70.4706,9637408,"Australia",1957]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1958"},
+        "series": {
+          "name": 1958,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[13545,71.0244,9859257,"Australia",1958]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1959"},
+        "series": {
+          "name": 1959,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[14076,70.5982,10079604,"Australia",1959]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1960"},
+        "series": {
+          "name": 1960,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[14346,71.042,10292328,"Australia",1960]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1961"},
+        "series": {
+          "name": 1961,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[14126,71.3158,10494911,"Australia",1961]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1962"},
+        "series": {
+          "name": 1962,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[14742,71.0896,10691220,"Australia",1962]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1963"},
+        "series": {
+          "name": 1963,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[15357,71.1534,10892700,"Australia",1963]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1964"},
+        "series": {
+          "name": 1964,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[16098,70.8172,11114995,"Australia",1964]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1965"},
+        "series": {
+          "name": 1965,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[16601,71.151,11368011,"Australia",1965]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1966"},
+        "series": {
+          "name": 1966,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[16756,70.9948,11657281,"Australia",1966]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1967"},
+        "series": {
+          "name": 1967,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[17570,71.2786,11975795,"Australia",1967]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1968"},
+        "series": {
+          "name": 1968,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[18261,70.9124,12305530,"Australia",1968]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1969"},
+        "series": {
+          "name": 1969,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[18949,71.3262,12621240,"Australia",1969]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1970"},
+        "series": {
+          "name": 1970,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[19719,71,12904760,"Australia",1970]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1971"},
+        "series": {
+          "name": 1971,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[20176,71.3,13150591,"Australia",1971]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1972"},
+        "series": {
+          "name": 1972,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[20385,71.7,13364238,"Australia",1972]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1973"},
+        "series": {
+          "name": 1973,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[21185,72,13552190,"Australia",1973]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1974"},
+        "series": {
+          "name": 1974,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[21383,72.1,13725400,"Australia",1974]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1975"},
+        "series": {
+          "name": 1975,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[21708,72.5,13892674,"Australia",1975]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1976"},
+        "series": {
+          "name": 1976,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[22372,73,14054956,"Australia",1976]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1977"},
+        "series": {
+          "name": 1977,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[22373,73.4,14211657,"Australia",1977]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1978"},
+        "series": {
+          "name": 1978,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[22763,73.8,14368543,"Australia",1978]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1979"},
+        "series": {
+          "name": 1979,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[23697,74.2,14532401,"Australia",1979]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1980"},
+        "series": {
+          "name": 1980,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[23872,74.5,14708323,"Australia",1980]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1981"},
+        "series": {
+          "name": 1981,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[24308,74.8,14898019,"Australia",1981]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1982"},
+        "series": {
+          "name": 1982,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[23884,75,15101227,"Australia",1982]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1983"},
+        "series": {
+          "name": 1983,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[23584,75.3,15318254,"Australia",1983]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1984"},
+        "series": {
+          "name": 1984,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[24934,75.5,15548591,"Australia",1984]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1985"},
+        "series": {
+          "name": 1985,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[25875,75.7,15791043,"Australia",1985]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1986"},
+        "series": {
+          "name": 1986,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[26057,76,16047026,"Australia",1986]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1987"},
+        "series": {
+          "name": 1987,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[26969,76.2,16314778,"Australia",1987]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1988"},
+        "series": {
+          "name": 1988,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[27757,76.4,16585905,"Australia",1988]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1989"},
+        "series": {
+          "name": 1989,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[28556,76.6,16849253,"Australia",1989]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1990"},
+        "series": {
+          "name": 1990,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[28604,77,17096869,"Australia",1990]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1991"},
+        "series": {
+          "name": 1991,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[28122,77.4,17325818,"Australia",1991]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1992"},
+        "series": {
+          "name": 1992,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[27895,77.7,17538387,"Australia",1992]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1993"},
+        "series": {
+          "name": 1993,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[28732,78,17738428,"Australia",1993]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1994"},
+        "series": {
+          "name": 1994,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[29580,78.2,17932214,"Australia",1994]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1995"},
+        "series": {
+          "name": 1995,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[30359,78.4,18124770,"Australia",1995]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1996"},
+        "series": {
+          "name": 1996,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[31145,78.6,18318340,"Australia",1996]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1997"},
+        "series": {
+          "name": 1997,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[32013,78.9,18512971,"Australia",1997]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1998"},
+        "series": {
+          "name": 1998,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[33085,79.1,18709175,"Australia",1998]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"1999"},
+        "series": {
+          "name": 1999,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[34346,79.3,18906936,"Australia",1999]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"2000"},
+        "series": {
+          "name": 2000,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[35253,79.7,19107251,"Australia",2000]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"2001"},
+        "series": {
+          "name": 2001,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[35452,80.1,19308681,"Australia",2001]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"2002"},
+        "series": {
+          "name": 2002,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[36375,80.4,19514385,"Australia",2002]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"2003"},
+        "series": {
+          "name": 2003,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[37035,80.7,19735255,"Australia",2003]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"2004"},
+        "series": {
+          "name": 2004,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[38130,81,19985475,"Australia",2004]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"2005"},
+        "series": {
+          "name": 2005,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[38840,81.2,20274282,"Australia",2005]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"2006"},
+        "series": {
+          "name": 2006,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[39416,81.4,20606228,"Australia",2006]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"2007"},
+        "series": {
+          "name": 2007,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[40643,81.5,20975949,"Australia",2007]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"2008"},
+        "series": {
+          "name": 2008,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[41312,81.5,21370348,"Australia",2008]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"2009"},
+        "series": {
+          "name": 2009,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[41170,81.6,21770690,"Australia",2009]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"2010"},
+        "series": {
+          "name": 2010,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[41330,81.7,22162863,"Australia",2010]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"2011"},
+        "series": {
+          "name": 2011,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[41706,81.8,22542371,"Australia",2011]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"2012"},
+        "series": {
+          "name": 2012,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[42522,81.8,22911375,"Australia",2012]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"2013"},
+        "series": {
+          "name": 2013,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[42840,81.8,23270465,"Australia",2013]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"2014"},
+        "series": {
+          "name": 2014,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[43219,81.8,23622353,"Australia",2014]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      },
+      {
+        "title": {"show":true,"text":"2015"},
+        "series": {
+          "name": 2015,
+          "type": "scatter",
+          "itemStyle": null,
+          "data": [[44056,81.8,23968973,"Australia",2015]],
+          "symbolSize": "function (val) {\n                    return sizeFunction(val[2]);\n                }"
+        }
+      }
+    ]
+  }
+}

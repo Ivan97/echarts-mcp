@@ -1,0 +1,546 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "treemap-visual",
+  "category": "treemap",
+  "title": "Gradient Mapping",
+  "titleCN": "映射为渐变色",
+  "difficulty": 10,
+  "tags": ["含函数"],
+  "points": 9,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/treemap-visual.ts",
+  "trimmed": {
+    "stride": 4,
+    "floor": 20,
+    "originalPoints": 35,
+    "keptPoints": 9,
+    "originalBytes": 100073,
+    "exceedsDefaultBudget": false,
+    "note": "原始数据 35 个点、98KB，按步长 4 等距抽稀到 9 个点后收录。完整数据见 source。"
+  },
+  "functionFields": ["tooltip.formatter"],
+  "functionNote": "这些字段是函数字符串：svg/png 输出会被剥离，只有 output=html 由浏览器执行。",
+  "option": {
+    "title": {"left":"center","text":"Gradient Mapping","subtext":"Growth > 0: green; Growth < 0: red; Growth = 0: grey"},
+    "tooltip": {
+      "formatter": "function (info) {\n                let value = info.value;\n                let amount = value[0];\n                amount = isValidNumber(amount)\n                    ? echarts.format.addCommas(amount * 1000) + '$'\n                    : '-';\n                let amount2011 = value[1];\n                amount2011 = isValidNumber(amount2011)\n                    ? echarts.format.addCommas(amount2011 * 1000) + '$'\n                    : '-';\n                let change = value[2];\n                change = isValidNumber(change) ? change.toFixed(2) + '%' : '-';\n                return [\n                    '<div class=\"tooltip-title\">' +\n                        echarts.format.encodeHTML(info.name) +\n                        '</div>',\n                    '2012 Amount: &nbsp;&nbsp;' + amount + '<br>',\n                    '2011 Amount: &nbsp;&nbsp;' + amount2011 + '<br>',\n                    'Change From 2011: &nbsp;&nbsp;' + change\n                ].join('');\n            }"
+    },
+    "series": [
+      {
+        "name": "ALL",
+        "top": 80,
+        "type": "treemap",
+        "label": {"show":true,"formatter":"{b}"},
+        "itemStyle": {"borderColor":"black"},
+        "visualMin": -100,
+        "visualMax": 100,
+        "visualDimension": 3,
+        "levels": [
+          {"itemStyle":{"borderWidth":3,"borderColor":"#333","gapWidth":3}},
+          {"color":["#942e38","#aaa","#269f3c"],"colorMappingBy":"value","itemStyle":{"gapWidth":1}}
+        ],
+        "data": [
+          {
+            "value": [1226629000,null,null,0],
+            "name": "Health and Human Services",
+            "id": "branch-8",
+            "discretion": null,
+            "children": [
+              {
+                "value": [1105220000,1071808000,3.11734937600765,40.09352048128023],
+                "name": "Centers for Medicare and Medicaid Services",
+                "id": "leaf-135",
+                "discretion": "mandatory"
+              },
+              {
+                "value": [7324000,6246000,17.2590457893051,40.51777137367915],
+                "name": "Centers for Medicare and Medicaid Services",
+                "id": "leaf-121",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [3387000,3431000,-1.28242494899447,-41.003751913673014],
+                "name": "Substance Abuse and Mental Health Services Administration",
+                "id": "leaf-130",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [1063000,4554000,-76.6578831796223,-100],
+                "name": "Departmental Management",
+                "id": "leaf-123",
+                "discretion": "discretionary"
+              },
+              {"value":[210000,10000,2000,100],"name":"Administration on Aging","id":"leaf-132","discretion":"mandatory"},
+              {
+                "value": [53000,50000,6.00000000000001,40.18],
+                "name": "Office of the Inspector General",
+                "id": "leaf-128",
+                "discretion": "discretionary"
+              }
+            ]
+          },
+          {
+            "value": [148349000,null,null,0],
+            "name": "Agriculture",
+            "id": "branch-3",
+            "discretion": null,
+            "children": [
+              {
+                "value": [104212000,85935000,21.2684005352883,46.562820736603264],
+                "name": "Food and Nutrition Service",
+                "id": "leaf-39",
+                "discretion": "mandatory"
+              },
+              {
+                "value": [4592000,2939000,56.2436202790065,57.355174257522044],
+                "name": "Natural Resources Conservation Service",
+                "id": "leaf-44",
+                "discretion": "mandatory"
+              },
+              {
+                "value": [1446000,1885000,-23.289124668435,-65.67375274453315],
+                "name": "Rural Housing Service",
+                "id": "leaf-31",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [914000,1251000,-26.9384492406075,-69.69674021548312],
+                "name": "Agricultural Research Service",
+                "id": "leaf-7",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [412000,431000,-4.40835266821346,-44.85973423328412],
+                "name": "Departmental Management",
+                "id": "leaf-10",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [165000,162000,1.85185185185186,40.57142857142858],
+                "name": "National Agricultural Statistics Service",
+                "id": "leaf-19",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [86000,82000,4.87804878048781,41.50522648083624],
+                "name": "Economic Research Service",
+                "id": "leaf-11",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [44000,42000,4.76190476190477,41.46938775510205],
+                "name": "Grain Inspection, Packers and Stockyards Administration",
+                "id": "leaf-18",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [15000,13000,15.3846153846154,44.747252747252766],
+                "name": "Office of Chief Economist",
+                "id": "leaf-23",
+                "discretion": "discretionary"
+              },
+              {"value":[1000,1000,0,0],"name":"Office of Chief Economist","id":"leaf-45","discretion":"mandatory"}
+            ]
+          },
+          {
+            "value": [93790000,null,null,0],
+            "name": "Education",
+            "id": "branch-6",
+            "discretion": null,
+            "children": [
+              {
+                "value": [31433000,20085000,56.4998755290018,49.59846588597884],
+                "name": "Office of Federal Student Aid",
+                "id": "leaf-95",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [20161000,22495000,-10.3756390308958,-77.68880772303781],
+                "name": "Office of Elementary and Secondary Education",
+                "id": "leaf-93",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [12805000,14290000,-10.3918824352694,-77.74781079189759],
+                "name": "Office of Federal Student Aid",
+                "id": "leaf-103",
+                "discretion": "mandatory"
+              },
+              {
+                "value": [12647000,13225000,-4.37051039697542,-55.8755837122567],
+                "name": "Office of Special Education and Rehabilitative Services",
+                "id": "leaf-99",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [4995000,1378000,262.481857764877,84.5916585453588],
+                "name": "Office of Innovation and Improvement",
+                "id": "leaf-96",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [3122000,3085000,1.19935170178282,40.2037515355046],
+                "name": "Office of Special Education and Rehabilitative Services",
+                "id": "leaf-106",
+                "discretion": "mandatory"
+              },
+              {
+                "value": [2533000,2512000,0.835987261146487,40.14202146698728],
+                "name": "Office of Postsecondary Education",
+                "id": "leaf-97",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [1781000,393000,353.180661577608,100],
+                "name": "Office of Safe and Drug-Free Schools",
+                "id": "leaf-98",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [1683000,2016000,-16.5178571428571,-100],
+                "name": "Office of Vocational and Adult Education",
+                "id": "leaf-100",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [760000,659000,15.3262518968134,42.60369610754222],
+                "name": "Institute of Education Sciences",
+                "id": "leaf-92",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [750000,750000,0,0],
+                "name": "Office of English Language Acquisition",
+                "id": "leaf-94",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [654000,619000,5.65428109854604,40.96057599642447],
+                "name": "Departmental Management",
+                "id": "leaf-91",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [426000,462000,-7.79220779220779,-68.30466830466837],
+                "name": "Office of Postsecondary Education",
+                "id": "leaf-105",
+                "discretion": "mandatory"
+              },
+              {
+                "value": [40000,462000,null,0],
+                "name": "Office of Innovation and Improvement",
+                "id": "leaf-104",
+                "discretion": "mandatory"
+              }
+            ]
+          },
+          {
+            "value": [52092000,null,null,0],
+            "name": "Housing and Urban Development",
+            "id": "branch-10",
+            "discretion": null,
+            "children": [
+              {
+                "value": [36186000,34796000,3.99471203586619,40.00961615735815],
+                "name": "Public and Indian Housing Programs",
+                "id": "leaf-178",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [8211000,8601000,-4.53435647017789,-66.03458260389219],
+                "name": "Community Planning and Development",
+                "id": "leaf-169",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [4484000,3025000,48.2314049586777,40.11610368294968],
+                "name": "Housing Programs",
+                "id": "leaf-182",
+                "discretion": "mandatory"
+              },
+              {
+                "value": [1791000,2000000,-10.45,-100],
+                "name": "Management and Administration",
+                "id": "leaf-174",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [1001000,4000,24925,100],
+                "name": "Community Planning and Development",
+                "id": "leaf-179",
+                "discretion": "mandatory"
+              },
+              {
+                "value": [150000,4000,null,0],
+                "name": "Office of Sustainable Housing and Communities",
+                "id": "leaf-176",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [140000,139000,0.71942446043165,40.001731814147476],
+                "name": "Office of Lead Hazard Control and Healthy Homes",
+                "id": "leaf-175",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [72000,71000,1.40845070422535,40.00339045304929],
+                "name": "Fair Housing and Equal Opportunity",
+                "id": "leaf-171",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [57000,48000,18.75,40.045135406218655],
+                "name": "Policy Development and Research",
+                "id": "leaf-177",
+                "discretion": "discretionary"
+              }
+            ]
+          },
+          {
+            "value": [32746000,null,null,0],
+            "name": "State",
+            "id": "branch-13",
+            "discretion": null,
+            "children": [
+              {
+                "value": [14747000,12367000,19.2447642920676,100],
+                "name": "Administration of Foreign Affairs",
+                "id": "leaf-223",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [13080000,12954000,0.972672533580354,43.032531400702915],
+                "name": "Other",
+                "id": "leaf-227",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [3539000,3905000,-9.37259923175416,-47.49807938540333],
+                "name": "International Organizations and Conferences",
+                "id": "leaf-226",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [1257000,1266000,-0.710900473933651,-40.56872037914692],
+                "name": "Administration of Foreign Affairs",
+                "id": "leaf-228",
+                "discretion": "mandatory"
+              },
+              {
+                "value": [122000,143000,-14.6853146853147,-51.74825174825176],
+                "name": "International Commissions",
+                "id": "leaf-225",
+                "discretion": "discretionary"
+              },
+              {"value":[1000,4000,-75,-100],"name":"Other","id":"leaf-230","discretion":"mandatory"}
+            ]
+          },
+          {
+            "value": [10449000,null,null,0],
+            "name": "Commerce",
+            "id": "branch-4",
+            "discretion": null,
+            "children": [
+              {
+                "value": [5510000,4878000,12.9561295612956,41.27299627110984],
+                "name": "National Oceanic and Atmospheric Administration",
+                "id": "leaf-61",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [1400000,197000,610.659898477157,100],
+                "name": "National Telecommunications and Information Administration",
+                "id": "leaf-71",
+                "discretion": "mandatory"
+              },
+              {
+                "value": [1025000,7096000,-85.5552423900789,-100],
+                "name": "Bureau of the Census",
+                "id": "leaf-53",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [1004000,863000,16.3383545770568,41.60531463924199],
+                "name": "National Institute of Standards and Technology",
+                "id": "leaf-60",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [517000,448000,15.4017857142857,41.51329266120413],
+                "name": "International Trade Administration",
+                "id": "leaf-58",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [325000,347000,-6.34005763688761,-44.44629046200176],
+                "name": "Economic Development Administration",
+                "id": "leaf-57",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [113000,97000,16.4948453608248,41.620690541687026],
+                "name": "Economic and Statistical Analysis",
+                "id": "leaf-56",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [111000,58000,91.3793103448276,48.97841602889329],
+                "name": "National Oceanic and Atmospheric Administration",
+                "id": "leaf-70",
+                "discretion": "mandatory"
+              },
+              {
+                "value": [111000,100000,11,41.08079800498753],
+                "name": "Bureau of Industry and Security",
+                "id": "leaf-52",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [100000,100000,null,0],
+                "name": "National Institute of Standards and Technology",
+                "id": "leaf-69",
+                "discretion": "mandatory"
+              },
+              {
+                "value": [95000,109000,-12.8440366972477,-49.00753922619039],
+                "name": "Departmental Management",
+                "id": "leaf-55",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [50000,109000,null,0],
+                "name": "National Telecommunications and Information Administration",
+                "id": "leaf-62",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [32000,32000,0,0],
+                "name": "Minority Business Development Agency",
+                "id": "leaf-59",
+                "discretion": "discretionary"
+              },
+              {"value":[30000,30000,0,0],"name":"Bureau of the Census","id":"leaf-64","discretion":"mandatory"},
+              {
+                "value": [20000,30000,null,0],
+                "name": "Economic Development Administration",
+                "id": "leaf-67",
+                "discretion": "mandatory"
+              },
+              {"value":[5000,5000,0,0],"name":"International Trade Administration","id":"leaf-68","discretion":"mandatory"},
+              {"value":[1000,1000,0,0],"name":"Departmental Management","id":"leaf-66","discretion":"mandatory"}
+            ]
+          },
+          {
+            "value": [4584000,null,null,0],
+            "name": "Corps of Engineers--Civil Works",
+            "id": "branch-2",
+            "discretion": null,
+            "children": [
+              {
+                "value": [4574000,5739000,-20.2997037811465,-100],
+                "name": "Corps of Engineers--Civil Works",
+                "id": "leaf-3",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [10000,5739000,null,0],
+                "name": "Corps of Engineers--Civil Works",
+                "id": "leaf-4",
+                "discretion": "mandatory"
+              }
+            ]
+          },
+          {
+            "value": [569000,null,null,0],
+            "name": "Executive Office of the President",
+            "id": "branch-19",
+            "discretion": null,
+            "children": [
+              {
+                "value": [116000,115000,0.869565217391299,40.48447204968944],
+                "name": "Office of Administration",
+                "id": "leaf-323",
+                "discretion": "discretionary"
+              },
+              {"value":[100000,115000,null,0],"name":"Unanticipated Needs","id":"leaf-332","discretion":"mandatory"},
+              {
+                "value": [92000,93000,-1.0752688172043,-42.764976958525345],
+                "name": "Office of Management and Budget",
+                "id": "leaf-324",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [81000,39000,107.692307692308,100],
+                "name": "Unanticipated Needs",
+                "id": "leaf-330",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [59000,60000,-1.66666666666667,-44.285714285714306],
+                "name": "The White House",
+                "id": "leaf-329",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [51000,48000,6.25,43.48214285714285],
+                "name": "Office of the United States Trade Representative",
+                "id": "leaf-327",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [23000,30000,-23.3333333333333,-100],
+                "name": "Office of National Drug Control Policy",
+                "id": "leaf-325",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [15000,17000,-11.7647058823529,-70.25210084033607],
+                "name": "Executive Residence at the White House",
+                "id": "leaf-321",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [13000,12000,8.33333333333333,44.642857142857125],
+                "name": "National Security Council and Homeland Security Council",
+                "id": "leaf-322",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [7000,7000,0,0],
+                "name": "Office of Science and Technology Policy",
+                "id": "leaf-326",
+                "discretion": "discretionary"
+              },
+              {
+                "value": [5000,5000,0,0],
+                "name": "Special Assistance to the President and the Official Residence",
+                "id": "leaf-328",
+                "discretion": "discretionary"
+              },
+              {"value":[4000,4000,0,0],"name":"Council of Economic Advisers","id":"leaf-319","discretion":"discretionary"},
+              {
+                "value": [3000,3000,0,0],
+                "name": "Council on Environmental Quality and Office of Environmental Qua",
+                "id": "leaf-320",
+                "discretion": "discretionary"
+              }
+            ]
+          },
+          {
+            "value": [6000,null,null,0],
+            "name": "Committee for Purchase from People Who Are Blind or Severely Dis",
+            "id": "branch-1",
+            "discretion": null,
+            "children": [
+              {
+                "value": [6000,5000,20,100],
+                "name": "Committee for Purchase from People who are Blind or Severely Dis",
+                "id": "leaf-2",
+                "discretion": "discretionary"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

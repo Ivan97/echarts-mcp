@@ -22,6 +22,16 @@ describe('渲染配额', () => {
     expect(countDataPoints({ series: { data: [1, 2] } })).toBe(2);
   });
 
+  it('统计 timeline 形态下 baseOption 与 options 里的数据点', () => {
+    // timeline 配置把 series 放在 baseOption / options 里，顶层是没有 series 的。
+    // 只看顶层会得到 0，配额形同虚设 —— 一份百万点的 timeline option 能直接绕过预检。
+    const option = {
+      baseOption: { timeline: { data: ['2001', '2002'] }, series: [{ data: [1, 2, 3] }] },
+      options: [{ series: [{ data: [4, 5] }] }, { series: [{ data: [6] }] }],
+    };
+    expect(countDataPoints(option)).toBe(6);
+  });
+
   it('无数据时为 0，不抛错', () => {
     expect(countDataPoints({ title: { text: 'x' } })).toBe(0);
     expect(countDataPoints({})).toBe(0);

@@ -8,8 +8,28 @@
       "arguments": {
         "type": "bar",
         "data": {
-          "dimensions": ["月份", "销量"],
-          "source": [["1月", 120], ["2月", 200], ["3月", 150], ["4月", 80]]
+          "dimensions": [
+            "月份",
+            "销量"
+          ],
+          "source": [
+            [
+              "1月",
+              120
+            ],
+            [
+              "2月",
+              200
+            ],
+            [
+              "3月",
+              150
+            ],
+            [
+              "4月",
+              80
+            ]
+          ]
         },
         "title": "月度销量"
       }
@@ -21,11 +41,40 @@
       "arguments": {
         "type": "bar",
         "data": {
-          "dimensions": ["月份", "订阅收入", "服务收入"],
-          "source": [["1月", 182, 61], ["2月", 214, 74], ["3月", 196, 88]]
+          "dimensions": [
+            "月份",
+            "订阅收入",
+            "服务收入"
+          ],
+          "source": [
+            [
+              "1月",
+              182,
+              61
+            ],
+            [
+              "2月",
+              214,
+              74
+            ],
+            [
+              "3月",
+              196,
+              88
+            ]
+          ]
         },
         "title": "收入构成",
-        "optionOverrides": { "series": [{ "stack": "总量" }, { "stack": "总量" }] }
+        "optionOverrides": {
+          "series": [
+            {
+              "stack": "总量"
+            },
+            {
+              "stack": "总量"
+            }
+          ]
+        }
       }
     },
     {
@@ -36,13 +85,39 @@
       "arguments": {
         "type": "bar",
         "data": {
-          "dimensions": ["部门", "人数"],
-          "source": [["基础架构组", 42], ["数据平台组", 31], ["前端体验组", 25]]
+          "dimensions": [
+            "部门",
+            "人数"
+          ],
+          "source": [
+            [
+              "基础架构组",
+              42
+            ],
+            [
+              "数据平台组",
+              31
+            ],
+            [
+              "前端体验组",
+              25
+            ]
+          ]
         },
         "title": "各部门人数",
         "optionOverrides": {
-          "xAxis": { "type": "value", "data": null },
-          "yAxis": { "type": "category", "data": ["基础架构组", "数据平台组", "前端体验组"] }
+          "xAxis": {
+            "type": "value",
+            "data": null
+          },
+          "yAxis": {
+            "type": "category",
+            "data": [
+              "基础架构组",
+              "数据平台组",
+              "前端体验组"
+            ]
+          }
         }
       }
     },
@@ -53,16 +128,56 @@
       "arguments": {
         "type": "line",
         "data": {
-          "dimensions": ["季度", "营收", "毛利率"],
-          "source": [["Q1", 182, 0.41], ["Q2", 214, 0.44], ["Q3", 196, 0.39], ["Q4", 247, 0.46]]
+          "dimensions": [
+            "季度",
+            "营收",
+            "毛利率"
+          ],
+          "source": [
+            [
+              "Q1",
+              182,
+              0.41
+            ],
+            [
+              "Q2",
+              214,
+              0.44
+            ],
+            [
+              "Q3",
+              196,
+              0.39
+            ],
+            [
+              "Q4",
+              247,
+              0.46
+            ]
+          ]
         },
         "title": "营收与毛利率",
         "optionOverrides": {
           "yAxis": [
-            { "type": "value", "name": "营收" },
-            { "type": "value", "name": "毛利率" }
+            {
+              "type": "value",
+              "name": "营收"
+            },
+            {
+              "type": "value",
+              "name": "毛利率"
+            }
           ],
-          "series": [{ "type": "bar" }, { "type": "line", "yAxisIndex": 1, "smooth": true }]
+          "series": [
+            {
+              "type": "bar"
+            },
+            {
+              "type": "line",
+              "yAxisIndex": 1,
+              "smooth": true
+            }
+          ]
         }
       }
     },
@@ -73,17 +188,57 @@
       "arguments": {
         "type": "line",
         "data": {
-          "dimensions": ["日期", "活跃用户"],
-          "source": [["01-01", 820], ["01-02", 932], ["01-03", 901], ["01-04", 1290], ["01-05", 1330]]
+          "dimensions": [
+            "日期",
+            "活跃用户"
+          ],
+          "source": [
+            [
+              "01-01",
+              820
+            ],
+            [
+              "01-02",
+              932
+            ],
+            [
+              "01-03",
+              901
+            ],
+            [
+              "01-04",
+              1290
+            ],
+            [
+              "01-05",
+              1330
+            ]
+          ]
         },
         "title": "日活趋势",
         "optionOverrides": {
           "series": [
             {
               "smooth": true,
-              "areaStyle": { "opacity": 0.15 },
-              "markLine": { "data": [{ "type": "average", "name": "平均" }] },
-              "markPoint": { "data": [{ "type": "max", "name": "峰值" }] }
+              "areaStyle": {
+                "opacity": 0.15
+              },
+              "markLine": {
+                "data": [
+                  {
+                    "type": "average",
+                    "name": "平均"
+                  }
+                ]
+              },
+              "markPoint": {
+                "data": [
+                  {
+                    "type": "max",
+                    "name": "峰值"
+                  }
+                ]
+              }
             }
           ]
         }
@@ -96,13 +251,43 @@
       "arguments": {
         "type": "pie",
         "data": {
-          "dimensions": ["渠道", "占比"],
-          "source": [["直销", 40], ["分销", 35], ["线上", 25], ["代理", 12]]
+          "dimensions": [
+            "渠道",
+            "占比"
+          ],
+          "source": [
+            [
+              "直销",
+              40
+            ],
+            [
+              "分销",
+              35
+            ],
+            [
+              "线上",
+              25
+            ],
+            [
+              "代理",
+              12
+            ]
+          ]
         },
         "title": "渠道分布",
         "optionOverrides": {
           "series": [
-            { "roseType": "area", "radius": ["15%", "72%"], "label": { "show": true, "formatter": "{b}: {d}%" } }
+            {
+              "roseType": "area",
+              "radius": [
+                "15%",
+                "72%"
+              ],
+              "label": {
+                "show": true,
+                "formatter": "{b}: {d}%"
+              }
+            }
           ]
         }
       }
@@ -115,17 +300,52 @@
       "arguments": {
         "title": "价格与销量",
         "option": {
-          "xAxis": { "type": "value", "name": "价格" },
-          "yAxis": { "type": "value", "name": "销量" },
-          "grid": { "left": 70, "right": 40, "top": 60, "bottom": 60 },
+          "xAxis": {
+            "type": "value",
+            "name": "价格"
+          },
+          "yAxis": {
+            "type": "value",
+            "name": "销量"
+          },
+          "grid": {
+            "left": 70,
+            "right": 40,
+            "top": 60,
+            "bottom": 60
+          },
           "series": [
             {
               "type": "scatter",
               "data": [
-                { "value": [10, 200], "symbolSize": 20 },
-                { "value": [20, 150], "symbolSize": 42 },
-                { "value": [30, 320], "symbolSize": 30 },
-                { "value": [42, 260], "symbolSize": 55 }
+                {
+                  "value": [
+                    10,
+                    200
+                  ],
+                  "symbolSize": 20
+                },
+                {
+                  "value": [
+                    20,
+                    150
+                  ],
+                  "symbolSize": 42
+                },
+                {
+                  "value": [
+                    30,
+                    320
+                  ],
+                  "symbolSize": 30
+                },
+                {
+                  "value": [
+                    42,
+                    260
+                  ],
+                  "symbolSize": 55
+                }
               ]
             }
           ]
@@ -139,11 +359,57 @@
       "arguments": {
         "type": "heatmap",
         "data": {
-          "dimensions": ["星期", "时段", "访问量"],
+          "dimensions": [
+            "星期",
+            "时段",
+            "访问量"
+          ],
           "source": [
-            ["周一", "上午", 5], ["周一", "下午", 9], ["周一", "晚间", 12],
-            ["周二", "上午", 2], ["周二", "下午", 7], ["周二", "晚间", 15],
-            ["周三", "上午", 8], ["周三", "下午", 3], ["周三", "晚间", 11]
+            [
+              "周一",
+              "上午",
+              5
+            ],
+            [
+              "周一",
+              "下午",
+              9
+            ],
+            [
+              "周一",
+              "晚间",
+              12
+            ],
+            [
+              "周二",
+              "上午",
+              2
+            ],
+            [
+              "周二",
+              "下午",
+              7
+            ],
+            [
+              "周二",
+              "晚间",
+              15
+            ],
+            [
+              "周三",
+              "上午",
+              8
+            ],
+            [
+              "周三",
+              "下午",
+              3
+            ],
+            [
+              "周三",
+              "晚间",
+              11
+            ]
           ]
         },
         "title": "访问量分布"
@@ -156,8 +422,28 @@
       "arguments": {
         "type": "funnel",
         "data": {
-          "dimensions": ["阶段", "人数"],
-          "source": [["访问", 1000], ["注册", 600], ["下单", 350], ["付费", 200]]
+          "dimensions": [
+            "阶段",
+            "人数"
+          ],
+          "source": [
+            [
+              "访问",
+              1000
+            ],
+            [
+              "注册",
+              600
+            ],
+            [
+              "下单",
+              350
+            ],
+            [
+              "付费",
+              200
+            ]
+          ]
         },
         "title": "转化漏斗"
       }
@@ -171,15 +457,48 @@
         "type": "sankey",
         "data": {
           "nodes": [
-            { "name": "自然流量" }, { "name": "广告投放" },
-            { "name": "注册" }, { "name": "流失" }, { "name": "付费" }
+            {
+              "name": "自然流量"
+            },
+            {
+              "name": "广告投放"
+            },
+            {
+              "name": "注册"
+            },
+            {
+              "name": "流失"
+            },
+            {
+              "name": "付费"
+            }
           ],
           "links": [
-            { "source": "自然流量", "target": "注册", "value": 320 },
-            { "source": "自然流量", "target": "流失", "value": 180 },
-            { "source": "广告投放", "target": "注册", "value": 280 },
-            { "source": "广告投放", "target": "流失", "value": 420 },
-            { "source": "注册", "target": "付费", "value": 210 }
+            {
+              "source": "自然流量",
+              "target": "注册",
+              "value": 320
+            },
+            {
+              "source": "自然流量",
+              "target": "流失",
+              "value": 180
+            },
+            {
+              "source": "广告投放",
+              "target": "注册",
+              "value": 280
+            },
+            {
+              "source": "广告投放",
+              "target": "流失",
+              "value": 420
+            },
+            {
+              "source": "注册",
+              "target": "付费",
+              "value": 210
+            }
           ]
         },
         "title": "获客流向"
@@ -192,8 +511,29 @@
       "arguments": {
         "type": "radar",
         "data": {
-          "dimensions": ["方案", "性能", "成本", "易用性", "生态"],
-          "source": [["方案 A", 90, 60, 75, 85], ["方案 B", 70, 90, 85, 60]]
+          "dimensions": [
+            "方案",
+            "性能",
+            "成本",
+            "易用性",
+            "生态"
+          ],
+          "source": [
+            [
+              "方案 A",
+              90,
+              60,
+              75,
+              85
+            ],
+            [
+              "方案 B",
+              70,
+              90,
+              85,
+              60
+            ]
+          ]
         },
         "title": "方案对比"
       }
@@ -205,10 +545,35 @@
       "arguments": {
         "type": "treemap",
         "data": {
-          "dimensions": ["路径", "销售额"],
+          "dimensions": [
+            "路径",
+            "销售额"
+          ],
           "source": [
-            ["华东/上海", 120], ["华东/杭州", 80], ["华东/南京", 55],
-            ["华北/北京", 140], ["华南/深圳", 95], ["华南/广州", 70]
+            [
+              "华东/上海",
+              120
+            ],
+            [
+              "华东/杭州",
+              80
+            ],
+            [
+              "华东/南京",
+              55
+            ],
+            [
+              "华北/北京",
+              140
+            ],
+            [
+              "华南/深圳",
+              95
+            ],
+            [
+              "华南/广州",
+              70
+            ]
           ]
         },
         "title": "区域销售额"
@@ -221,10 +586,31 @@
       "arguments": {
         "type": "boxplot",
         "data": {
-          "dimensions": ["分组", "min", "Q1", "median", "Q3", "max"],
+          "dimensions": [
+            "分组",
+            "min",
+            "Q1",
+            "median",
+            "Q3",
+            "max"
+          ],
           "source": [
-            ["对照组", 12, 28, 41, 55, 78],
-            ["实验组", 18, 35, 52, 68, 91]
+            [
+              "对照组",
+              12,
+              28,
+              41,
+              55,
+              78
+            ],
+            [
+              "实验组",
+              18,
+              35,
+              52,
+              68,
+              91
+            ]
           ]
         },
         "title": "响应时长分布"
@@ -239,21 +625,31 @@
         "data": {
           "name": "产品线",
           "children": [
-            { "name": "核心平台", "children": [{ "name": "调度" }, { "name": "存储" }] },
-            { "name": "开发者工具", "children": [{ "name": "CLI" }, { "name": "SDK" }] }
+            {
+              "name": "核心平台",
+              "children": [
+                {
+                  "name": "调度"
+                },
+                {
+                  "name": "存储"
+                }
+              ]
+            },
+            {
+              "name": "开发者工具",
+              "children": [
+                {
+                  "name": "CLI"
+                },
+                {
+                  "name": "SDK"
+                }
+              ]
+            }
           ]
         },
         "title": "产品结构"
-      }
-    },
-    {
-      "id": "gauge",
-      "title": "仪表盘：单一指标的完成度",
-      "tool": "generate_chart",
-      "arguments": {
-        "type": "gauge",
-        "data": { "dimensions": ["指标", "完成率"], "source": [["季度目标", 72]] },
-        "title": "目标完成度"
       }
     },
     {
@@ -264,8 +660,28 @@
       "arguments": {
         "type": "line",
         "data": {
-          "dimensions": ["月份", "销量", "利润"],
-          "source": [["1月", 120, 30], ["2月", 200, 60], ["3月", 150, 45]]
+          "dimensions": [
+            "月份",
+            "销量",
+            "利润"
+          ],
+          "source": [
+            [
+              "1月",
+              120,
+              30
+            ],
+            [
+              "2月",
+              200,
+              60
+            ],
+            [
+              "3月",
+              150,
+              45
+            ]
+          ]
         },
         "title": "可交互报表",
         "output": "html"
@@ -277,7 +693,22 @@
       "tool": "generate_chart",
       "arguments": {
         "type": "bar",
-        "data": { "dimensions": ["季度", "营收"], "source": [["Q1", 182], ["Q2", 214]] },
+        "data": {
+          "dimensions": [
+            "季度",
+            "营收"
+          ],
+          "source": [
+            [
+              "Q1",
+              182
+            ],
+            [
+              "Q2",
+              214
+            ]
+          ]
+        },
         "output": "option"
       }
     },
@@ -289,20 +720,70 @@
         "title": "分面对比",
         "option": {
           "grid": [
-            { "left": 55, "right": "55%", "top": 50, "bottom": 50 },
-            { "left": "55%", "right": 30, "top": 50, "bottom": 50 }
+            {
+              "left": 55,
+              "right": "55%",
+              "top": 50,
+              "bottom": 50
+            },
+            {
+              "left": "55%",
+              "right": 30,
+              "top": 50,
+              "bottom": 50
+            }
           ],
           "xAxis": [
-            { "type": "category", "data": ["A", "B", "C"], "gridIndex": 0 },
-            { "type": "category", "data": ["X", "Y", "Z"], "gridIndex": 1 }
+            {
+              "type": "category",
+              "data": [
+                "A",
+                "B",
+                "C"
+              ],
+              "gridIndex": 0
+            },
+            {
+              "type": "category",
+              "data": [
+                "X",
+                "Y",
+                "Z"
+              ],
+              "gridIndex": 1
+            }
           ],
           "yAxis": [
-            { "type": "value", "gridIndex": 0 },
-            { "type": "value", "gridIndex": 1 }
+            {
+              "type": "value",
+              "gridIndex": 0
+            },
+            {
+              "type": "value",
+              "gridIndex": 1
+            }
           ],
           "series": [
-            { "type": "bar", "data": [10, 20, 15], "xAxisIndex": 0, "yAxisIndex": 0 },
-            { "type": "line", "data": [5, 25, 12], "xAxisIndex": 1, "yAxisIndex": 1 }
+            {
+              "type": "bar",
+              "data": [
+                10,
+                20,
+                15
+              ],
+              "xAxisIndex": 0,
+              "yAxisIndex": 0
+            },
+            {
+              "type": "line",
+              "data": [
+                5,
+                25,
+                12
+              ],
+              "xAxisIndex": 1,
+              "yAxisIndex": 1
+            }
           ]
         }
       }

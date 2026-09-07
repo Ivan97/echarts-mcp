@@ -1,0 +1,32 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "pie-half-donut",
+  "category": "pie",
+  "title": "Half Doughnut Chart",
+  "titleCN": "半环形图",
+  "difficulty": 1,
+  "tags": ["环形"],
+  "points": 5,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/pie-half-donut.ts",
+  "option": {
+    "tooltip": {"trigger":"item"},
+    "legend": {"top":"5%","left":"center"},
+    "series": [
+      {
+        "name": "Access From",
+        "type": "pie",
+        "radius": ["40%","70%"],
+        "center": ["50%","70%"],
+        "startAngle": 180,
+        "endAngle": 360,
+        "data": [
+          {"value":1048,"name":"Search Engine"},
+          {"value":735,"name":"Direct"},
+          {"value":580,"name":"Email"},
+          {"value":484,"name":"Union Ads"},
+          {"value":300,"name":"Video Ads"}
+        ]
+      }
+    ]
+  }
+}

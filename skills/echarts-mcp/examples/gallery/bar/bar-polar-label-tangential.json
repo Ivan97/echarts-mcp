@@ -1,0 +1,24 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "bar-polar-label-tangential",
+  "category": "bar",
+  "title": "Tangential Polar Bar Label Position",
+  "titleCN": "极坐标柱状图标签",
+  "difficulty": 2,
+  "tags": ["极坐标"],
+  "points": 4,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/bar-polar-label-tangential.ts",
+  "option": {
+    "title": [{"text":"Tangential Polar Bar Label Position (middle)"}],
+    "polar": {"radius":[30,"80%"]},
+    "angleAxis": {"max":4,"startAngle":75},
+    "radiusAxis": {"type":"category","data":["a","b","c","d"]},
+    "tooltip": {},
+    "series": {
+      "type": "bar",
+      "data": [2,1.2,2.4,3.6],
+      "coordinateSystem": "polar",
+      "label": {"show":true,"position":"middle","formatter":"{b}: {c}"}
+    }
+  }
+}

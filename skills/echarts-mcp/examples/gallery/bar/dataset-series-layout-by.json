@@ -1,0 +1,35 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "dataset-series-layout-by",
+  "category": "bar",
+  "title": "Series Layout By Column or Row",
+  "titleCN": "系列按行和按列排布",
+  "difficulty": 5,
+  "tags": ["多系列","双轴","dataset","多宫格"],
+  "points": 4,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/dataset-series-layout-by.ts",
+  "option": {
+    "legend": {},
+    "tooltip": {},
+    "dataset": {
+      "source": [
+        ["product","2012","2013","2014","2015"],
+        ["Matcha Latte",41.1,30.4,65.1,53.3],
+        ["Milk Tea",86.5,92.1,85.7,83.1],
+        ["Cheese Cocoa",24.1,67.2,79.5,86.4]
+      ]
+    },
+    "xAxis": [{"type":"category","gridIndex":0},{"type":"category","gridIndex":1}],
+    "yAxis": [{"gridIndex":0},{"gridIndex":1}],
+    "grid": [{"bottom":"55%"},{"top":"55%"}],
+    "series": [
+      {"type":"bar","seriesLayoutBy":"row"},
+      {"type":"bar","seriesLayoutBy":"row"},
+      {"type":"bar","seriesLayoutBy":"row"},
+      {"type":"bar","xAxisIndex":1,"yAxisIndex":1},
+      {"type":"bar","xAxisIndex":1,"yAxisIndex":1},
+      {"type":"bar","xAxisIndex":1,"yAxisIndex":1},
+      {"type":"bar","xAxisIndex":1,"yAxisIndex":1}
+    ]
+  }
+}

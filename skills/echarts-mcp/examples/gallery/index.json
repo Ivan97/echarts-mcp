@@ -1,0 +1,126 @@
+{
+  "$comment": "顶层目录，只有 18 个类目名和数量。挑定类型后读 references/gallery/<类型>.md 选例子，再读 examples/gallery/<类型>/<id>.json 拿 option。不要一次把整个 gallery 读进上下文。由 scripts/build-gallery.mjs 生成，不要手改。",
+  "upstream": "https://echarts.apache.org/examples/zh/index.html",
+  "generatedFrom": "apache/echarts-examples",
+  "pointBudget": 50000,
+  "curatedOut": [],
+  "categories": [
+    {"category":"bar","count":43,"catalogue":"references/gallery/bar.md","files":"examples/gallery/bar/<id>.json"},
+    {
+      "category": "line",
+      "count": 38,
+      "catalogue": "references/gallery/line.md",
+      "files": "examples/gallery/line/<id>.json"
+    },
+    {"category":"pie","count":16,"catalogue":"references/gallery/pie.md","files":"examples/gallery/pie/<id>.json"},
+    {
+      "category": "scatter",
+      "count": 22,
+      "catalogue": "references/gallery/scatter.md",
+      "files": "examples/gallery/scatter/<id>.json"
+    },
+    {
+      "category": "radar",
+      "count": 5,
+      "catalogue": "references/gallery/radar.md",
+      "files": "examples/gallery/radar/<id>.json"
+    },
+    {
+      "category": "heatmap",
+      "count": 5,
+      "catalogue": "references/gallery/heatmap.md",
+      "files": "examples/gallery/heatmap/<id>.json"
+    },
+    {
+      "category": "boxplot",
+      "count": 3,
+      "catalogue": "references/gallery/boxplot.md",
+      "files": "examples/gallery/boxplot/<id>.json"
+    },
+    {
+      "category": "candlestick",
+      "count": 9,
+      "catalogue": "references/gallery/candlestick.md",
+      "files": "examples/gallery/candlestick/<id>.json"
+    },
+    {
+      "category": "funnel",
+      "count": 4,
+      "catalogue": "references/gallery/funnel.md",
+      "files": "examples/gallery/funnel/<id>.json"
+    },
+    {
+      "category": "sankey",
+      "count": 7,
+      "catalogue": "references/gallery/sankey.md",
+      "files": "examples/gallery/sankey/<id>.json"
+    },
+    {
+      "category": "treemap",
+      "count": 7,
+      "catalogue": "references/gallery/treemap.md",
+      "files": "examples/gallery/treemap/<id>.json"
+    },
+    {
+      "category": "sunburst",
+      "count": 7,
+      "catalogue": "references/gallery/sunburst.md",
+      "files": "examples/gallery/sunburst/<id>.json"
+    },
+    {
+      "category": "graph",
+      "count": 12,
+      "catalogue": "references/gallery/graph.md",
+      "files": "examples/gallery/graph/<id>.json"
+    },
+    {
+      "category": "tree",
+      "count": 7,
+      "catalogue": "references/gallery/tree.md",
+      "files": "examples/gallery/tree/<id>.json"
+    },
+    {
+      "category": "parallel",
+      "count": 4,
+      "catalogue": "references/gallery/parallel.md",
+      "files": "examples/gallery/parallel/<id>.json"
+    }
+  ],
+  "skipped": [
+    {"id":"custom-ohlc","reason":"custom 系列的 renderItem 是函数，静态渲染时被剥离后无法成图","kind":"unsupported"},
+    {"id":"scatter-clustering","reason":"需要服务端注册 echarts-stat 的 clustering 变换","kind":"unsupported"},
+    {"id":"scatter-clustering-process","reason":"custom 系列的 renderItem 是函数，静态渲染时被剥离后无法成图","kind":"unsupported"},
+    {"id":"scatter-exponential-regression","reason":"需要服务端注册 echarts-stat 的 regression 变换","kind":"unsupported"},
+    {
+      "id": "pie-pattern",
+      "reason": "用位图做图案填充，需要浏览器的 Image 对象，svg-ssr 下报 Image width/height must be given",
+      "kind": "unsupported"
+    },
+    {"id":"scatter-linear-regression","reason":"需要服务端注册 echarts-stat 的 regression 变换","kind":"unsupported"},
+    {"id":"scatter-polynomial-regression","reason":"需要服务端注册 echarts-stat 的 regression 变换","kind":"unsupported"},
+    {"id":"geo-graph","reason":"画在 geo 坐标系上，本工具不支持 map / geo","kind":"unsupported"},
+    {
+      "id": "data-transform-aggregate",
+      "reason": "需要服务端注册 echarts-simple-transform 的 aggregate 变换",
+      "kind": "unsupported"
+    },
+    {"id":"geo-choropleth-scatter","reason":"画在 geo 坐标系上，本工具不支持 map / geo","kind":"unsupported"},
+    {"id":"map-iceland-pie","reason":"画在 geo 坐标系上，本工具不支持 map / geo","kind":"unsupported"},
+    {
+      "id": "scatter-nebula",
+      "reason": "数据是 8MB 的 Float32 二进制（约 66 万个点），超出服务端 50,000 点的渲染配额，抓下来也画不出",
+      "kind": "unsupported"
+    },
+    {"id":"bar-race-country","reason":"数据要在浏览器里对 CDN 资源做二次解析，构建期沙箱拿不到可用的 dataset","kind":"unsupported"},
+    {"id":"matrix-mini-bar-geo","reason":"画在 geo 坐标系上，本工具不支持 map / geo","kind":"unsupported"},
+    {"id":"watermark","reason":"水印用 canvas 现画图案，服务端没有 canvas 2d 上下文","kind":"unsupported"},
+    {"id":"scatter-world-population","reason":"画在 geo 坐标系上，本工具不支持 map / geo","kind":"unsupported"},
+    {"id":"scatter-logarithmic-regression","reason":"需要服务端注册 echarts-stat 的 regression 变换","kind":"unsupported"},
+    {"id":"effectScatter-map","reason":"画在 geo 坐标系上，本工具不支持 map / geo","kind":"unsupported"},
+    {"id":"heatmap-bmap","reason":"画在百度地图（bmap）上，需要地图扩展与 API key","kind":"unsupported"},
+    {"id":"heatmap-map","reason":"画在 geo 坐标系上，本工具不支持 map / geo","kind":"unsupported"},
+    {"id":"scatter-map","reason":"画在 geo 坐标系上，本工具不支持 map / geo","kind":"unsupported"},
+    {"id":"scatter-map-brush","reason":"画在 geo 坐标系上，本工具不支持 map / geo","kind":"unsupported"},
+    {"id":"scatter-weibo","reason":"画在 geo 坐标系上，本工具不支持 map / geo","kind":"unsupported"}
+  ]
+}

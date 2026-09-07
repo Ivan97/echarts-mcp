@@ -1,0 +1,23 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "bar-drilldown",
+  "category": "bar",
+  "title": "Bar Chart Drilldown Animation",
+  "titleCN": "柱状图下钻动画",
+  "difficulty": 5,
+  "tags": [],
+  "points": 3,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/bar-drilldown.ts",
+  "option": {
+    "xAxis": {"data":["Animals","Fruits","Cars"]},
+    "yAxis": {},
+    "dataGroupId": "",
+    "animationDurationUpdate": 500,
+    "series": {
+      "type": "bar",
+      "id": "sales",
+      "data": [{"value":5,"groupId":"animals"},{"value":2,"groupId":"fruits"},{"value":4,"groupId":"cars"}],
+      "universalTransition": {"enabled":true,"divideShape":"clone"}
+    }
+  }
+}

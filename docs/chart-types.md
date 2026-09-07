@@ -6,7 +6,7 @@
 
 ## 怎么读这份文档
 
-一期支持 **18 种图表类型**，分三组。但**「类型」不等于「图表样式」**——
+一期支持 **15 种图表类型**，分三组。但**「类型」不等于「图表样式」**——
 每种类型下的细分样式（堆叠、横向、极坐标、玫瑰图、双轴……）**不新增类型**，
 而是由调用方在 `optionOverrides` 里追加一段 ECharts option 片段实现。
 第 4 节用 10 个实测样例证明了这一点。
@@ -131,38 +131,7 @@
 }
 ```
 
-### 4. `pictorialBar`
-
-![pictorialBar](assets/chart-types/pictorialBar.png)
-
-**data 结构**：Dataset：同 bar，用象形符号绘制柱体
-
-**示例 data**：
-
-```json
-{
-  "dimensions": [
-    "城市",
-    "人口"
-  ],
-  "source": [
-    [
-      "北京",
-      21
-    ],
-    [
-      "上海",
-      24
-    ],
-    [
-      "广州",
-      18
-    ]
-  ]
-}
-```
-
-### 5. `heatmap`
+### 4. `heatmap`
 
 ![heatmap](assets/chart-types/heatmap.png)
 
@@ -212,7 +181,7 @@
 }
 ```
 
-### 6. `boxplot`
+### 5. `boxplot`
 
 ![boxplot](assets/chart-types/boxplot.png)
 
@@ -259,7 +228,7 @@
 }
 ```
 
-### 7. `candlestick`
+### 6. `candlestick`
 
 ![candlestick](assets/chart-types/candlestick.png)
 
@@ -309,61 +278,7 @@
 }
 ```
 
-### 8. `themeRiver`
-
-![themeRiver](assets/chart-types/themeRiver.png)
-
-**data 结构**：Dataset：恰好 3 维 [日期, 数值, 系列名]
-
-**示例 data**：
-
-```json
-{
-  "dimensions": [
-    "日期",
-    "数值",
-    "系列"
-  ],
-  "source": [
-    [
-      "2026-01-01",
-      10,
-      "A"
-    ],
-    [
-      "2026-01-02",
-      15,
-      "A"
-    ],
-    [
-      "2026-01-03",
-      12,
-      "A"
-    ],
-    [
-      "2026-01-01",
-      6,
-      "B"
-    ],
-    [
-      "2026-01-02",
-      9,
-      "B"
-    ],
-    [
-      "2026-01-03",
-      14,
-      "B"
-    ]
-  ]
-}
-```
-
----
-
-## 2. 非直角坐标系（7 种）
-
-### 9. `pie`
+### 7. `pie`
 
 ![pie](assets/chart-types/pie.png)
 
@@ -394,7 +309,7 @@
 }
 ```
 
-### 10. `funnel`
+### 8. `funnel`
 
 ![funnel](assets/chart-types/funnel.png)
 
@@ -429,30 +344,7 @@
 }
 ```
 
-### 11. `gauge`
-
-![gauge](assets/chart-types/gauge.png)
-
-**data 结构**：Dataset：恰好 2 维 [指标名, 数值]，通常只有一行
-
-**示例 data**：
-
-```json
-{
-  "dimensions": [
-    "指标",
-    "完成率"
-  ],
-  "source": [
-    [
-      "完成率",
-      72
-    ]
-  ]
-}
-```
-
-### 12. `radar`
+### 9. `radar`
 
 ![radar](assets/chart-types/radar.png)
 
@@ -488,7 +380,7 @@
 }
 ```
 
-### 13. `parallel`
+### 10. `parallel`
 
 ![parallel](assets/chart-types/parallel.png)
 
@@ -527,7 +419,7 @@
 }
 ```
 
-### 14. `treemap`
+### 11. `treemap`
 
 ![treemap](assets/chart-types/treemap.png)
 
@@ -562,7 +454,7 @@
 }
 ```
 
-### 15. `sunburst`
+### 12. `sunburst`
 
 ![sunburst](assets/chart-types/sunburst.png)
 
@@ -601,7 +493,7 @@
 
 ## 3. 结构型（3 种）
 
-### 16. `sankey`
+### 13. `sankey`
 
 ![sankey](assets/chart-types/sankey.png)
 
@@ -645,7 +537,7 @@
 }
 ```
 
-### 17. `graph`
+### 14. `graph`
 
 ![graph](assets/chart-types/graph.png)
 
@@ -690,7 +582,7 @@
 }
 ```
 
-### 18. `tree`
+### 15. `tree`
 
 ![tree](assets/chart-types/tree.png)
 
