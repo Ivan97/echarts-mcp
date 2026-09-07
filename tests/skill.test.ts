@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { ChartType } from '../src/types.js';
 import { VARIANTS } from '../src/charts/variants.js';
 
-const ROOT = 'skills/echarts-mcp';
+const ROOT = 'skills/data-charting';
 const skill = readFileSync(join(ROOT, 'SKILL.md'), 'utf8');
 
 /**
@@ -13,11 +13,11 @@ const skill = readFileSync(join(ROOT, 'SKILL.md'), 'utf8');
  * SKILL.md 里引用的每个文件都必须真实存在 —— 引用到不存在的文件，
  * 模型读的时候只会拿到一个错误，而 skill 本身不会报错，问题很难发现。
  */
-describe('echarts-mcp skill', () => {
+describe('data-charting skill', () => {
   it('frontmatter 含 name 与 description', () => {
     const fm = skill.match(/^---\n([\s\S]*?)\n---/);
     expect(fm, '缺少 frontmatter').toBeTruthy();
-    expect(fm![1]).toMatch(/^name:\s*echarts-mcp$/m);
+    expect(fm![1]).toMatch(/^name:\s*data-charting$/m);
     expect(fm![1]).toMatch(/^description:\s*.+/m);
   });
 
@@ -136,7 +136,7 @@ describe('echarts-mcp skill', () => {
   });
 
   it('选型画像覆盖全部 17 种类型，且每项都言之有物', async () => {
-    const { CHART_PROFILES } = await import('../skills/echarts-mcp/scripts/chart-profiles.mjs');
+    const { CHART_PROFILES } = await import('../skills/data-charting/scripts/chart-profiles.mjs');
     for (const t of Object.values(ChartType)) {
       const p = (CHART_PROFILES as Record<string, Record<string, string>>)[t];
       expect(p, `选型画像缺少 ${t}`).toBeTruthy();

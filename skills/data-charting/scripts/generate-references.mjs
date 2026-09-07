@@ -22,7 +22,7 @@ function locateDist() {
   const i = argv.indexOf('--dist');
   if (i >= 0) return resolve(argv[i + 1]);
 
-  // 优先用仓库内的 dist（本文件位于 <repo>/skills/echarts-mcp/scripts）
+  // 优先用仓库内的 dist（本文件位于 <repo>/skills/data-charting/scripts）
   const inRepo = resolve(here, '../../../dist');
   if (existsSync(join(inRepo, 'types.js'))) return inRepo;
 

@@ -1,9 +1,9 @@
 ---
-name: echarts-mcp
-description: "Generate charts with Apache ECharts through the echarts-mcp server. Use when the user asks to chart, plot, graph or visualize data, or mentions 画图/图表/柱状图/折线图/饼图/散点图/雷达图/热力图/桑基图/漏斗图/旭日图/树图/箱线图/K线图/日历图/矩阵图, or names generate_chart, render_option or list_chart_types. Covers chart type selection, the three data shapes, variants via optionOverrides, output and delivery choice, and recovering from silently empty charts."
+name: data-charting
+description: "Turn data into a chart with Apache ECharts through the echarts-mcp server (generate_chart, render_option, list_chart_types). Use when asked to chart, plot, graph or visualize data, when 画图/图表/柱状图/折线图/饼图/散点图/热力图/桑基图/K线图/日历图 come up, and whenever an answer about a trend, comparison, breakdown or distribution would land better as a chart than a table. Read it before reaching for another charting tool or telling the user something cannot be drawn — it lists what this server does and does not support. Covers type selection, the three input shapes, variants via optionOverrides, light and dark themes, and the silently blank chart ECharts hands back instead of an error."
 ---
 
-# Charting with echarts-mcp
+# Charting data with ECharts
 
 Three tools. Reach for `generate_chart` first.
 
@@ -51,7 +51,7 @@ The Apache ECharts gallery has 227 examples in our 17 types. **200 are bundled h
 
 | Step | Read | Size |
 |---|---|---|
-| 1. Which type fits the question? | `references/gallery.md` — data shape, question answered and typical topics for all 17 types | ~9 KB |
+| 1. Which type fits the question? | `references/gallery.md` — data shape, question answered and typical topics for all 17 types | ~11 KB |
 | 2. Which example within that type? | `references/gallery/<type>.md` — the examples with feature tags (stacked, polar, dataZoom, time axis…) | 1–6 KB |
 | 3. Get the option | `examples/gallery/<type>/<id>.json` → its `option` field, straight into `render_option` | ~4 KB median |
 
@@ -61,7 +61,7 @@ Skip step 1 when the type is already obvious. Never read more than one file at s
 
 ## Three data shapes
 
-**Tabular** (15 types) — first dimension is the category axis, each remaining one becomes a series:
+**Tabular** (14 types) — first dimension is the category axis, each remaining one becomes a series:
 
 ```json
 { "dimensions": ["Month", "Sales", "Profit"], "source": [["Jan", 120, 30], ["Feb", 200, 60]] }
@@ -148,12 +148,12 @@ Tool arguments are JSON. Use string templates (`{b}`, `{c}`, `{d}%`) for labels,
 
 | Path | What it is | When to read it |
 |---|---|---|
-| `references/choosing-and-options.md` | Per type: what it suits, what it does not, the usual misuse. Then ~35 option fragments grouped by concern, each with its visual effect | Choosing between two types, or configuring anything beyond the basics |
+| `references/choosing-and-options.md` | Per type: what it suits, what it does not, the usual misuse. Then all 33 option fragments grouped by concern, each with its visual effect | Choosing between two types, or configuring anything beyond the basics |
 | `references/chart-types.md` | All 17 types: data shape, runnable example, every variant fragment. Generated from source, so it cannot drift | Working with a type not covered in this file |
 | `references/troubleshooting.md` | Every error code and silent-failure mode, with measured behavior | A chart came back empty or wrong |
 | `references/gallery.md` | Entry point to the official gallery: per-type data shape, question answered, typical topics, and where each type's examples live | Choosing a type, or looking for an example beyond the basics |
 | `references/gallery/<type>.md` | One per type: that type's selection profile plus its examples with feature tags | You know the type and want the closest example |
-| `references/gallery-support.md` | What actually rendered, light and dark, and the 24 official examples we cannot draw with the reason for each | Asked whether some official example works here |
+| `references/gallery-support.md` | What actually rendered, light and dark, and the 27 official examples we cannot draw with the reason for each | Asked whether some official example works here |
 | `references/examples.md` | Index of the curated examples: id, purpose, type, the gotcha for each. Generated from the JSON | Picking a starting point — read this before the JSON |
 | `examples/examples.json` | The 21 curated `generate_chart` payloads themselves, copy-pasteable | You picked an id and want its full payload |
 | `examples/gallery/<type>/<id>.json` | One official example: its `option` plus tags, upstream link and any trimming note | Step 3 of the drill-down — read exactly one |
