@@ -57,7 +57,7 @@ The Apache ECharts gallery has 227 examples in our 17 types. **200 are bundled h
 
 Skip step 1 when the type is already obvious. Never read more than one file at step 3 — the catalogue is 2.4 MB in total and you need exactly one option out of it.
 
-**Prefer `examples/examples.json` when a template can do the job.** Those are `generate_chart` payloads: data and styling stay separate, the theme applies, spacing is handled. Gallery entries are raw upstream options — broader coverage, but you own every field, and any colour they hardcode will not follow `theme`.
+**Prefer the curated examples when a template can do the job.** Skim `references/examples.md` (3 KB) and pull the one payload you want out of `examples/examples.json` by `id` — do not read the whole 23 KB file for one payload. Those are `generate_chart` payloads: data and styling stay separate, the theme applies, spacing is handled. Gallery entries are raw upstream options — broader coverage, but you own every field, and any colour they hardcode will not follow `theme`.
 
 ## Three data shapes
 
@@ -154,12 +154,13 @@ Tool arguments are JSON. Use string templates (`{b}`, `{c}`, `{d}%`) for labels,
 | `references/gallery.md` | Entry point to the official gallery: per-type data shape, question answered, typical topics, and where each type's examples live | Choosing a type, or looking for an example beyond the basics |
 | `references/gallery/<type>.md` | One per type: that type's selection profile plus its examples with feature tags | You know the type and want the closest example |
 | `references/gallery-support.md` | What actually rendered, light and dark, and the 24 official examples we cannot draw with the reason for each | Asked whether some official example works here |
-| `examples/examples.json` | 21 verified `generate_chart` payloads, copy-pasteable | You want a working starting point |
+| `references/examples.md` | Index of the curated examples: id, purpose, type, the gotcha for each. Generated from the JSON | Picking a starting point — read this before the JSON |
+| `examples/examples.json` | The 21 curated `generate_chart` payloads themselves, copy-pasteable | You picked an id and want its full payload |
 | `examples/gallery/<type>/<id>.json` | One official example: its `option` plus tags, upstream link and any trimming note | Step 3 of the drill-down — read exactly one |
-| `examples/option-effects.json` | ~35 option fragments with their described effect, machine-readable | Programmatic use, or regenerating the options table |
+| `examples/option-effects.json` | The 33 option fragments with their described effect. The readable version is the options table in `choosing-and-options.md` | Programmatic use, or regenerating that table |
 | `scripts/verify-examples.mjs` | Runs every example through a live server, asserts non-empty output | After changing the examples or upgrading the server |
 | `scripts/verify-option-effects.mjs` | Applies each fragment to a baseline chart, asserts it renders **and differs from the baseline** — catching fragments that silently do nothing | Same |
-| `scripts/generate-references.mjs` | Regenerates `references/chart-types.md` from source | After the server adds types or variants |
+| `scripts/generate-references.mjs` | Regenerates `references/chart-types.md` from source and `references/examples.md` from the curated JSON | After the server adds types or variants, or the examples change |
 | `scripts/build-gallery.mjs` | Re-fetches the official gallery and rebuilds `examples/gallery/` and the catalogues | Upstream added examples |
 | `scripts/verify-gallery.mjs` | Renders every gallery example in both themes and rewrites `references/gallery-support.md` | After rebuilding the gallery or upgrading the server |
 | `scripts/chart-profiles.mjs` | The per-type selection profiles that feed the catalogues | Changing the selection guidance |

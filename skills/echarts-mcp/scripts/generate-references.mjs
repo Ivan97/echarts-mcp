@@ -10,7 +10,7 @@
  *   node scripts/generate-references.mjs                # 自动定位已安装的包
  *   node scripts/generate-references.mjs --dist <path>  # 指定 dist 目录
  */
-import { writeFileSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { execSync } from 'node:child_process';
@@ -125,4 +125,42 @@ p();
 
 writeFileSync(join(here, '../references/chart-types.md'), L.join('\n'));
 console.log('已生成 references/chart-types.md');
+
+// ---------------------------------------------------------------- 精选示例索引
+
+/**
+ * examples.json 的目录页。
+ *
+ * examples.json 本身留作 JSON —— 它是**给脚本执行的**，
+ * verify-examples.mjs 把每条 payload 原样送进服务跑一遍，「已验证」这三个字
+ * 全靠这一点。把它改成 Markdown 就得让校验脚本去解析散文，
+ * 平白多一层会静默出错的东西。
+ *
+ * 但 SKILL.md 让模型「先看 examples.json」，而它有 20 多 KB ——
+ * 为了拿一条 payload 读完整份，正是要避免的那种浪费。
+ * 所以这里生成一份只有标题和提示的索引：先在这里挑，再去 JSON 里取那一条。
+ */
+const examplesPath = join(here, '../examples/examples.json');
+const { examples } = JSON.parse(readFileSync(examplesPath, 'utf8'));
+
+const E = [];
+const e = (line = '') => E.push(line);
+e('# 精选示例目录');
+e();
+e('> 本文件由 `scripts/generate-references.mjs` 从 `examples/examples.json` 生成，不要手工编辑。');
+e();
+e(`共 ${examples.length} 条，全部由 \`scripts/verify-examples.mjs\` 实测渲染通过。`);
+e('在这里挑中一条之后，再去 `examples/examples.json` 里按 `id` 取它的完整 payload ——');
+e('**不要为了拿一条 payload 把整份 JSON 读进上下文。**');
+e();
+e('| id | 说明 | 工具 | 类型 | 要注意的地方 |');
+e('|---|---|---|---|---|');
+for (const ex of examples) {
+  const cell = (v) => String(v ?? '—').replace(/\|/g, '\\|');
+  e(`| \`${ex.id}\` | ${cell(ex.title)} | \`${ex.tool}\` | ${ex.arguments.type ? `\`${ex.arguments.type}\`` : '—'} | ${cell(ex.note)} |`);
+}
+e();
+
+writeFileSync(join(here, '../references/examples.md'), E.join('\n'));
+console.log(`已生成 references/examples.md（${examples.length} 条）`);
 console.log(`  类型 ${Object.values(ChartType).length} 种，含变体的类型 ${Object.keys(VARIANTS).length} 个，占位符片段 ${placeholders.length} 处`);
