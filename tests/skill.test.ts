@@ -8,6 +8,18 @@ const ROOT = 'skills/data-charting';
 const skill = readFileSync(join(ROOT, 'SKILL.md'), 'utf8');
 
 /**
+ * 官方示例库里没有的类型。
+ *
+ * liquidFill 来自第三方扩展 echarts-liquidfill，不在 Apache ECharts 的官方
+ * example 列表里，所以 examples/gallery/ 下不会有它的目录，references/gallery/
+ * 下也不会有它的文档。这不是漏做，是上游本来就没有 —— 写成显式清单而不是
+ * 把断言改松，是为了下次再加类型时仍然会被守卫拦住。
+ */
+const NO_UPSTREAM_GALLERY: string[] = [ChartType.Liquid];
+const galleryTypes = () =>
+  Object.values(ChartType).filter((t) => !NO_UPSTREAM_GALLERY.includes(t));
+
+/**
  * Skill 的完整性守卫。
  *
  * SKILL.md 里引用的每个文件都必须真实存在 —— 引用到不存在的文件，
@@ -66,10 +78,20 @@ describe('data-charting skill', () => {
     }
   });
 
-  it('选型指南覆盖全部 17 种类型', () => {
+  it('选型指南覆盖全部 18 种类型', () => {
     const guide = readFileSync(join(ROOT, 'references/choosing-and-options.md'), 'utf8');
     for (const t of Object.values(ChartType)) {
       expect(guide, `选型指南未覆盖 ${t}`).toContain(`\`${t}\``);
+    }
+  });
+
+  it('生成的类型参考覆盖全部 18 种类型', () => {
+    // 生成脚本要自己把每组模板注册一遍。漏注册一组，产出的文档就会
+    // 悄悄少掉那几种类型 —— 文件照常生成、脚本照常退出 0，
+    // 只有真去读文档的人才会发现。liquid 就这么漏过一次。
+    const ref = readFileSync(join(ROOT, 'references/chart-types.md'), 'utf8');
+    for (const t of Object.values(ChartType)) {
+      expect(ref, `类型参考缺少 ${t}，多半是生成脚本漏注册了它那组模板`).toContain(`\`${t}\``);
     }
   });
 
@@ -89,7 +111,7 @@ describe('data-charting skill', () => {
     const categories = readdirSync(galleryDir).filter((d) =>
       statSync(join(galleryDir, d)).isDirectory(),
     );
-    expect(categories.length, 'gallery 一个类目都没有').toBe(Object.values(ChartType).length);
+    expect(categories.length, 'gallery 一个类目都没有').toBe(galleryTypes().length);
 
     let count = 0;
     for (const cat of categories) {
@@ -128,14 +150,14 @@ describe('data-charting skill', () => {
 
   it('每个类型都有 gallery 目录文档，且被总索引引用', () => {
     const entry = readFileSync(join(ROOT, 'references/gallery.md'), 'utf8');
-    for (const t of Object.values(ChartType)) {
+    for (const t of galleryTypes()) {
       const doc = join(ROOT, `references/gallery/${t}.md`);
       expect(existsSync(doc), `缺少 references/gallery/${t}.md`).toBe(true);
       expect(entry, `总索引未引用 ${t}`).toContain(`gallery/${t}.md`);
     }
   });
 
-  it('选型画像覆盖全部 17 种类型，且每项都言之有物', async () => {
+  it('选型画像覆盖全部 18 种类型，且每项都言之有物', async () => {
     const { CHART_PROFILES } = await import('../skills/data-charting/scripts/chart-profiles.mjs');
     for (const t of Object.values(ChartType)) {
       const p = (CHART_PROFILES as Record<string, Record<string, string>>)[t];

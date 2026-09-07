@@ -115,6 +115,7 @@ Ready-made fragments come from `list_chart_types`: pass a `type` and it returns 
 - **Cartesian**: `bar` `line` `scatter` `heatmap` `boxplot` `candlestick`
 - **Non-cartesian**: `pie` `funnel` `radar` `parallel` `treemap` `sunburst`
 - **Coordinate-system based**: `calendar` `matrix`
+- **Extension-backed**: `liquid` (via `echarts-liquidfill`)
 - **Structural**: `sankey` `graph` `tree`
 
 Maps (`map` / `geo`) and 3D types are out of scope for now: maps need GeoJSON distribution, which is its own subsystem, and 3D depends on WebGL, which is unavailable in a server-side rendering environment.

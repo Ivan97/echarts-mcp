@@ -5,13 +5,15 @@ import { registerCartesianTemplates } from '../../src/charts/cartesian.js';
 import { registerCategoricalTemplates } from '../../src/charts/categorical.js';
 import { registerStructuralTemplates } from '../../src/charts/structural.js';
 import { registerCoordinateTemplates } from '../../src/charts/coordinate.js';
+import { registerLiquidTemplates } from '../../src/charts/liquid.js';
 
 describe('模板覆盖度', () => {
-  it('17 种 ChartType 全部有模板，且 example 都能 build 出 series', () => {
+  it('18 种 ChartType 全部有模板，且 example 都能 build 出 series', () => {
     registerCartesianTemplates();
     registerCategoricalTemplates();
     registerStructuralTemplates();
   registerCoordinateTemplates();
+  registerLiquidTemplates();
 
     const missing = Object.values(ChartType).filter((t) => !CHART_TEMPLATES[t]);
     expect(missing).toEqual([]);

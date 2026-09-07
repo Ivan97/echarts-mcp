@@ -2,7 +2,7 @@
 
 > 本文件由 `scripts/generate-references.mjs` 从 `examples/examples.json` 生成，不要手工编辑。
 
-共 21 条，全部由 `scripts/verify-examples.mjs` 实测渲染通过。
+共 22 条，全部由 `scripts/verify-examples.mjs` 实测渲染通过。
 在这里挑中一条之后，再去 `examples/examples.json` 里按 `id` 取它的完整 payload ——
 **不要为了拿一条 payload 把整份 JSON 读进上下文。**
 
@@ -29,3 +29,4 @@
 | `calendar-multi-year` | 日历图：跨年数据自动按年拆成多张 | `generate_chart` | `calendar` | 不用自己按年分组，模板会拆开并把每年的点绑到对应的日历上 |
 | `matrix-confusion` | 矩阵图：混淆矩阵，逐格读数 | `generate_chart` | `matrix` | 第一维是 x（列），第二维是 y（行）。行列顺序按首次出现，不会被重排 |
 | `matrix-cross-tab` | 矩阵图：渠道 × 品类交叉表 | `generate_chart` | `matrix` | 同样的数据给 heatmap 也画得出来，区别是 matrix 带表头且逐格标数，适合要读具体数值的场合 |
+| `liquid-progress` | 水波图：季度目标完成率 | `generate_chart` | `liquid` | 只表达比例。比例写 62 或 0.62 都行，但同一列会按统一口径解释——整列里出现过大于 1 的数就全按百分数算。要比较多个指标请改用 bar |

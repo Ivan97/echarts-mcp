@@ -29,6 +29,7 @@ export enum ChartType {
   Parallel = 'parallel',
   Calendar = 'calendar',
   Matrix = 'matrix',
+  Liquid = 'liquid',
 }
 
 export enum OutputFormat {
