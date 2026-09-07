@@ -1,4 +1,4 @@
-import { countDataPoints } from './budget.js';
+import { countDataPoints, optionLayers } from './budget.js';
 
 /**
  * 空图与可疑 option 的检测。
@@ -21,11 +21,15 @@ const KNOWN_SERIES_TYPES = new Set([
   'graph', 'sankey', 'funnel', 'gauge', 'pictorialBar', 'themeRiver', 'custom',
 ]);
 
+/** 收集所有层里的 series，timeline 的 baseOption / options 也算在内。 */
 function seriesList(option: object): Record<string, unknown>[] {
-  const s = (option as { series?: unknown }).series;
-  if (Array.isArray(s)) return s as Record<string, unknown>[];
-  if (s && typeof s === 'object') return [s as Record<string, unknown>];
-  return [];
+  const out: Record<string, unknown>[] = [];
+  for (const layer of optionLayers(option)) {
+    const s = layer.series;
+    if (Array.isArray(s)) out.push(...(s as Record<string, unknown>[]));
+    else if (s && typeof s === 'object') out.push(s as Record<string, unknown>);
+  }
+  return out;
 }
 
 /** 没有任何数据点即为空图。确定性判断，不依赖渲染产物。 */

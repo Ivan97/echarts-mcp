@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { ChartType } from '../src/types.js';
 import { VARIANTS } from '../src/charts/variants.js';
@@ -66,7 +66,7 @@ describe('echarts-mcp skill', () => {
     }
   });
 
-  it('选型指南覆盖全部 18 种类型', () => {
+  it('选型指南覆盖全部 17 种类型', () => {
     const guide = readFileSync(join(ROOT, 'references/choosing-and-options.md'), 'utf8');
     for (const t of Object.values(ChartType)) {
       expect(guide, `选型指南未覆盖 ${t}`).toContain(`\`${t}\``);
@@ -78,6 +78,72 @@ describe('echarts-mcp skill', () => {
     for (const [type, list] of Object.entries(VARIANTS)) {
       for (const v of list!) {
         expect(ref, `类型参考缺少 ${type} 的变体「${v.name}」`).toContain(v.name);
+      }
+    }
+  });
+
+  it('gallery 的每个例子文件都是合法 JSON 且带可直接使用的 option', () => {
+    // 序列化器是自己写的（为了让数据紧凑、结构可读），出过把稀疏数组写成裸逗号的 bug。
+    // 坏文件不会有人报错，只会在某次真去读它的时候才炸，所以这里全量回读。
+    const galleryDir = join(ROOT, 'examples/gallery');
+    const categories = readdirSync(galleryDir).filter((d) =>
+      statSync(join(galleryDir, d)).isDirectory(),
+    );
+    expect(categories.length, 'gallery 一个类目都没有').toBe(Object.values(ChartType).length);
+
+    let count = 0;
+    for (const cat of categories) {
+      for (const file of readdirSync(join(galleryDir, cat))) {
+        const raw = readFileSync(join(galleryDir, cat, file), 'utf8');
+        let parsed: { id: string; category: string; option: Record<string, unknown> };
+        expect(() => {
+          parsed = JSON.parse(raw);
+        }, `${cat}/${file} 不是合法 JSON`).not.toThrow();
+        parsed = JSON.parse(raw);
+        expect(parsed.category, `${cat}/${file} 的 category 与所在目录不一致`).toBe(cat);
+        expect(parsed.option, `${cat}/${file} 缺少 option`).toBeTruthy();
+        const hasSeries =
+          parsed.option.series !== undefined ||
+          parsed.option.dataset !== undefined ||
+          parsed.option.baseOption !== undefined;
+        expect(hasSeries, `${cat}/${file} 的 option 里没有 series/dataset/baseOption`).toBe(true);
+        count++;
+      }
+    }
+    expect(count, '收录的例子数量异常').toBeGreaterThan(180);
+  });
+
+  it('gallery 单个文件不至于大到读不动', () => {
+    // 这份目录是给模型按需取用的，一个文件动辄几百 KB 就失去意义了
+    const galleryDir = join(ROOT, 'examples/gallery');
+    const oversized: string[] = [];
+    for (const cat of readdirSync(galleryDir).filter((d) => statSync(join(galleryDir, d)).isDirectory())) {
+      for (const file of readdirSync(join(galleryDir, cat))) {
+        const size = statSync(join(galleryDir, cat, file)).size;
+        if (size > 80_000) oversized.push(`${cat}/${file} ${(size / 1024).toFixed(0)}KB`);
+      }
+    }
+    expect(oversized, `以下例子文件过大：${oversized.join('、')}`).toEqual([]);
+  });
+
+  it('每个类型都有 gallery 目录文档，且被总索引引用', () => {
+    const entry = readFileSync(join(ROOT, 'references/gallery.md'), 'utf8');
+    for (const t of Object.values(ChartType)) {
+      const doc = join(ROOT, `references/gallery/${t}.md`);
+      expect(existsSync(doc), `缺少 references/gallery/${t}.md`).toBe(true);
+      expect(entry, `总索引未引用 ${t}`).toContain(`gallery/${t}.md`);
+    }
+  });
+
+  it('选型画像覆盖全部 17 种类型，且每项都言之有物', async () => {
+    const { CHART_PROFILES } = await import('../skills/echarts-mcp/scripts/chart-profiles.mjs');
+    for (const t of Object.values(ChartType)) {
+      const p = (CHART_PROFILES as Record<string, Record<string, string>>)[t];
+      expect(p, `选型画像缺少 ${t}`).toBeTruthy();
+      expect(p.cn?.length ?? 0, `${t} 缺少中文名`).toBeGreaterThan(1);
+      // 这几项是选型的依据，写成一两个词就失去了意义
+      for (const field of ['data', 'question', 'topics', 'avoid']) {
+        expect(p[field]?.length ?? 0, `${t} 的 ${field} 太短，起不到选型作用`).toBeGreaterThan(8);
       }
     }
   });

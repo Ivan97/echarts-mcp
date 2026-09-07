@@ -40,6 +40,8 @@
     "@types/pngjs": "^6.0.5",
     "@types/supertest": "^7.2.1",
     "@vitest/coverage-v8": "^4.1.11",
+    "echarts-simple-transform": "^1.0.0",
+    "echarts-stat": "^1.2.0",
     "pixelmatch": "^7.2.0",
     "pngjs": "^7.0.0",
     "supertest": "^7.2.2",

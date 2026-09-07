@@ -6,7 +6,7 @@
 
 ## 怎么读这份文档
 
-一期支持 **18 种图表类型**，分三组。但**「类型」不等于「图表样式」**——
+一期支持 **17 种图表类型**，分四组。但**「类型」不等于「图表样式」**——
 每种类型下的细分样式（堆叠、横向、极坐标、玫瑰图、双轴……）**不新增类型**，
 而是由调用方在 `optionOverrides` 里追加一段 ECharts option 片段实现。
 第 4 节用 10 个实测样例证明了这一点。
@@ -131,38 +131,7 @@
 }
 ```
 
-### 4. `pictorialBar`
-
-![pictorialBar](assets/chart-types/pictorialBar.png)
-
-**data 结构**：Dataset：同 bar，用象形符号绘制柱体
-
-**示例 data**：
-
-```json
-{
-  "dimensions": [
-    "城市",
-    "人口"
-  ],
-  "source": [
-    [
-      "北京",
-      21
-    ],
-    [
-      "上海",
-      24
-    ],
-    [
-      "广州",
-      18
-    ]
-  ]
-}
-```
-
-### 5. `heatmap`
+### 4. `heatmap`
 
 ![heatmap](assets/chart-types/heatmap.png)
 
@@ -212,7 +181,7 @@
 }
 ```
 
-### 6. `boxplot`
+### 5. `boxplot`
 
 ![boxplot](assets/chart-types/boxplot.png)
 
@@ -259,7 +228,7 @@
 }
 ```
 
-### 7. `candlestick`
+### 6. `candlestick`
 
 ![candlestick](assets/chart-types/candlestick.png)
 
@@ -309,61 +278,7 @@
 }
 ```
 
-### 8. `themeRiver`
-
-![themeRiver](assets/chart-types/themeRiver.png)
-
-**data 结构**：Dataset：恰好 3 维 [日期, 数值, 系列名]
-
-**示例 data**：
-
-```json
-{
-  "dimensions": [
-    "日期",
-    "数值",
-    "系列"
-  ],
-  "source": [
-    [
-      "2026-01-01",
-      10,
-      "A"
-    ],
-    [
-      "2026-01-02",
-      15,
-      "A"
-    ],
-    [
-      "2026-01-03",
-      12,
-      "A"
-    ],
-    [
-      "2026-01-01",
-      6,
-      "B"
-    ],
-    [
-      "2026-01-02",
-      9,
-      "B"
-    ],
-    [
-      "2026-01-03",
-      14,
-      "B"
-    ]
-  ]
-}
-```
-
----
-
-## 2. 非直角坐标系（7 种）
-
-### 9. `pie`
+### 7. `pie`
 
 ![pie](assets/chart-types/pie.png)
 
@@ -394,7 +309,7 @@
 }
 ```
 
-### 10. `funnel`
+### 8. `funnel`
 
 ![funnel](assets/chart-types/funnel.png)
 
@@ -429,30 +344,7 @@
 }
 ```
 
-### 11. `gauge`
-
-![gauge](assets/chart-types/gauge.png)
-
-**data 结构**：Dataset：恰好 2 维 [指标名, 数值]，通常只有一行
-
-**示例 data**：
-
-```json
-{
-  "dimensions": [
-    "指标",
-    "完成率"
-  ],
-  "source": [
-    [
-      "完成率",
-      72
-    ]
-  ]
-}
-```
-
-### 12. `radar`
+### 9. `radar`
 
 ![radar](assets/chart-types/radar.png)
 
@@ -488,7 +380,7 @@
 }
 ```
 
-### 13. `parallel`
+### 10. `parallel`
 
 ![parallel](assets/chart-types/parallel.png)
 
@@ -527,7 +419,7 @@
 }
 ```
 
-### 14. `treemap`
+### 11. `treemap`
 
 ![treemap](assets/chart-types/treemap.png)
 
@@ -562,7 +454,7 @@
 }
 ```
 
-### 15. `sunburst`
+### 12. `sunburst`
 
 ![sunburst](assets/chart-types/sunburst.png)
 
@@ -601,7 +493,7 @@
 
 ## 3. 结构型（3 种）
 
-### 16. `sankey`
+### 13. `sankey`
 
 ![sankey](assets/chart-types/sankey.png)
 
@@ -645,7 +537,7 @@
 }
 ```
 
-### 17. `graph`
+### 14. `graph`
 
 ![graph](assets/chart-types/graph.png)
 
@@ -690,7 +582,7 @@
 }
 ```
 
-### 18. `tree`
+### 15. `tree`
 
 ![tree](assets/chart-types/tree.png)
 
@@ -731,6 +623,173 @@
 
 以下 10 个样例**全部实测渲染通过**，`type` 参数始终是 `bar` / `line` / `pie` 之一，差异只在 `optionOverrides`。
 这说明「每个大类下的细分小类」不需要扩展类型枚举即可覆盖。
+
+### 16. `calendar`
+
+![calendar](assets/chart-types/calendar.png)
+
+日历热力图。一格一天，用来看「哪几天忙」以及周末效应、季节性、中断段。
+底层是画在 `calendar` 坐标系上的 heatmap，跨年数据会自动按年拆成多个日历。
+
+**注意**：日期必须是 `YYYY-MM-DD`。ECharts 对认不出的日期不报错，只会把该点丢掉，
+结果是一张空白日历 —— 模板会主动校验并报错，不让这种问题静默通过。
+
+**data 结构**：Dataset：dimensions 恰好 2 项 [日期, 数值]，日期必须是 YYYY-MM-DD。跨年的数据会自动按年拆成多个日历，不需要调用方自己分组。
+
+**示例 data**：
+
+```json
+{
+  "dimensions": [
+    "日期",
+    "提交数"
+  ],
+  "source": [
+    [
+      "2026-01-05",
+      12
+    ],
+    [
+      "2026-01-06",
+      9
+    ],
+    [
+      "2026-01-07",
+      15
+    ],
+    [
+      "2026-01-12",
+      7
+    ],
+    [
+      "2026-02-02",
+      21
+    ],
+    [
+      "2026-02-14",
+      3
+    ],
+    [
+      "2026-02-23",
+      18
+    ],
+    [
+      "2026-03-09",
+      11
+    ],
+    [
+      "2026-03-21",
+      25
+    ],
+    [
+      "2026-04-06",
+      14
+    ],
+    [
+      "2026-04-20",
+      6
+    ],
+    [
+      "2026-05-01",
+      8
+    ],
+    [
+      "2026-05-18",
+      19
+    ],
+    [
+      "2026-06-08",
+      13
+    ],
+    [
+      "2026-06-22",
+      4
+    ],
+    [
+      "2026-07-06",
+      22
+    ],
+    [
+      "2026-07-19",
+      17
+    ],
+    [
+      "2026-08-10",
+      10
+    ],
+    [
+      "2026-08-24",
+      16
+    ],
+    [
+      "2026-09-14",
+      5
+    ],
+    [
+      "2026-09-30",
+      6
+    ],
+    [
+      "2026-10-19",
+      23
+    ],
+    [
+      "2026-11-11",
+      21
+    ],
+    [
+      "2026-12-25",
+      14
+    ]
+  ]
+}
+```
+
+### 17. `matrix`
+
+![matrix](assets/chart-types/matrix.png)
+
+矩阵图。行列都是类目、每格一个数，画成带行列表头的表格并默认标出数值。
+混淆矩阵、相关系数矩阵是最典型的两个场景。
+
+**与 `heatmap` 的区别**：数据形状完全一样，区别在表现 —— `matrix` 是要
+**逐格读数**的表格，`heatmap` 是要看分布的连续色块。类目多到读不完每一格时，用后者。
+
+**data 结构**：Dataset：dimensions 恰好 3 项 [x 类目, y 类目, 数值]，source 每行为 [x, y, value]。与 heatmap 的数据形状相同，区别是画成带行列表头的表格。
+
+**示例 data**：
+
+```json
+{
+  "dimensions": [
+    "预测",
+    "实际",
+    "数量"
+  ],
+  "source": [
+    [
+      "正例",
+      "正例",
+      42
+    ],
+    [
+      "正例",
+      "反例",
+      8
+    ],
+    [
+      "反例",
+      "正例",
+      5
+    ],
+    [
+      "反例",
+      "反例",
+      45
+    ]
+  ]
+}
+```
 
 ### 堆叠柱状图
 

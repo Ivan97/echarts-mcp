@@ -1,0 +1,35 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "bar-multi-drilldown",
+  "category": "bar",
+  "title": "Bar Chart Multi-level Drilldown Animation",
+  "titleCN": "柱状图多层下钻动画",
+  "difficulty": 6,
+  "tags": ["encode 映射","含函数"],
+  "points": 3,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/bar-multi-drilldown.ts",
+  "functionFields": ["graphic[0].onclick"],
+  "functionNote": "这些字段是函数字符串：svg/png 输出会被剥离，只有 output=html 由浏览器执行。",
+  "option": {
+    "id": "things",
+    "xAxis": {"type":"category"},
+    "yAxis": {"minInterval":1},
+    "animationDurationUpdate": 500,
+    "series": {
+      "type": "bar",
+      "dimensions": ["x","y","groupId","childGroupId"],
+      "encode": {"x":"x","y":"y","itemGroupId":"groupId","itemChildGroupId":"childGroupId"},
+      "data": [["Animals",3,"things","animals"],["Fruits",3,"things","fruits"],["Cars",2,"things","cars"]],
+      "universalTransition": {"enabled":true,"divideShape":"clone"}
+    },
+    "graphic": [
+      {
+        "type": "text",
+        "left": 50,
+        "top": 20,
+        "style": {"text":"Back","fontSize":18,"fill":"grey"},
+        "onclick": "function () {\n                    goBack();\n                }"
+      }
+    ]
+  }
+}

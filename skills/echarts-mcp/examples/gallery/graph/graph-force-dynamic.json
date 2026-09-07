@@ -1,0 +1,23 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "graph-force-dynamic",
+  "category": "graph",
+  "title": "Graph Dynamic",
+  "titleCN": "动态增加图节点",
+  "difficulty": 6,
+  "tags": [],
+  "points": 1,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/graph-force-dynamic.ts",
+  "option": {
+    "series": [
+      {
+        "type": "graph",
+        "layout": "force",
+        "animation": false,
+        "data": [{"fixed":true,"x":400,"y":250,"symbolSize":20,"id":"-1"}],
+        "force": {"repulsion":100,"edgeLength":5},
+        "edges": []
+      }
+    ]
+  }
+}

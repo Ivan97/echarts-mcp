@@ -76,16 +76,6 @@ const TEMPLATES: ChartTemplate[] = [
       }) as EChartsOption,
   },
   {
-    type: ChartType.Gauge,
-    dataShape: 'Dataset：dimensions 恰好 2 项 [指标名, 数值]，通常只有一行',
-    example: { dimensions: ['指标', '完成率'], source: [['完成率', 72]] },
-    build: (input) =>
-      ({
-        title: titleOf(input),
-        series: [{ type: 'gauge', progress: { show: true, width: 14 }, data: pairs(input, ChartType.Gauge) }],
-      }) as EChartsOption,
-  },
-  {
     type: ChartType.Radar,
     dataShape:
       'Dataset：dimensions 第 1 项为系列名，其余每项为一个雷达指标。source 每行为 [系列名, 指标1值, 指标2值, ...]',

@@ -1,0 +1,51 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "dynamic-data",
+  "category": "bar",
+  "title": "Dynamic Data",
+  "titleCN": "动态数据",
+  "difficulty": 6,
+  "tags": ["多系列","双轴","数据缩放"],
+  "points": 20,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/dynamic-data.ts",
+  "option": {
+    "title": {"text":"Dynamic Data"},
+    "tooltip": {"trigger":"axis","axisPointer":{"type":"cross","label":{"backgroundColor":"#283b56"}}},
+    "legend": {},
+    "toolbox": {"show":true,"feature":{"dataView":{"readOnly":false},"restore":{},"saveAsImage":{}}},
+    "dataZoom": {"show":false,"start":0,"end":100},
+    "xAxis": [
+      {
+        "type": "category",
+        "boundaryGap": true,
+        "data": [
+          "4:59:42 PM",
+          "4:59:44 PM",
+          "4:59:46 PM",
+          "4:59:48 PM",
+          "4:59:50 PM",
+          "4:59:52 PM",
+          "4:59:54 PM",
+          "4:59:56 PM",
+          "4:59:58 PM",
+          "5:00:00 PM"
+        ]
+      },
+      {"type":"category","boundaryGap":true,"data":[0,1,2,3,4,5,6,7,8,9]}
+    ],
+    "yAxis": [
+      {"type":"value","scale":true,"name":"Price","max":30,"min":0,"boundaryGap":[0.2,0.2]},
+      {"type":"value","scale":true,"name":"Order","max":1200,"min":0,"boundaryGap":[0.2,0.2]}
+    ],
+    "series": [
+      {
+        "name": "Dynamic Bar",
+        "type": "bar",
+        "xAxisIndex": 1,
+        "yAxisIndex": 1,
+        "data": [777,532,133,698,251,530,314,776,634,251]
+      },
+      {"name":"Dynamic Line","type":"line","data":[12.3,7.1,9.6,10.8,7.4,9.7,5.6,6.6,9.7,5.3]}
+    ]
+  }
+}

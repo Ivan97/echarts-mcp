@@ -34,7 +34,7 @@
 
 拼写错误。合法取值：`line` `bar` `pie` `scatter` `effectScatter` `radar` `tree`
 `treemap` `sunburst` `boxplot` `candlestick` `heatmap` `map` `parallel` `lines`
-`graph` `sankey` `funnel` `gauge` `pictorialBar` `themeRiver` `custom`。
+`graph` `sankey` `funnel` `custom`。
 
 注意其中 `map` `lines` 本服务不支持（需要 GeoJSON 分发）。
 
@@ -61,8 +61,8 @@
 
 | 类型 | dimensions 数 |
 |---|---|
-| `pie` `funnel` `gauge` `treemap` `sunburst` | 2 |
-| `heatmap` `themeRiver` | 3 |
+| `pie` `funnel` `treemap` `sunburst` `calendar` | 2 |
+| `heatmap` `matrix` | 3 |
 | `candlestick` | 5 |
 | `boxplot` | 6 |
 

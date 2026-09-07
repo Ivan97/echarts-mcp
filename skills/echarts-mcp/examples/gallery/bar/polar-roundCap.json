@@ -1,0 +1,34 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "polar-roundCap",
+  "category": "bar",
+  "title": "Rounded Bar on Polar",
+  "titleCN": "圆角环形图",
+  "difficulty": 7,
+  "tags": ["多系列","极坐标"],
+  "points": 10,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/polar-roundCap.ts",
+  "option": {
+    "angleAxis": {"max":2,"startAngle":30,"splitLine":{"show":false}},
+    "radiusAxis": {"type":"category","data":["v","w","x","y","z"],"z":10},
+    "polar": {},
+    "series": [
+      {
+        "type": "bar",
+        "data": [4,3,2,1,0],
+        "coordinateSystem": "polar",
+        "name": "Without Round Cap",
+        "itemStyle": {"borderColor":"red","opacity":0.8,"borderWidth":1}
+      },
+      {
+        "type": "bar",
+        "data": [4,3,2,1,0],
+        "coordinateSystem": "polar",
+        "name": "With Round Cap",
+        "roundCap": true,
+        "itemStyle": {"borderColor":"green","opacity":0.8,"borderWidth":1}
+      }
+    ],
+    "legend": {"show":true,"data":["Without Round Cap","With Round Cap"]}
+  }
+}

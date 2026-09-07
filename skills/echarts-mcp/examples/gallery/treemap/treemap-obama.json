@@ -1,0 +1,584 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "treemap-obama",
+  "category": "treemap",
+  "title": "How $3.7 Trillion is Spent",
+  "titleCN": "3.7 万亿美元支出构成",
+  "difficulty": 10,
+  "tags": ["多系列","富文本标签","含函数"],
+  "points": 15,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/treemap-obama.ts",
+  "trimmed": {
+    "stride": 8,
+    "floor": 20,
+    "originalPoints": 105,
+    "keptPoints": 15,
+    "originalBytes": 248301,
+    "exceedsDefaultBudget": false,
+    "note": "原始数据 105 个点、242KB，按步长 8 等距抽稀到 15 个点后收录。完整数据见 source。"
+  },
+  "functionFields": [
+    "series[0].tooltip.formatter",
+    "series[0].label.formatter",
+    "series[1].tooltip.formatter",
+    "series[1].label.formatter",
+    "series[2].tooltip.formatter",
+    "series[2].label.formatter"
+  ],
+  "functionNote": "这些字段是函数字符串：svg/png 输出会被剥离，只有 output=html 由浏览器执行。",
+  "option": {
+    "title": {"top":5,"left":"center","text":"How $3.7 Trillion is Spent","subtext":"Obama’s 2012 Budget Proposal"},
+    "legend": {"data":["2012Budget","2011Budget","Growth"],"selectedMode":"single","top":55,"itemGap":5,"borderRadius":5},
+    "tooltip": {},
+    "series": [
+      {
+        "type": "treemap",
+        "tooltip": {
+          "formatter": "function (info) {\n            let value = info.value;\n            let amount = value[amountIndex];\n            amount = isValidNumber(amount)\n                ? echarts.format.addCommas(amount * 1000) + '$'\n                : '-';\n            let amount2011 = value[amountIndex2011];\n            amount2011 = isValidNumber(amount2011)\n                ? echarts.format.addCommas(amount2011 * 1000) + '$'\n                : '-';\n            let perHousehold = value[3];\n            perHousehold = isValidNumber(perHousehold)\n                ? echarts.format.addCommas(+perHousehold.toFixed(4) * 1000) + '$'\n                : '-';\n            let change = value[2];\n            change = isValidNumber(change) ? change.toFixed(2) + '%' : '-';\n            return [\n                '<div class=\"tooltip-title\">' +\n                    echarts.format.encodeHTML(info.name) +\n                    '</div>',\n                '2012 Amount: &nbsp;&nbsp;' + amount + '<br>',\n                'Per Household: &nbsp;&nbsp;' + perHousehold + '<br>',\n                '2011 Amount: &nbsp;&nbsp;' + amount2011 + '<br>',\n                'Change From 2011: &nbsp;&nbsp;' + change\n            ].join('');\n        }"
+        },
+        "label": {
+          "position": "insideTopLeft",
+          "formatter": "function (params) {\n                    let arr = [\n                        '{name|' + params.name + '}',\n                        '{hr|}',\n                        '{budget|$ ' +\n                            echarts.format.addCommas(params.value[0]) +\n                            '} {label|budget}'\n                    ];\n                    mode !== 1 &&\n                        arr.push('{household|$ ' +\n                            echarts.format.addCommas(+params.value[3].toFixed(4) * 1000) +\n                            '} {label|per household}');\n                    return arr.join('\\n');\n                }",
+          "rich": {
+            "budget": {"fontSize":22,"lineHeight":30,"color":"yellow"},
+            "household": {"fontSize":14,"color":"#fff"},
+            "label": {
+              "fontSize": 9,
+              "backgroundColor": "rgba(0,0,0,0.3)",
+              "color": "#fff",
+              "borderRadius": 2,
+              "padding": [2,4],
+              "lineHeight": 25,
+              "align": "right"
+            },
+            "name": {"fontSize":12,"color":"#fff"},
+            "hr": {"width":"100%","borderColor":"rgba(255,255,255,0.2)","borderWidth":0.5,"height":0,"lineHeight":10}
+          }
+        },
+        "itemStyle": {"borderColor":"black"},
+        "levels": [{"colorMappingBy":"id","itemStyle":{"borderWidth":3,"gapWidth":3}},{"itemStyle":{"gapWidth":1}}],
+        "name": "2012Budget",
+        "top": 80,
+        "data": [
+          {
+            "name": "Health and Human Services",
+            "id": "branch-8",
+            "value": [1226629000,null,null,10.796248131065854],
+            "children": [
+              {
+                "name": "Centers for Medicare and Medicaid Services",
+                "id": "leaf-135",
+                "value": [1105220000,1071808000,3.11734937600765,9.727659593419528]
+              },
+              {
+                "name": "Substance Abuse and Mental Health Services Administration",
+                "id": "leaf-130",
+                "value": [3387000,3431000,-1.28242494899447,0.029810882035171224]
+              },
+              {"name":"Administration on Aging","id":"leaf-132","value":[210000,10000,2000,0.0018483274955376314]}
+            ]
+          },
+          {
+            "name": "Education",
+            "id": "branch-6",
+            "value": [93790000,null,null,0.8254982657451164],
+            "children": [
+              {
+                "name": "Office of Federal Student Aid",
+                "id": "leaf-95",
+                "value": [31433000,20085000,56.4998755290018,0.2766594198439732]
+              },
+              {
+                "name": "Office of Elementary and Secondary Education",
+                "id": "leaf-93",
+                "value": [20161000,22495000,-10.3756390308958,0.17744824113111518]
+              },
+              {
+                "name": "Office of Federal Student Aid",
+                "id": "leaf-103",
+                "value": [12805000,14290000,-10.3918824352694,0.11270396943028271]
+              },
+              {
+                "name": "Office of Special Education and Rehabilitative Services",
+                "id": "leaf-99",
+                "value": [12647000,13225000,-4.37051039697542,0.11131332302887821]
+              },
+              {
+                "name": "Office of Innovation and Improvement",
+                "id": "leaf-96",
+                "value": [4995000,1378000,262.481857764877,0.04396378971528794]
+              },
+              {
+                "name": "Office of Special Education and Rehabilitative Services",
+                "id": "leaf-106",
+                "value": [3122000,3085000,1.19935170178282,0.027478468766992784]
+              },
+              {
+                "name": "Office of Postsecondary Education",
+                "id": "leaf-97",
+                "value": [2533000,2512000,0.835987261146487,0.022294350219984858]
+              },
+              {
+                "name": "Office of Safe and Drug-Free Schools",
+                "id": "leaf-98",
+                "value": [1781000,393000,353.180661577608,0.015675577474059624]
+              },
+              {
+                "name": "Office of Vocational and Adult Education",
+                "id": "leaf-100",
+                "value": [1683000,2016000,-16.5178571428571,0.014813024642808731]
+              },
+              {
+                "name": "Institute of Education Sciences",
+                "id": "leaf-92",
+                "value": [760000,659000,15.3262518968134,0.006689185221945714]
+              },
+              {
+                "name": "Office of English Language Acquisition",
+                "id": "leaf-94",
+                "value": [750000,750000,0,0.006601169626920112]
+              },
+              {
+                "name": "Departmental Management",
+                "id": "leaf-91",
+                "value": [654000,619000,5.65428109854604,0.005756219914674338]
+              },
+              {
+                "name": "Office of Postsecondary Education",
+                "id": "leaf-105",
+                "value": [426000,462000,-7.79220779220779,0.0037494643480906237]
+              },
+              {
+                "name": "Office of Innovation and Improvement",
+                "id": "leaf-104",
+                "value": [40000,462000,null,0.000352062380102406]
+              }
+            ]
+          },
+          {
+            "name": "State",
+            "id": "branch-13",
+            "value": [32746000,null,null,0.28821586747083466],
+            "children": [
+              {
+                "name": "Administration of Foreign Affairs",
+                "id": "leaf-223",
+                "value": [14747000,12367000,19.2447642920676,0.12979659798425452]
+              },
+              {"name":"Other","id":"leaf-227","value":[13080000,12954000,0.972672533580354,0.11512439829348675]},
+              {
+                "name": "International Organizations and Conferences",
+                "id": "leaf-226",
+                "value": [3539000,3905000,-9.37259923175416,0.031148719079560367]
+              },
+              {
+                "name": "Administration of Foreign Affairs",
+                "id": "leaf-228",
+                "value": [1257000,1266000,-0.710900473933651,0.011063560294718108]
+              },
+              {
+                "name": "International Commissions",
+                "id": "leaf-225",
+                "value": [122000,143000,-14.6853146853147,0.0010737902593123381]
+              },
+              {"name":"Other","id":"leaf-230","value":[1000,4000,-75,0.000008801559502560148]}
+            ]
+          },
+          {
+            "name": "Corps of Engineers--Civil Works",
+            "id": "branch-2",
+            "value": [4584000,null,null,0.04034634875973572],
+            "children": [
+              {
+                "name": "Corps of Engineers--Civil Works",
+                "id": "leaf-3",
+                "value": [4574000,5739000,-20.2997037811465,0.04025833316471012]
+              },
+              {"name":"Corps of Engineers--Civil Works","id":"leaf-4","value":[10000,5739000,null,0.0000880155950256015]}
+            ]
+          },
+          {
+            "name": "Committee for Purchase from People Who Are Blind or Severely Dis",
+            "id": "branch-1",
+            "value": [6000,null,null,0.000052809357015360894],
+            "children": [
+              {
+                "name": "Committee for Purchase from People who are Blind or Severely Dis",
+                "id": "leaf-2",
+                "value": [6000,5000,20,0.000052809357015360894]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "treemap",
+        "tooltip": {
+          "formatter": "function (info) {\n            let value = info.value;\n            let amount = value[amountIndex];\n            amount = isValidNumber(amount)\n                ? echarts.format.addCommas(amount * 1000) + '$'\n                : '-';\n            let amount2011 = value[amountIndex2011];\n            amount2011 = isValidNumber(amount2011)\n                ? echarts.format.addCommas(amount2011 * 1000) + '$'\n                : '-';\n            let perHousehold = value[3];\n            perHousehold = isValidNumber(perHousehold)\n                ? echarts.format.addCommas(+perHousehold.toFixed(4) * 1000) + '$'\n                : '-';\n            let change = value[2];\n            change = isValidNumber(change) ? change.toFixed(2) + '%' : '-';\n            return [\n                '<div class=\"tooltip-title\">' +\n                    echarts.format.encodeHTML(info.name) +\n                    '</div>',\n                '2012 Amount: &nbsp;&nbsp;' + amount + '<br>',\n                'Per Household: &nbsp;&nbsp;' + perHousehold + '<br>',\n                '2011 Amount: &nbsp;&nbsp;' + amount2011 + '<br>',\n                'Change From 2011: &nbsp;&nbsp;' + change\n            ].join('');\n        }"
+        },
+        "label": {
+          "position": "insideTopLeft",
+          "formatter": "function (params) {\n                    let arr = [\n                        '{name|' + params.name + '}',\n                        '{hr|}',\n                        '{budget|$ ' +\n                            echarts.format.addCommas(params.value[0]) +\n                            '} {label|budget}'\n                    ];\n                    mode !== 1 &&\n                        arr.push('{household|$ ' +\n                            echarts.format.addCommas(+params.value[3].toFixed(4) * 1000) +\n                            '} {label|per household}');\n                    return arr.join('\\n');\n                }",
+          "rich": {
+            "budget": {"fontSize":22,"lineHeight":30,"color":"yellow"},
+            "household": {"fontSize":14,"color":"#fff"},
+            "label": {
+              "fontSize": 9,
+              "backgroundColor": "rgba(0,0,0,0.3)",
+              "color": "#fff",
+              "borderRadius": 2,
+              "padding": [2,4],
+              "lineHeight": 25,
+              "align": "right"
+            },
+            "name": {"fontSize":12,"color":"#fff"},
+            "hr": {"width":"100%","borderColor":"rgba(255,255,255,0.2)","borderWidth":0.5,"height":0,"lineHeight":10}
+          }
+        },
+        "itemStyle": {"borderColor":"black"},
+        "levels": [{"colorMappingBy":"id","itemStyle":{"borderWidth":3,"gapWidth":3}},{"itemStyle":{"gapWidth":1}}],
+        "name": "2011Budget",
+        "top": 80,
+        "data": [
+          {
+            "name": "Health and Human Services",
+            "id": "branch-8",
+            "value": [null,1226629000,null,10.796248131065854],
+            "children": [
+              {
+                "name": "Centers for Medicare and Medicaid Services",
+                "id": "leaf-135",
+                "value": [1071808000,1105220000,3.11734937600765,9.727659593419528]
+              },
+              {
+                "name": "Substance Abuse and Mental Health Services Administration",
+                "id": "leaf-130",
+                "value": [3431000,3387000,-1.28242494899447,0.029810882035171224]
+              },
+              {"name":"Administration on Aging","id":"leaf-132","value":[10000,210000,2000,0.0018483274955376314]}
+            ]
+          },
+          {
+            "name": "Education",
+            "id": "branch-6",
+            "value": [null,93790000,null,0.8254982657451164],
+            "children": [
+              {
+                "name": "Office of Federal Student Aid",
+                "id": "leaf-95",
+                "value": [20085000,31433000,56.4998755290018,0.2766594198439732]
+              },
+              {
+                "name": "Office of Elementary and Secondary Education",
+                "id": "leaf-93",
+                "value": [22495000,20161000,-10.3756390308958,0.17744824113111518]
+              },
+              {
+                "name": "Office of Federal Student Aid",
+                "id": "leaf-103",
+                "value": [14290000,12805000,-10.3918824352694,0.11270396943028271]
+              },
+              {
+                "name": "Office of Special Education and Rehabilitative Services",
+                "id": "leaf-99",
+                "value": [13225000,12647000,-4.37051039697542,0.11131332302887821]
+              },
+              {
+                "name": "Office of Innovation and Improvement",
+                "id": "leaf-96",
+                "value": [1378000,4995000,262.481857764877,0.04396378971528794]
+              },
+              {
+                "name": "Office of Special Education and Rehabilitative Services",
+                "id": "leaf-106",
+                "value": [3085000,3122000,1.19935170178282,0.027478468766992784]
+              },
+              {
+                "name": "Office of Postsecondary Education",
+                "id": "leaf-97",
+                "value": [2512000,2533000,0.835987261146487,0.022294350219984858]
+              },
+              {
+                "name": "Office of Safe and Drug-Free Schools",
+                "id": "leaf-98",
+                "value": [393000,1781000,353.180661577608,0.015675577474059624]
+              },
+              {
+                "name": "Office of Vocational and Adult Education",
+                "id": "leaf-100",
+                "value": [2016000,1683000,-16.5178571428571,0.014813024642808731]
+              },
+              {
+                "name": "Institute of Education Sciences",
+                "id": "leaf-92",
+                "value": [659000,760000,15.3262518968134,0.006689185221945714]
+              },
+              {
+                "name": "Office of English Language Acquisition",
+                "id": "leaf-94",
+                "value": [750000,750000,0,0.006601169626920112]
+              },
+              {
+                "name": "Departmental Management",
+                "id": "leaf-91",
+                "value": [619000,654000,5.65428109854604,0.005756219914674338]
+              },
+              {
+                "name": "Office of Postsecondary Education",
+                "id": "leaf-105",
+                "value": [462000,426000,-7.79220779220779,0.0037494643480906237]
+              },
+              {
+                "name": "Office of Innovation and Improvement",
+                "id": "leaf-104",
+                "value": [462000,40000,null,0.000352062380102406]
+              }
+            ]
+          },
+          {
+            "name": "State",
+            "id": "branch-13",
+            "value": [null,32746000,null,0.28821586747083466],
+            "children": [
+              {
+                "name": "Administration of Foreign Affairs",
+                "id": "leaf-223",
+                "value": [12367000,14747000,19.2447642920676,0.12979659798425452]
+              },
+              {"name":"Other","id":"leaf-227","value":[12954000,13080000,0.972672533580354,0.11512439829348675]},
+              {
+                "name": "International Organizations and Conferences",
+                "id": "leaf-226",
+                "value": [3905000,3539000,-9.37259923175416,0.031148719079560367]
+              },
+              {
+                "name": "Administration of Foreign Affairs",
+                "id": "leaf-228",
+                "value": [1266000,1257000,-0.710900473933651,0.011063560294718108]
+              },
+              {
+                "name": "International Commissions",
+                "id": "leaf-225",
+                "value": [143000,122000,-14.6853146853147,0.0010737902593123381]
+              },
+              {"name":"Other","id":"leaf-230","value":[4000,1000,-75,0.000008801559502560148]}
+            ]
+          },
+          {
+            "name": "Corps of Engineers--Civil Works",
+            "id": "branch-2",
+            "value": [null,4584000,null,0.04034634875973572],
+            "children": [
+              {
+                "name": "Corps of Engineers--Civil Works",
+                "id": "leaf-3",
+                "value": [5739000,4574000,-20.2997037811465,0.04025833316471012]
+              },
+              {"name":"Corps of Engineers--Civil Works","id":"leaf-4","value":[5739000,10000,null,0.0000880155950256015]}
+            ]
+          },
+          {
+            "name": "Committee for Purchase from People Who Are Blind or Severely Dis",
+            "id": "branch-1",
+            "value": [null,6000,null,0.000052809357015360894],
+            "children": [
+              {
+                "name": "Committee for Purchase from People who are Blind or Severely Dis",
+                "id": "leaf-2",
+                "value": [5000,6000,20,0.000052809357015360894]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "treemap",
+        "tooltip": {
+          "formatter": "function (info) {\n            let value = info.value;\n            let amount = value[amountIndex];\n            amount = isValidNumber(amount)\n                ? echarts.format.addCommas(amount * 1000) + '$'\n                : '-';\n            let amount2011 = value[amountIndex2011];\n            amount2011 = isValidNumber(amount2011)\n                ? echarts.format.addCommas(amount2011 * 1000) + '$'\n                : '-';\n            let perHousehold = value[3];\n            perHousehold = isValidNumber(perHousehold)\n                ? echarts.format.addCommas(+perHousehold.toFixed(4) * 1000) + '$'\n                : '-';\n            let change = value[2];\n            change = isValidNumber(change) ? change.toFixed(2) + '%' : '-';\n            return [\n                '<div class=\"tooltip-title\">' +\n                    echarts.format.encodeHTML(info.name) +\n                    '</div>',\n                '2012 Amount: &nbsp;&nbsp;' + amount + '<br>',\n                'Per Household: &nbsp;&nbsp;' + perHousehold + '<br>',\n                '2011 Amount: &nbsp;&nbsp;' + amount2011 + '<br>',\n                'Change From 2011: &nbsp;&nbsp;' + change\n            ].join('');\n        }"
+        },
+        "label": {
+          "position": "insideTopLeft",
+          "formatter": "function (params) {\n                    let arr = [\n                        '{name|' + params.name + '}',\n                        '{hr|}',\n                        '{budget|$ ' +\n                            echarts.format.addCommas(params.value[0]) +\n                            '} {label|budget}'\n                    ];\n                    mode !== 1 &&\n                        arr.push('{household|$ ' +\n                            echarts.format.addCommas(+params.value[3].toFixed(4) * 1000) +\n                            '} {label|per household}');\n                    return arr.join('\\n');\n                }",
+          "rich": {
+            "budget": {"fontSize":22,"lineHeight":30,"color":"yellow"},
+            "household": {"fontSize":14,"color":"#fff"},
+            "label": {
+              "fontSize": 9,
+              "backgroundColor": "rgba(0,0,0,0.3)",
+              "color": "#fff",
+              "borderRadius": 2,
+              "padding": [2,4],
+              "lineHeight": 25,
+              "align": "right"
+            },
+            "name": {"fontSize":12,"color":"#fff"},
+            "hr": {"width":"100%","borderColor":"rgba(255,255,255,0.2)","borderWidth":0.5,"height":0,"lineHeight":10}
+          }
+        },
+        "itemStyle": {"borderColor":"black"},
+        "levels": [
+          {
+            "color": ["#c23531","#314656","#61a0a8","#dd8668","#91c7ae","#6e7074","#61a0a8","#bda29a","#44525d","#c4ccd3"],
+            "colorMappingBy": "id",
+            "itemStyle": {"borderWidth":3,"gapWidth":3}
+          },
+          {"colorAlpha":[0.5,1],"itemStyle":{"gapWidth":1}}
+        ],
+        "name": "Growth",
+        "top": 80,
+        "visualDimension": 2,
+        "data": [
+          {
+            "name": "Health and Human Services",
+            "id": "branch-8",
+            "value": [1226629000,null,null,10.796248131065854],
+            "children": [
+              {
+                "name": "Centers for Medicare and Medicaid Services",
+                "id": "leaf-135",
+                "value": [1105220000,1071808000,3.11734937600765,9.727659593419528]
+              },
+              {
+                "name": "Substance Abuse and Mental Health Services Administration",
+                "id": "leaf-130",
+                "value": [3387000,3431000,-1.28242494899447,0.029810882035171224]
+              },
+              {"name":"Administration on Aging","id":"leaf-132","value":[210000,10000,2000,0.0018483274955376314]}
+            ]
+          },
+          {
+            "name": "Education",
+            "id": "branch-6",
+            "value": [93790000,null,null,0.8254982657451164],
+            "children": [
+              {
+                "name": "Office of Federal Student Aid",
+                "id": "leaf-95",
+                "value": [31433000,20085000,56.4998755290018,0.2766594198439732]
+              },
+              {
+                "name": "Office of Elementary and Secondary Education",
+                "id": "leaf-93",
+                "value": [20161000,22495000,-10.3756390308958,0.17744824113111518]
+              },
+              {
+                "name": "Office of Federal Student Aid",
+                "id": "leaf-103",
+                "value": [12805000,14290000,-10.3918824352694,0.11270396943028271]
+              },
+              {
+                "name": "Office of Special Education and Rehabilitative Services",
+                "id": "leaf-99",
+                "value": [12647000,13225000,-4.37051039697542,0.11131332302887821]
+              },
+              {
+                "name": "Office of Innovation and Improvement",
+                "id": "leaf-96",
+                "value": [4995000,1378000,262.481857764877,0.04396378971528794]
+              },
+              {
+                "name": "Office of Special Education and Rehabilitative Services",
+                "id": "leaf-106",
+                "value": [3122000,3085000,1.19935170178282,0.027478468766992784]
+              },
+              {
+                "name": "Office of Postsecondary Education",
+                "id": "leaf-97",
+                "value": [2533000,2512000,0.835987261146487,0.022294350219984858]
+              },
+              {
+                "name": "Office of Safe and Drug-Free Schools",
+                "id": "leaf-98",
+                "value": [1781000,393000,353.180661577608,0.015675577474059624]
+              },
+              {
+                "name": "Office of Vocational and Adult Education",
+                "id": "leaf-100",
+                "value": [1683000,2016000,-16.5178571428571,0.014813024642808731]
+              },
+              {
+                "name": "Institute of Education Sciences",
+                "id": "leaf-92",
+                "value": [760000,659000,15.3262518968134,0.006689185221945714]
+              },
+              {
+                "name": "Office of English Language Acquisition",
+                "id": "leaf-94",
+                "value": [750000,750000,0,0.006601169626920112]
+              },
+              {
+                "name": "Departmental Management",
+                "id": "leaf-91",
+                "value": [654000,619000,5.65428109854604,0.005756219914674338]
+              },
+              {
+                "name": "Office of Postsecondary Education",
+                "id": "leaf-105",
+                "value": [426000,462000,-7.79220779220779,0.0037494643480906237]
+              },
+              {
+                "name": "Office of Innovation and Improvement",
+                "id": "leaf-104",
+                "value": [40000,462000,null,0.000352062380102406]
+              }
+            ]
+          },
+          {
+            "name": "State",
+            "id": "branch-13",
+            "value": [32746000,null,null,0.28821586747083466],
+            "children": [
+              {
+                "name": "Administration of Foreign Affairs",
+                "id": "leaf-223",
+                "value": [14747000,12367000,19.2447642920676,0.12979659798425452]
+              },
+              {"name":"Other","id":"leaf-227","value":[13080000,12954000,0.972672533580354,0.11512439829348675]},
+              {
+                "name": "International Organizations and Conferences",
+                "id": "leaf-226",
+                "value": [3539000,3905000,-9.37259923175416,0.031148719079560367]
+              },
+              {
+                "name": "Administration of Foreign Affairs",
+                "id": "leaf-228",
+                "value": [1257000,1266000,-0.710900473933651,0.011063560294718108]
+              },
+              {
+                "name": "International Commissions",
+                "id": "leaf-225",
+                "value": [122000,143000,-14.6853146853147,0.0010737902593123381]
+              },
+              {"name":"Other","id":"leaf-230","value":[1000,4000,-75,0.000008801559502560148]}
+            ]
+          },
+          {
+            "name": "Corps of Engineers--Civil Works",
+            "id": "branch-2",
+            "value": [4584000,null,null,0.04034634875973572],
+            "children": [
+              {
+                "name": "Corps of Engineers--Civil Works",
+                "id": "leaf-3",
+                "value": [4574000,5739000,-20.2997037811465,0.04025833316471012]
+              },
+              {"name":"Corps of Engineers--Civil Works","id":"leaf-4","value":[10000,5739000,null,0.0000880155950256015]}
+            ]
+          },
+          {
+            "name": "Committee for Purchase from People Who Are Blind or Severely Dis",
+            "id": "branch-1",
+            "value": [6000,null,null,0.000052809357015360894],
+            "children": [
+              {
+                "name": "Committee for Purchase from People who are Blind or Severely Dis",
+                "id": "leaf-2",
+                "value": [6000,5000,20,0.000052809357015360894]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -55,17 +55,6 @@ const TEMPLATES: ChartTemplate[] = [
     build: (i) => seriesPerDimension(ChartType.Scatter, i, { symbolSize: 16 }),
   },
   {
-    type: ChartType.PictorialBar,
-    dataShape: 'Dataset：同 bar，额外用象形符号绘制柱体',
-    example: { dimensions: ['城市', '人口'], source: [['北京', 21], ['上海', 24], ['广州', 18]] },
-    build: (i) =>
-      seriesPerDimension(ChartType.PictorialBar, i, {
-        symbol: 'roundRect',
-        symbolRepeat: true,
-        symbolSize: [16, 8],
-      }),
-  },
-  {
     type: ChartType.Heatmap,
     dataShape: 'Dataset：dimensions 恰好 3 项 [x 类目, y 类目, 数值]，source 每行为 [x, y, value]',
     example: {
@@ -143,26 +132,6 @@ const TEMPLATES: ChartTemplate[] = [
         xAxis: { type: 'category', data: table.map((r) => r[0]) },
         yAxis: { type: 'value', scale: true },
         series: [{ type: 'candlestick', data: table.map((r) => r.slice(1)) }],
-      } as EChartsOption;
-    },
-  },
-  {
-    type: ChartType.ThemeRiver,
-    dataShape: 'Dataset：dimensions 恰好 3 项，source 每行为 [日期, 数值, 系列名]',
-    example: {
-      dimensions: ['日期', '数值', '系列'],
-      source: [
-        ['2026-01-01', 10, 'A'], ['2026-01-02', 15, 'A'], ['2026-01-03', 12, 'A'],
-        ['2026-01-01', 6, 'B'], ['2026-01-02', 9, 'B'], ['2026-01-03', 14, 'B'],
-      ],
-    },
-    build: (input) => {
-      const table = fixedDims(input, 3, ChartType.ThemeRiver);
-      return {
-        title: titleOf(input),
-        tooltip: { trigger: 'axis', axisPointer: { type: 'line' } },
-        singleAxis: { type: 'time', top: 70, bottom: 60 },
-        series: [{ type: 'themeRiver', data: table }],
       } as EChartsOption;
     },
   },

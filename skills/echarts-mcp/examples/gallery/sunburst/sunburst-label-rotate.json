@@ -1,0 +1,44 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "sunburst-label-rotate",
+  "category": "sunburst",
+  "title": "Sunburst Label Rotate",
+  "titleCN": "旭日图标签旋转",
+  "difficulty": 2,
+  "tags": ["环形","含函数"],
+  "points": 4,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/sunburst-label-rotate.ts",
+  "functionFields": ["series[0].label.formatter"],
+  "functionNote": "这些字段是函数字符串：svg/png 输出会被剥离，只有 output=html 由浏览器执行。",
+  "option": {
+    "silent": true,
+    "series": [
+      {
+        "radius": ["15%","80%"],
+        "type": "sunburst",
+        "emphasis": {"focus":"ancestor"},
+        "data": [
+          {
+            "value": 8,
+            "children": [{"value":4,"children":[{"value":2},{"value":1},{"value":1},{"value":0.5}]},{"value":2}]
+          },
+          {"value":4,"children":[{"children":[{"value":2}]}]},
+          {"value":4,"children":[{"children":[{"value":2}]}]},
+          {"value":3,"children":[{"children":[{"value":1}]}]}
+        ],
+        "label": {
+          "color": "#000",
+          "textBorderColor": "#fff",
+          "textBorderWidth": 2,
+          "formatter": "function (param) {\n                    var depth = param.treePathInfo.length;\n                    if (depth === 2) {\n                        return 'radial';\n                    }\n                    else if (depth === 3) {\n                        return 'tangential';\n                    }\n                    else if (depth === 4) {\n                        return '0';\n                    }\n                    return '';\n                }"
+        },
+        "levels": [
+          {},
+          {"itemStyle":{"color":"#CD4949"},"label":{"rotate":"radial"}},
+          {"itemStyle":{"color":"#F47251"},"label":{"rotate":"tangential"}},
+          {"itemStyle":{"color":"#FFC75F"},"label":{"rotate":0}}
+        ]
+      }
+    ]
+  }
+}

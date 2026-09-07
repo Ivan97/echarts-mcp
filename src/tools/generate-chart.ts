@@ -75,7 +75,7 @@ export function registerGenerateChart(server: McpServer, deps: ServerDeps): void
       description:
         '用 Apache ECharts 生成图表。给定图表类型与数据即可出图。' +
         '需要堆叠、横向、双 Y 轴等细分样式时，在 optionOverrides 里追加 ECharts option 片段，' +
-        '不需要换工具。共支持 18 种类型，具体的 data 结构用 list_chart_types 查询。',
+        '不需要换工具。共支持 17 种类型，具体的 data 结构用 list_chart_types 查询。',
       inputSchema: generateChartShape,
     },
     async (args) => {

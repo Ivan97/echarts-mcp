@@ -1,0 +1,723 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "graph-life-expectancy",
+  "category": "graph",
+  "title": "Graph Life Expectancy",
+  "titleCN": "预期寿命",
+  "difficulty": 7,
+  "tags": ["多系列","数据缩放","视觉映射","含函数"],
+  "points": 114,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/graph-life-expectancy.ts",
+  "trimmed": {
+    "stride": 32,
+    "floor": 60,
+    "originalPoints": 3059,
+    "keptPoints": 114,
+    "originalBytes": 372856,
+    "exceedsDefaultBudget": false,
+    "note": "原始数据 3059 个点、364KB，按步长 32 等距抽稀到 114 个点后收录。完整数据见 source。"
+  },
+  "functionFields": [
+    "series[0].animationDelay",
+    "series[1].animationDelay",
+    "series[2].animationDelay",
+    "series[3].animationDelay",
+    "series[4].animationDelay",
+    "series[5].animationDelay",
+    "series[6].animationDelay",
+    "series[7].animationDelay",
+    "series[8].animationDelay",
+    "series[9].animationDelay",
+    "series[10].animationDelay",
+    "series[11].animationDelay",
+    "series[12].animationDelay",
+    "series[13].animationDelay",
+    "series[14].animationDelay",
+    "series[15].animationDelay",
+    "series[16].animationDelay",
+    "series[17].animationDelay",
+    "series[18].animationDelay"
+  ],
+  "functionNote": "这些字段是函数字符串：svg/png 输出会被剥离，只有 output=html 由浏览器执行。",
+  "option": {
+    "visualMap": {"show":false,"min":0,"max":100,"dimension":1},
+    "legend": {
+      "data": [
+        "China",
+        "United States",
+        "United Kingdom",
+        "Russia",
+        "India",
+        "France",
+        "Germany",
+        "Australia",
+        "Canada",
+        "Cuba",
+        "Finland",
+        "Iceland",
+        "Japan",
+        "North Korea",
+        "South Korea",
+        "New Zealand",
+        "Norway",
+        "Poland",
+        "Turkey"
+      ],
+      "selectedMode": "single",
+      "right": 100
+    },
+    "grid": {"left":0,"bottom":0,"containLabel":true,"top":80},
+    "xAxis": {"type":"value"},
+    "yAxis": {"type":"value","scale":true},
+    "toolbox": {"feature":{"dataZoom":{}}},
+    "dataZoom": {"type":"inside"},
+    "series": [
+      {
+        "name": "China",
+        "type": "graph",
+        "coordinateSystem": "cartesian2d",
+        "data": [
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1800,
+            "value": [985,32,321675013,"China",1800]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1967,
+            "value": [719,55.889368,744365635,"China",1967]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1999,
+            "value": [3419,71.1,1262713651,"China",1999]
+          }
+        ],
+        "links": [{"source":0,"target":1},{"source":32,"target":33},{"source":64,"target":65}],
+        "edgeSymbol": ["none","arrow"],
+        "edgeSymbolSize": 5,
+        "legendHoverLink": false,
+        "lineStyle": {"color":"#333"},
+        "itemStyle": {"borderWidth":1,"borderColor":"#333"},
+        "label": {"color":"#333","position":"right"},
+        "symbolSize": 10,
+        "animationDelay": "function (idx) {\n                return idx * 100;\n            }"
+      },
+      {
+        "name": "United States",
+        "type": "graph",
+        "coordinateSystem": "cartesian2d",
+        "data": [
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1800,
+            "value": [2128,39.41,6801854,"United States",1800]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1967,
+            "value": [22803,70.5532,203713082,"United States",1967]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1999,
+            "value": [44673,77.1,279730801,"United States",1999]
+          }
+        ],
+        "links": [{"source":0,"target":1},{"source":32,"target":33},{"source":64,"target":65}],
+        "edgeSymbol": ["none","arrow"],
+        "edgeSymbolSize": 5,
+        "legendHoverLink": false,
+        "lineStyle": {"color":"#333"},
+        "itemStyle": {"borderWidth":1,"borderColor":"#333"},
+        "label": {"color":"#333","position":"right"},
+        "symbolSize": 10,
+        "animationDelay": "function (idx) {\n                return idx * 100;\n            }"
+      },
+      {
+        "name": "United Kingdom",
+        "type": "graph",
+        "coordinateSystem": "cartesian2d",
+        "data": [
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1800,
+            "value": [3431,38.6497603,12327466,"United Kingdom",1800]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1967,
+            "value": [15777,71.972,54904680,"United Kingdom",1967]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1999,
+            "value": [31474,77.6,58657794,"United Kingdom",1999]
+          }
+        ],
+        "links": [{"source":0,"target":1},{"source":32,"target":33},{"source":64,"target":65}],
+        "edgeSymbol": ["none","arrow"],
+        "edgeSymbolSize": 5,
+        "legendHoverLink": false,
+        "lineStyle": {"color":"#333"},
+        "itemStyle": {"borderWidth":1,"borderColor":"#333"},
+        "label": {"color":"#333","position":"right"},
+        "symbolSize": 10,
+        "animationDelay": "function (idx) {\n                return idx * 100;\n            }"
+      },
+      {
+        "name": "Russia",
+        "type": "graph",
+        "coordinateSystem": "cartesian2d",
+        "data": [
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1800,
+            "value": [1430,29.5734572,31088398,"Russia",1800]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1967,
+            "value": [13256,68.9616,128165823,"Russia",1967]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1999,
+            "value": [11925,66.2,146924174,"Russia",1999]
+          }
+        ],
+        "links": [{"source":0,"target":1},{"source":32,"target":33},{"source":64,"target":65}],
+        "edgeSymbol": ["none","arrow"],
+        "edgeSymbolSize": 5,
+        "legendHoverLink": false,
+        "lineStyle": {"color":"#333"},
+        "itemStyle": {"borderWidth":1,"borderColor":"#333"},
+        "label": {"color":"#333","position":"right"},
+        "symbolSize": 10,
+        "animationDelay": "function (idx) {\n                return idx * 100;\n            }"
+      },
+      {
+        "name": "India",
+        "type": "graph",
+        "coordinateSystem": "cartesian2d",
+        "data": [
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1800,
+            "value": [1052,25.4424,168574895,"India",1800]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1967,
+            "value": [1096,46.33916,519162069,"India",1967]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1999,
+            "value": [2496,60.7,1034976626,"India",1999]
+          }
+        ],
+        "links": [{"source":0,"target":1},{"source":32,"target":33},{"source":64,"target":65}],
+        "edgeSymbol": ["none","arrow"],
+        "edgeSymbolSize": 5,
+        "legendHoverLink": false,
+        "lineStyle": {"color":"#333"},
+        "itemStyle": {"borderWidth":1,"borderColor":"#333"},
+        "label": {"color":"#333","position":"right"},
+        "symbolSize": 10,
+        "animationDelay": "function (idx) {\n                return idx * 100;\n            }"
+      },
+      {
+        "name": "France",
+        "type": "graph",
+        "coordinateSystem": "cartesian2d",
+        "data": [
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1800,
+            "value": [1803,33.96717024,29355111,"France",1800]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1967,
+            "value": [15759,71.8696,49791771,"France",1967]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1999,
+            "value": [33707,78.9,59107738,"France",1999]
+          }
+        ],
+        "links": [{"source":0,"target":1},{"source":32,"target":33},{"source":64,"target":65}],
+        "edgeSymbol": ["none","arrow"],
+        "edgeSymbolSize": 5,
+        "legendHoverLink": false,
+        "lineStyle": {"color":"#333"},
+        "itemStyle": {"borderWidth":1,"borderColor":"#333"},
+        "label": {"color":"#333","position":"right"},
+        "symbolSize": 10,
+        "animationDelay": "function (idx) {\n                return idx * 100;\n            }"
+      },
+      {
+        "name": "Germany",
+        "type": "graph",
+        "coordinateSystem": "cartesian2d",
+        "data": [
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1800,
+            "value": [1639,38.37,22886919,"Germany",1800]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1967,
+            "value": [18311,71.15404398,77106876,"Germany",1967]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1999,
+            "value": [35931,77.9,81965830,"Germany",1999]
+          }
+        ],
+        "links": [{"source":0,"target":1},{"source":32,"target":33},{"source":64,"target":65}],
+        "edgeSymbol": ["none","arrow"],
+        "edgeSymbolSize": 5,
+        "legendHoverLink": false,
+        "lineStyle": {"color":"#333"},
+        "itemStyle": {"borderWidth":1,"borderColor":"#333"},
+        "label": {"color":"#333","position":"right"},
+        "symbolSize": 10,
+        "animationDelay": "function (idx) {\n                return idx * 100;\n            }"
+      },
+      {
+        "name": "Australia",
+        "type": "graph",
+        "coordinateSystem": "cartesian2d",
+        "data": [
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1800,
+            "value": [815,34.05,351014,"Australia",1800]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1967,
+            "value": [17570,71.2786,11975795,"Australia",1967]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1999,
+            "value": [34346,79.3,18906936,"Australia",1999]
+          }
+        ],
+        "links": [{"source":0,"target":1},{"source":32,"target":33},{"source":64,"target":65}],
+        "edgeSymbol": ["none","arrow"],
+        "edgeSymbolSize": 5,
+        "legendHoverLink": false,
+        "lineStyle": {"color":"#333"},
+        "itemStyle": {"borderWidth":1,"borderColor":"#333"},
+        "label": {"color":"#333","position":"right"},
+        "symbolSize": 10,
+        "animationDelay": "function (idx) {\n                return idx * 100;\n            }"
+      },
+      {
+        "name": "Canada",
+        "type": "graph",
+        "coordinateSystem": "cartesian2d",
+        "data": [
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1800,
+            "value": [1314,39,645526,"Canada",1800]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1967,
+            "value": [18240,72.083,20389445,"Canada",1967]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1999,
+            "value": [35810,79.1,30420216,"Canada",1999]
+          }
+        ],
+        "links": [{"source":0,"target":1},{"source":32,"target":33},{"source":64,"target":65}],
+        "edgeSymbol": ["none","arrow"],
+        "edgeSymbolSize": 5,
+        "legendHoverLink": false,
+        "lineStyle": {"color":"#333"},
+        "itemStyle": {"borderWidth":1,"borderColor":"#333"},
+        "label": {"color":"#333","position":"right"},
+        "symbolSize": 10,
+        "animationDelay": "function (idx) {\n                return idx * 100;\n            }"
+      },
+      {
+        "name": "Cuba",
+        "type": "graph",
+        "coordinateSystem": "cartesian2d",
+        "data": [
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1800,
+            "value": [864,32.2,345043,"Cuba",1800]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1967,
+            "value": [10372,70.69866,8263547,"Cuba",1967]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1999,
+            "value": [10674,75.6,11080506,"Cuba",1999]
+          }
+        ],
+        "links": [{"source":0,"target":1},{"source":32,"target":33},{"source":64,"target":65}],
+        "edgeSymbol": ["none","arrow"],
+        "edgeSymbolSize": 5,
+        "legendHoverLink": false,
+        "lineStyle": {"color":"#333"},
+        "itemStyle": {"borderWidth":1,"borderColor":"#333"},
+        "label": {"color":"#333","position":"right"},
+        "symbolSize": 10,
+        "animationDelay": "function (idx) {\n                return idx * 100;\n            }"
+      },
+      {
+        "name": "Finland",
+        "type": "graph",
+        "coordinateSystem": "cartesian2d",
+        "data": [
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1800,
+            "value": [1244,36.5731262,977662,"Finland",1800]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1967,
+            "value": [13477,69.6796,4584264,"Finland",1967]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1999,
+            "value": [32743,77.5,5164780,"Finland",1999]
+          }
+        ],
+        "links": [{"source":0,"target":1},{"source":32,"target":33},{"source":64,"target":65}],
+        "edgeSymbol": ["none","arrow"],
+        "edgeSymbolSize": 5,
+        "legendHoverLink": false,
+        "lineStyle": {"color":"#333"},
+        "itemStyle": {"borderWidth":1,"borderColor":"#333"},
+        "label": {"color":"#333","position":"right"},
+        "symbolSize": 10,
+        "animationDelay": "function (idx) {\n                return idx * 100;\n            }"
+      },
+      {
+        "name": "Iceland",
+        "type": "graph",
+        "coordinateSystem": "cartesian2d",
+        "data": [
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1800,
+            "value": [926,42.84559912,61428,"Iceland",1800]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1967,
+            "value": [14734,73.7206,197356,"Iceland",1967]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1999,
+            "value": [32521,79.7,278376,"Iceland",1999]
+          }
+        ],
+        "links": [{"source":0,"target":1},{"source":32,"target":33},{"source":64,"target":65}],
+        "edgeSymbol": ["none","arrow"],
+        "edgeSymbolSize": 5,
+        "legendHoverLink": false,
+        "lineStyle": {"color":"#333"},
+        "itemStyle": {"borderWidth":1,"borderColor":"#333"},
+        "label": {"color":"#333","position":"right"},
+        "symbolSize": 10,
+        "animationDelay": "function (idx) {\n                return idx * 100;\n            }"
+      },
+      {
+        "name": "Japan",
+        "type": "graph",
+        "coordinateSystem": "cartesian2d",
+        "data": [
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1800,
+            "value": [1050,36.4,30294378,"Japan",1800]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1967,
+            "value": [8454,71.5522,99711082,"Japan",1967]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1999,
+            "value": [31535,80.7,125481050,"Japan",1999]
+          }
+        ],
+        "links": [{"source":0,"target":1},{"source":32,"target":33},{"source":64,"target":65}],
+        "edgeSymbol": ["none","arrow"],
+        "edgeSymbolSize": 5,
+        "legendHoverLink": false,
+        "lineStyle": {"color":"#333"},
+        "itemStyle": {"borderWidth":1,"borderColor":"#333"},
+        "label": {"color":"#333","position":"right"},
+        "symbolSize": 10,
+        "animationDelay": "function (idx) {\n                return idx * 100;\n            }"
+      },
+      {
+        "name": "North Korea",
+        "type": "graph",
+        "coordinateSystem": "cartesian2d",
+        "data": [
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1800,
+            "value": [579,26,4345000,"North Korea",1800]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1967,
+            "value": [1646,50.62536,13221826,"North Korea",1967]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1999,
+            "value": [1377,63,22641747,"North Korea",1999]
+          }
+        ],
+        "links": [{"source":0,"target":1},{"source":32,"target":33},{"source":64,"target":65}],
+        "edgeSymbol": ["none","arrow"],
+        "edgeSymbolSize": 5,
+        "legendHoverLink": false,
+        "lineStyle": {"color":"#333"},
+        "itemStyle": {"borderWidth":1,"borderColor":"#333"},
+        "label": {"color":"#333","position":"right"},
+        "symbolSize": 10,
+        "animationDelay": "function (idx) {\n                return idx * 100;\n            }"
+      },
+      {
+        "name": "South Korea",
+        "type": "graph",
+        "coordinateSystem": "cartesian2d",
+        "data": [
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1800,
+            "value": [576,25.8,9395000,"South Korea",1800]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1967,
+            "value": [1621,59.09526,29606633,"South Korea",1967]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1999,
+            "value": [19233,75.8,45908307,"South Korea",1999]
+          }
+        ],
+        "links": [{"source":0,"target":1},{"source":32,"target":33},{"source":64,"target":65}],
+        "edgeSymbol": ["none","arrow"],
+        "edgeSymbolSize": 5,
+        "legendHoverLink": false,
+        "lineStyle": {"color":"#333"},
+        "itemStyle": {"borderWidth":1,"borderColor":"#333"},
+        "label": {"color":"#333","position":"right"},
+        "symbolSize": 10,
+        "animationDelay": "function (idx) {\n                return idx * 100;\n            }"
+      },
+      {
+        "name": "New Zealand",
+        "type": "graph",
+        "coordinateSystem": "cartesian2d",
+        "data": [
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1800,
+            "value": [658,34.05,100000,"New Zealand",1800]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1967,
+            "value": [18309,71.6798,2704205,"New Zealand",1967]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1999,
+            "value": [27371,78.1,3817489,"New Zealand",1999]
+          }
+        ],
+        "links": [{"source":0,"target":1},{"source":32,"target":33},{"source":64,"target":65}],
+        "edgeSymbol": ["none","arrow"],
+        "edgeSymbolSize": 5,
+        "legendHoverLink": false,
+        "lineStyle": {"color":"#333"},
+        "itemStyle": {"borderWidth":1,"borderColor":"#333"},
+        "label": {"color":"#333","position":"right"},
+        "symbolSize": 10,
+        "animationDelay": "function (idx) {\n                return idx * 100;\n            }"
+      },
+      {
+        "name": "Norway",
+        "type": "graph",
+        "coordinateSystem": "cartesian2d",
+        "data": [
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1800,
+            "value": [1278,37.91620899,868570,"Norway",1800]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1967,
+            "value": [20686,73.9108,3784579,"Norway",1967]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1999,
+            "value": [57246,78.5,4466468,"Norway",1999]
+          }
+        ],
+        "links": [{"source":0,"target":1},{"source":32,"target":33},{"source":64,"target":65}],
+        "edgeSymbol": ["none","arrow"],
+        "edgeSymbolSize": 5,
+        "legendHoverLink": false,
+        "lineStyle": {"color":"#333"},
+        "itemStyle": {"borderWidth":1,"borderColor":"#333"},
+        "label": {"color":"#333","position":"right"},
+        "symbolSize": 10,
+        "animationDelay": "function (idx) {\n                return idx * 100;\n            }"
+      },
+      {
+        "name": "Poland",
+        "type": "graph",
+        "coordinateSystem": "cartesian2d",
+        "data": [
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1800,
+            "value": [1213,35.9,9508747,"Poland",1800]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1967,
+            "value": [8044,69.7322,32085011,"Poland",1967]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1999,
+            "value": [13824,73.2,38515359,"Poland",1999]
+          }
+        ],
+        "links": [{"source":0,"target":1},{"source":32,"target":33},{"source":64,"target":65}],
+        "edgeSymbol": ["none","arrow"],
+        "edgeSymbolSize": 5,
+        "legendHoverLink": false,
+        "lineStyle": {"color":"#333"},
+        "itemStyle": {"borderWidth":1,"borderColor":"#333"},
+        "label": {"color":"#333","position":"right"},
+        "symbolSize": 10,
+        "animationDelay": "function (idx) {\n                return idx * 100;\n            }"
+      },
+      {
+        "name": "Turkey",
+        "type": "graph",
+        "coordinateSystem": "cartesian2d",
+        "data": [
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1800,
+            "value": [1221,35,9773456,"Turkey",1800]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1967,
+            "value": [6020,54.08346,32448404,"Turkey",1967]
+          },
+          {
+            "label": {"show":false,"position":"top"},
+            "emphasis": {"label":{"show":true}},
+            "name": 1999,
+            "value": [12381,70.3,62295617,"Turkey",1999]
+          }
+        ],
+        "links": [{"source":0,"target":1},{"source":32,"target":33},{"source":64,"target":65}],
+        "edgeSymbol": ["none","arrow"],
+        "edgeSymbolSize": 5,
+        "legendHoverLink": false,
+        "lineStyle": {"color":"#333"},
+        "itemStyle": {"borderWidth":1,"borderColor":"#333"},
+        "label": {"color":"#333","position":"right"},
+        "symbolSize": 10,
+        "animationDelay": "function (idx) {\n                return idx * 100;\n            }"
+      }
+    ]
+  }
+}

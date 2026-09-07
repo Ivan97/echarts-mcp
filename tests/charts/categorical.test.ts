@@ -8,7 +8,6 @@ beforeAll(() => registerCategoricalTemplates());
 const TYPES = [
   ChartType.Pie,
   ChartType.Radar,
-  ChartType.Gauge,
   ChartType.Funnel,
   ChartType.Treemap,
   ChartType.Sunburst,

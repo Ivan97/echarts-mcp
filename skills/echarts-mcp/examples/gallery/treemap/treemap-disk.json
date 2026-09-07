@@ -1,0 +1,596 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "treemap-disk",
+  "category": "treemap",
+  "title": "Disk Usage",
+  "titleCN": "磁盘占用",
+  "difficulty": 10,
+  "tags": ["含函数"],
+  "points": 9,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/treemap-disk.ts",
+  "trimmed": {
+    "stride": 8,
+    "floor": 60,
+    "originalPoints": 71,
+    "keptPoints": 9,
+    "originalBytes": 476742,
+    "exceedsDefaultBudget": false,
+    "note": "原始数据 71 个点、466KB，按步长 8 等距抽稀到 9 个点后收录。完整数据见 source。"
+  },
+  "functionFields": ["tooltip.formatter"],
+  "functionNote": "这些字段是函数字符串：svg/png 输出会被剥离，只有 output=html 由浏览器执行。",
+  "option": {
+    "title": {"text":"Disk Usage","left":"center"},
+    "tooltip": {
+      "formatter": "function (info) {\n                var value = info.value;\n                var treePathInfo = info.treePathInfo;\n                var treePath = [];\n                for (var i = 1; i < treePathInfo.length; i++) {\n                    treePath.push(treePathInfo[i].name);\n                }\n                return [\n                    '<div class=\"tooltip-title\">' +\n                        formatUtil.encodeHTML(treePath.join('/')) +\n                        '</div>',\n                    'Disk Usage: ' + formatUtil.addCommas(value) + ' KB'\n                ].join('');\n            }"
+    },
+    "series": [
+      {
+        "name": "Disk Usage",
+        "type": "treemap",
+        "visibleMin": 300,
+        "label": {"show":true,"formatter":"{b}"},
+        "itemStyle": {"borderColor":"#fff"},
+        "levels": [
+          {"itemStyle":{"borderWidth":0,"gapWidth":5}},
+          {"itemStyle":{"gapWidth":1}},
+          {"colorSaturation":[0.35,0.5],"itemStyle":{"gapWidth":1,"borderColorSaturation":0.6}}
+        ],
+        "data": [
+          {"value":40,"name":"Accessibility","path":"Accessibility"},
+          {
+            "value": 0,
+            "name": "Colors",
+            "path": "Colors",
+            "children": [
+              {
+                "value": 0,
+                "name": "Apple.clr",
+                "path": "Colors/Apple.clr",
+                "children": [
+                  {"value":0,"name":"ar.lproj","path":"Colors/Apple.clr/ar.lproj"},
+                  {"value":0,"name":"ca.lproj","path":"Colors/Apple.clr/ca.lproj"},
+                  {"value":0,"name":"cs.lproj","path":"Colors/Apple.clr/cs.lproj"},
+                  {"value":0,"name":"da.lproj","path":"Colors/Apple.clr/da.lproj"},
+                  {"value":0,"name":"Dutch.lproj","path":"Colors/Apple.clr/Dutch.lproj"},
+                  {"value":0,"name":"el.lproj","path":"Colors/Apple.clr/el.lproj"},
+                  {"value":0,"name":"English.lproj","path":"Colors/Apple.clr/English.lproj"},
+                  {"value":0,"name":"fi.lproj","path":"Colors/Apple.clr/fi.lproj"},
+                  {"value":0,"name":"French.lproj","path":"Colors/Apple.clr/French.lproj"},
+                  {"value":0,"name":"German.lproj","path":"Colors/Apple.clr/German.lproj"},
+                  {"value":0,"name":"he.lproj","path":"Colors/Apple.clr/he.lproj"},
+                  {"value":0,"name":"hr.lproj","path":"Colors/Apple.clr/hr.lproj"},
+                  {"value":0,"name":"hu.lproj","path":"Colors/Apple.clr/hu.lproj"},
+                  {"value":0,"name":"id.lproj","path":"Colors/Apple.clr/id.lproj"},
+                  {"value":0,"name":"Italian.lproj","path":"Colors/Apple.clr/Italian.lproj"},
+                  {"value":0,"name":"Japanese.lproj","path":"Colors/Apple.clr/Japanese.lproj"},
+                  {"value":0,"name":"ko.lproj","path":"Colors/Apple.clr/ko.lproj"},
+                  {"value":0,"name":"ms.lproj","path":"Colors/Apple.clr/ms.lproj"},
+                  {"value":0,"name":"no.lproj","path":"Colors/Apple.clr/no.lproj"},
+                  {"value":0,"name":"pl.lproj","path":"Colors/Apple.clr/pl.lproj"},
+                  {"value":0,"name":"pt.lproj","path":"Colors/Apple.clr/pt.lproj"},
+                  {"value":0,"name":"pt_PT.lproj","path":"Colors/Apple.clr/pt_PT.lproj"},
+                  {"value":0,"name":"ro.lproj","path":"Colors/Apple.clr/ro.lproj"},
+                  {"value":0,"name":"ru.lproj","path":"Colors/Apple.clr/ru.lproj"},
+                  {"value":0,"name":"sk.lproj","path":"Colors/Apple.clr/sk.lproj"},
+                  {"value":0,"name":"Spanish.lproj","path":"Colors/Apple.clr/Spanish.lproj"},
+                  {"value":0,"name":"sv.lproj","path":"Colors/Apple.clr/sv.lproj"},
+                  {"value":0,"name":"th.lproj","path":"Colors/Apple.clr/th.lproj"},
+                  {"value":0,"name":"tr.lproj","path":"Colors/Apple.clr/tr.lproj"},
+                  {"value":0,"name":"uk.lproj","path":"Colors/Apple.clr/uk.lproj"},
+                  {"value":0,"name":"vi.lproj","path":"Colors/Apple.clr/vi.lproj"},
+                  {"value":0,"name":"zh_CN.lproj","path":"Colors/Apple.clr/zh_CN.lproj"},
+                  {"value":0,"name":"zh_TW.lproj","path":"Colors/Apple.clr/zh_TW.lproj"}
+                ]
+              },
+              {
+                "value": 0,
+                "name": "Crayons.clr",
+                "path": "Colors/Crayons.clr",
+                "children": [
+                  {"value":0,"name":"ar.lproj","path":"Colors/Crayons.clr/ar.lproj"},
+                  {"value":0,"name":"ca.lproj","path":"Colors/Crayons.clr/ca.lproj"},
+                  {"value":0,"name":"cs.lproj","path":"Colors/Crayons.clr/cs.lproj"},
+                  {"value":0,"name":"da.lproj","path":"Colors/Crayons.clr/da.lproj"},
+                  {"value":0,"name":"Dutch.lproj","path":"Colors/Crayons.clr/Dutch.lproj"},
+                  {"value":0,"name":"el.lproj","path":"Colors/Crayons.clr/el.lproj"},
+                  {"value":0,"name":"English.lproj","path":"Colors/Crayons.clr/English.lproj"},
+                  {"value":0,"name":"fi.lproj","path":"Colors/Crayons.clr/fi.lproj"},
+                  {"value":0,"name":"French.lproj","path":"Colors/Crayons.clr/French.lproj"},
+                  {"value":0,"name":"German.lproj","path":"Colors/Crayons.clr/German.lproj"},
+                  {"value":0,"name":"he.lproj","path":"Colors/Crayons.clr/he.lproj"},
+                  {"value":0,"name":"hr.lproj","path":"Colors/Crayons.clr/hr.lproj"},
+                  {"value":0,"name":"hu.lproj","path":"Colors/Crayons.clr/hu.lproj"},
+                  {"value":0,"name":"id.lproj","path":"Colors/Crayons.clr/id.lproj"},
+                  {"value":0,"name":"Italian.lproj","path":"Colors/Crayons.clr/Italian.lproj"},
+                  {"value":0,"name":"Japanese.lproj","path":"Colors/Crayons.clr/Japanese.lproj"},
+                  {"value":0,"name":"ko.lproj","path":"Colors/Crayons.clr/ko.lproj"},
+                  {"value":0,"name":"ms.lproj","path":"Colors/Crayons.clr/ms.lproj"},
+                  {"value":0,"name":"no.lproj","path":"Colors/Crayons.clr/no.lproj"},
+                  {"value":0,"name":"pl.lproj","path":"Colors/Crayons.clr/pl.lproj"},
+                  {"value":0,"name":"pt.lproj","path":"Colors/Crayons.clr/pt.lproj"},
+                  {"value":0,"name":"pt_PT.lproj","path":"Colors/Crayons.clr/pt_PT.lproj"},
+                  {"value":0,"name":"ro.lproj","path":"Colors/Crayons.clr/ro.lproj"},
+                  {"value":0,"name":"ru.lproj","path":"Colors/Crayons.clr/ru.lproj"},
+                  {"value":0,"name":"sk.lproj","path":"Colors/Crayons.clr/sk.lproj"},
+                  {"value":0,"name":"Spanish.lproj","path":"Colors/Crayons.clr/Spanish.lproj"},
+                  {"value":0,"name":"sv.lproj","path":"Colors/Crayons.clr/sv.lproj"},
+                  {"value":0,"name":"th.lproj","path":"Colors/Crayons.clr/th.lproj"},
+                  {"value":0,"name":"tr.lproj","path":"Colors/Crayons.clr/tr.lproj"},
+                  {"value":0,"name":"uk.lproj","path":"Colors/Crayons.clr/uk.lproj"},
+                  {"value":0,"name":"vi.lproj","path":"Colors/Crayons.clr/vi.lproj"},
+                  {"value":0,"name":"zh_CN.lproj","path":"Colors/Crayons.clr/zh_CN.lproj"},
+                  {"value":0,"name":"zh_TW.lproj","path":"Colors/Crayons.clr/zh_TW.lproj"}
+                ]
+              },
+              {
+                "value": 0,
+                "name": "System.clr",
+                "path": "Colors/System.clr",
+                "children": [
+                  {"value":0,"name":"ar.lproj","path":"Colors/System.clr/ar.lproj"},
+                  {"value":0,"name":"ca.lproj","path":"Colors/System.clr/ca.lproj"},
+                  {"value":0,"name":"cs.lproj","path":"Colors/System.clr/cs.lproj"},
+                  {"value":0,"name":"da.lproj","path":"Colors/System.clr/da.lproj"},
+                  {"value":0,"name":"Dutch.lproj","path":"Colors/System.clr/Dutch.lproj"},
+                  {"value":0,"name":"el.lproj","path":"Colors/System.clr/el.lproj"},
+                  {"value":0,"name":"English.lproj","path":"Colors/System.clr/English.lproj"},
+                  {"value":0,"name":"fi.lproj","path":"Colors/System.clr/fi.lproj"},
+                  {"value":0,"name":"French.lproj","path":"Colors/System.clr/French.lproj"},
+                  {"value":0,"name":"German.lproj","path":"Colors/System.clr/German.lproj"},
+                  {"value":0,"name":"he.lproj","path":"Colors/System.clr/he.lproj"},
+                  {"value":0,"name":"hr.lproj","path":"Colors/System.clr/hr.lproj"},
+                  {"value":0,"name":"hu.lproj","path":"Colors/System.clr/hu.lproj"},
+                  {"value":0,"name":"id.lproj","path":"Colors/System.clr/id.lproj"},
+                  {"value":0,"name":"Italian.lproj","path":"Colors/System.clr/Italian.lproj"},
+                  {"value":0,"name":"Japanese.lproj","path":"Colors/System.clr/Japanese.lproj"},
+                  {"value":0,"name":"ko.lproj","path":"Colors/System.clr/ko.lproj"},
+                  {"value":0,"name":"ms.lproj","path":"Colors/System.clr/ms.lproj"},
+                  {"value":0,"name":"no.lproj","path":"Colors/System.clr/no.lproj"},
+                  {"value":0,"name":"pl.lproj","path":"Colors/System.clr/pl.lproj"},
+                  {"value":0,"name":"pt.lproj","path":"Colors/System.clr/pt.lproj"},
+                  {"value":0,"name":"pt_PT.lproj","path":"Colors/System.clr/pt_PT.lproj"},
+                  {"value":0,"name":"ro.lproj","path":"Colors/System.clr/ro.lproj"},
+                  {"value":0,"name":"ru.lproj","path":"Colors/System.clr/ru.lproj"},
+                  {"value":0,"name":"sk.lproj","path":"Colors/System.clr/sk.lproj"},
+                  {"value":0,"name":"Spanish.lproj","path":"Colors/System.clr/Spanish.lproj"},
+                  {"value":0,"name":"sv.lproj","path":"Colors/System.clr/sv.lproj"},
+                  {"value":0,"name":"th.lproj","path":"Colors/System.clr/th.lproj"},
+                  {"value":0,"name":"tr.lproj","path":"Colors/System.clr/tr.lproj"},
+                  {"value":0,"name":"uk.lproj","path":"Colors/System.clr/uk.lproj"},
+                  {"value":0,"name":"vi.lproj","path":"Colors/System.clr/vi.lproj"},
+                  {"value":0,"name":"zh_CN.lproj","path":"Colors/System.clr/zh_CN.lproj"},
+                  {"value":0,"name":"zh_TW.lproj","path":"Colors/System.clr/zh_TW.lproj"}
+                ]
+              }
+            ]
+          },
+          {
+            "value": 400116,
+            "name": "Extensions",
+            "path": "Extensions",
+            "children": [
+              {"value":0,"name":"10.5","path":"Extensions/10.5"},
+              {
+                "value": 1848,
+                "name": "AMD3800Controller.kext",
+                "path": "Extensions/AMD3800Controller.kext",
+                "children": [{"value":1848,"name":"Contents","path":"Extensions/AMD3800Controller.kext/Contents"}]
+              },
+              {
+                "value": 4756,
+                "name": "AMDRadeonX3000.kext",
+                "path": "Extensions/AMDRadeonX3000.kext",
+                "children": [{"value":4756,"name":"Contents","path":"Extensions/AMDRadeonX3000.kext/Contents"}]
+              },
+              {
+                "value": 208,
+                "name": "AppleAHCIPort.kext",
+                "path": "Extensions/AppleAHCIPort.kext",
+                "children": [{"value":208,"name":"Contents","path":"Extensions/AppleAHCIPort.kext/Contents"}]
+              },
+              {
+                "value": 88,
+                "name": "AppleFDEKeyStore.kext",
+                "path": "Extensions/AppleFDEKeyStore.kext",
+                "children": [{"value":88,"name":"Contents","path":"Extensions/AppleFDEKeyStore.kext/Contents"}]
+              },
+              {
+                "value": 488,
+                "name": "AppleHIDKeyboard.kext",
+                "path": "Extensions/AppleHIDKeyboard.kext",
+                "children": [{"value":488,"name":"Contents","path":"Extensions/AppleHIDKeyboard.kext/Contents"}]
+              },
+              {
+                "value": 52,
+                "name": "AppleIntelCPUPowerManagementClient.kext",
+                "path": "Extensions/AppleIntelCPUPowerManagementClient.kext",
+                "children": [{"value":52,"name":"Contents","path":"Extensions/AppleIntelCPUPowerManagementClient.kext/Contents"}]
+              },
+              {
+                "value": 22996,
+                "name": "AppleIntelHD4000GraphicsGLDriver.bundle",
+                "path": "Extensions/AppleIntelHD4000GraphicsGLDriver.bundle",
+                "children": [{"value":22996,"name":"Contents","path":"Extensions/AppleIntelHD4000GraphicsGLDriver.bundle/Contents"}]
+              },
+              {
+                "value": 9108,
+                "name": "AppleIntelHDGraphicsGLDriver.bundle",
+                "path": "Extensions/AppleIntelHDGraphicsGLDriver.bundle",
+                "children": [{"value":9108,"name":"Contents","path":"Extensions/AppleIntelHDGraphicsGLDriver.bundle/Contents"}]
+              },
+              {
+                "value": 144,
+                "name": "AppleIntelSNBVA.bundle",
+                "path": "Extensions/AppleIntelSNBVA.bundle",
+                "children": [{"value":144,"name":"Contents","path":"Extensions/AppleIntelSNBVA.bundle/Contents"}]
+              },
+              {
+                "value": 140,
+                "name": "AppleMCCSControl.kext",
+                "path": "Extensions/AppleMCCSControl.kext",
+                "children": [{"value":140,"name":"Contents","path":"Extensions/AppleMCCSControl.kext/Contents"}]
+              },
+              {
+                "value": 28,
+                "name": "AppleMobileDevice.kext",
+                "path": "Extensions/AppleMobileDevice.kext",
+                "children": [{"value":28,"name":"Contents","path":"Extensions/AppleMobileDevice.kext/Contents"}]
+              },
+              {
+                "value": 88,
+                "name": "AppleSmartBatteryManager.kext",
+                "path": "Extensions/AppleSmartBatteryManager.kext",
+                "children": [{"value":88,"name":"Contents","path":"Extensions/AppleSmartBatteryManager.kext/Contents"}]
+              },
+              {
+                "value": 264,
+                "name": "AppleThunderboltDPAdapters.kext",
+                "path": "Extensions/AppleThunderboltDPAdapters.kext",
+                "children": [{"value":264,"name":"Contents","path":"Extensions/AppleThunderboltDPAdapters.kext/Contents"}]
+              },
+              {
+                "value": 72,
+                "name": "AppleUpstreamUserClient.kext",
+                "path": "Extensions/AppleUpstreamUserClient.kext",
+                "children": [{"value":72,"name":"Contents","path":"Extensions/AppleUpstreamUserClient.kext/Contents"}]
+              },
+              {
+                "value": 56,
+                "name": "AppleXsanFilter.kext",
+                "path": "Extensions/AppleXsanFilter.kext",
+                "children": [{"value":56,"name":"Contents","path":"Extensions/AppleXsanFilter.kext/Contents"}]
+              },
+              {
+                "value": 388,
+                "name": "ATTOExpressSASHBA3.kext",
+                "path": "Extensions/ATTOExpressSASHBA3.kext",
+                "children": [{"value":388,"name":"Contents","path":"Extensions/ATTOExpressSASHBA3.kext/Contents"}]
+              },
+              {"value":0,"name":"ch34xsigned.kext","path":"Extensions/ch34xsigned.kext"},
+              {
+                "value": 792,
+                "name": "EAP-RSA.ppp",
+                "path": "Extensions/EAP-RSA.ppp",
+                "children": [{"value":792,"name":"Contents","path":"Extensions/EAP-RSA.ppp/Contents"}]
+              },
+              {
+                "value": 1584,
+                "name": "GeForceTeslaVADriver.bundle",
+                "path": "Extensions/GeForceTeslaVADriver.bundle",
+                "children": [{"value":1584,"name":"Contents","path":"Extensions/GeForceTeslaVADriver.bundle/Contents"}]
+              },
+              {
+                "value": 448,
+                "name": "IOAHCIFamily.kext",
+                "path": "Extensions/IOAHCIFamily.kext",
+                "children": [{"value":448,"name":"Contents","path":"Extensions/IOAHCIFamily.kext/Contents"}]
+              },
+              {
+                "value": 9656,
+                "name": "IODVDStorageFamily.kext",
+                "path": "Extensions/IODVDStorageFamily.kext",
+                "children": [{"value":9656,"name":"Contents","path":"Extensions/IODVDStorageFamily.kext/Contents"}]
+              },
+              {
+                "value": 940,
+                "name": "IOHIDFamily.kext",
+                "path": "Extensions/IOHIDFamily.kext",
+                "children": [{"value":940,"name":"Contents","path":"Extensions/IOHIDFamily.kext/Contents"}]
+              },
+              {
+                "value": 1292,
+                "name": "IOSerialFamily.kext",
+                "path": "Extensions/IOSerialFamily.kext",
+                "children": [{"value":1292,"name":"Contents","path":"Extensions/IOSerialFamily.kext/Contents"}]
+              },
+              {
+                "value": 4628,
+                "name": "IOUSBFamily.kext",
+                "path": "Extensions/IOUSBFamily.kext",
+                "children": [{"value":4628,"name":"Contents","path":"Extensions/IOUSBFamily.kext/Contents"}]
+              },
+              {
+                "value": 92,
+                "name": "msdosfs.kext",
+                "path": "Extensions/msdosfs.kext",
+                "children": [{"value":92,"name":"Contents","path":"Extensions/msdosfs.kext/Contents"}]
+              },
+              {
+                "value": 104,
+                "name": "NVSMU.kext",
+                "path": "Extensions/NVSMU.kext",
+                "children": [{"value":104,"name":"Contents","path":"Extensions/NVSMU.kext/Contents"}]
+              },
+              {
+                "value": 56,
+                "name": "Radius.ppp",
+                "path": "Extensions/Radius.ppp",
+                "children": [{"value":56,"name":"Contents","path":"Extensions/Radius.ppp/Contents"}]
+              },
+              {
+                "value": 40,
+                "name": "triggers.kext",
+                "path": "Extensions/triggers.kext",
+                "children": [{"value":40,"name":"Contents","path":"Extensions/triggers.kext/Contents"}]
+              }
+            ]
+          },
+          {
+            "value": 23668,
+            "name": "InputMethods",
+            "path": "InputMethods",
+            "children": [
+              {
+                "value": 1400,
+                "name": "50onPaletteServer.app",
+                "path": "InputMethods/50onPaletteServer.app",
+                "children": [{"value":1400,"name":"Contents","path":"InputMethods/50onPaletteServer.app/Contents"}]
+              },
+              {
+                "value": 5728,
+                "name": "CharacterPalette.app",
+                "path": "InputMethods/CharacterPalette.app",
+                "children": [{"value":5728,"name":"Contents","path":"InputMethods/CharacterPalette.app/Contents"}]
+              },
+              {
+                "value": 2476,
+                "name": "DictationIM.app",
+                "path": "InputMethods/DictationIM.app",
+                "children": [{"value":2476,"name":"Contents","path":"InputMethods/DictationIM.app/Contents"}]
+              },
+              {
+                "value": 88,
+                "name": "InkServer.app",
+                "path": "InputMethods/InkServer.app",
+                "children": [{"value":88,"name":"Contents","path":"InputMethods/InkServer.app/Contents"}]
+              },
+              {
+                "value": 736,
+                "name": "KeyboardViewer.app",
+                "path": "InputMethods/KeyboardViewer.app",
+                "children": [{"value":736,"name":"Contents","path":"InputMethods/KeyboardViewer.app/Contents"}]
+              },
+              {
+                "value": 1144,
+                "name": "KoreanIM.app",
+                "path": "InputMethods/KoreanIM.app",
+                "children": [{"value":1144,"name":"Contents","path":"InputMethods/KoreanIM.app/Contents"}]
+              },
+              {
+                "value": 2484,
+                "name": "Kotoeri.app",
+                "path": "InputMethods/Kotoeri.app",
+                "children": [{"value":2484,"name":"Contents","path":"InputMethods/Kotoeri.app/Contents"}]
+              },
+              {
+                "value": 40,
+                "name": "PluginIM.app",
+                "path": "InputMethods/PluginIM.app",
+                "children": [{"value":40,"name":"Contents","path":"InputMethods/PluginIM.app/Contents"}]
+              },
+              {
+                "value": 24,
+                "name": "PressAndHold.app",
+                "path": "InputMethods/PressAndHold.app",
+                "children": [{"value":24,"name":"Contents","path":"InputMethods/PressAndHold.app/Contents"}]
+              },
+              {
+                "value": 64,
+                "name": "SCIM.app",
+                "path": "InputMethods/SCIM.app",
+                "children": [{"value":64,"name":"Contents","path":"InputMethods/SCIM.app/Contents"}]
+              },
+              {
+                "value": 6916,
+                "name": "Switch Control.app",
+                "path": "InputMethods/Switch Control.app",
+                "children": [{"value":6916,"name":"Contents","path":"InputMethods/Switch Control.app/Contents"}]
+              },
+              {
+                "value": 104,
+                "name": "TamilIM.app",
+                "path": "InputMethods/TamilIM.app",
+                "children": [{"value":104,"name":"Contents","path":"InputMethods/TamilIM.app/Contents"}]
+              },
+              {
+                "value": 92,
+                "name": "TCIM.app",
+                "path": "InputMethods/TCIM.app",
+                "children": [{"value":92,"name":"Contents","path":"InputMethods/TCIM.app/Contents"}]
+              },
+              {
+                "value": 1820,
+                "name": "TrackpadIM.app",
+                "path": "InputMethods/TrackpadIM.app",
+                "children": [{"value":1820,"name":"Contents","path":"InputMethods/TrackpadIM.app/Contents"}]
+              },
+              {
+                "value": 552,
+                "name": "VietnameseIM.app",
+                "path": "InputMethods/VietnameseIM.app",
+                "children": [{"value":552,"name":"Contents","path":"InputMethods/VietnameseIM.app/Contents"}]
+              }
+            ]
+          },
+          {
+            "value": 96532,
+            "name": "LinguisticData",
+            "path": "LinguisticData",
+            "children": [
+              {"value":8,"name":"da","path":"LinguisticData/da"},
+              {"value":16476,"name":"de","path":"LinguisticData/de"},
+              {
+                "value": 9788,
+                "name": "en",
+                "path": "LinguisticData/en",
+                "children": [
+                  {"value":36,"name":"GB","path":"LinguisticData/en/GB"},
+                  {"value":28,"name":"US","path":"LinguisticData/en/US"}
+                ]
+              },
+              {"value":10276,"name":"es","path":"LinguisticData/es"},
+              {"value":0,"name":"fi","path":"LinguisticData/fi"},
+              {"value":12468,"name":"fr","path":"LinguisticData/fr"},
+              {"value":7336,"name":"it","path":"LinguisticData/it"},
+              {"value":192,"name":"ko","path":"LinguisticData/ko"},
+              {"value":48,"name":"nl","path":"LinguisticData/nl"},
+              {"value":112,"name":"no","path":"LinguisticData/no"},
+              {"value":4496,"name":"pt","path":"LinguisticData/pt"},
+              {"value":24,"name":"ru","path":"LinguisticData/ru"},
+              {"value":20,"name":"sv","path":"LinguisticData/sv"},
+              {"value":0,"name":"tr","path":"LinguisticData/tr"},
+              {
+                "value": 35288,
+                "name": "zh",
+                "path": "LinguisticData/zh",
+                "children": [
+                  {"value":2604,"name":"Hans","path":"LinguisticData/zh/Hans"},
+                  {"value":2868,"name":"Hant","path":"LinguisticData/zh/Hant"}
+                ]
+              }
+            ]
+          },
+          {"value":8,"name":"PasswordServer Filters","path":"PasswordServer Filters"},
+          {
+            "value": 28,
+            "name": "QuickTimeJava",
+            "path": "QuickTimeJava",
+            "children": [
+              {
+                "value": 28,
+                "name": "QuickTimeJava.bundle",
+                "path": "QuickTimeJava/QuickTimeJava.bundle",
+                "children": [{"value":28,"name":"Contents","path":"QuickTimeJava/QuickTimeJava.bundle/Contents"}]
+              }
+            ]
+          },
+          {
+            "value": 312,
+            "name": "Security",
+            "path": "Security",
+            "children": [
+              {
+                "value": 100,
+                "name": "dotmac_tp.bundle",
+                "path": "Security/dotmac_tp.bundle",
+                "children": [{"value":100,"name":"Contents","path":"Security/dotmac_tp.bundle/Contents"}]
+              },
+              {
+                "value": 72,
+                "name": "ldapdl.bundle",
+                "path": "Security/ldapdl.bundle",
+                "children": [{"value":72,"name":"Contents","path":"Security/ldapdl.bundle/Contents"}]
+              },
+              {
+                "value": 132,
+                "name": "tokend",
+                "path": "Security/tokend",
+                "children": [{"value":132,"name":"uiplugins","path":"Security/tokend/uiplugins"}]
+              }
+            ]
+          },
+          {
+            "value": 3156,
+            "name": "SystemConfiguration",
+            "path": "SystemConfiguration",
+            "children": [
+              {
+                "value": 8,
+                "name": "ApplicationFirewallStartup.bundle",
+                "path": "SystemConfiguration/ApplicationFirewallStartup.bundle",
+                "children": [{"value":8,"name":"Contents","path":"SystemConfiguration/ApplicationFirewallStartup.bundle/Contents"}]
+              },
+              {
+                "value": 116,
+                "name": "EAPOLController.bundle",
+                "path": "SystemConfiguration/EAPOLController.bundle",
+                "children": [{"value":116,"name":"Contents","path":"SystemConfiguration/EAPOLController.bundle/Contents"}]
+              },
+              {
+                "value": 0,
+                "name": "InterfaceNamer.bundle",
+                "path": "SystemConfiguration/InterfaceNamer.bundle",
+                "children": [{"value":0,"name":"Contents","path":"SystemConfiguration/InterfaceNamer.bundle/Contents"}]
+              },
+              {
+                "value": 132,
+                "name": "IPConfiguration.bundle",
+                "path": "SystemConfiguration/IPConfiguration.bundle",
+                "children": [{"value":132,"name":"Contents","path":"SystemConfiguration/IPConfiguration.bundle/Contents"}]
+              },
+              {
+                "value": 0,
+                "name": "IPMonitor.bundle",
+                "path": "SystemConfiguration/IPMonitor.bundle",
+                "children": [{"value":0,"name":"Contents","path":"SystemConfiguration/IPMonitor.bundle/Contents"}]
+              },
+              {
+                "value": 0,
+                "name": "KernelEventMonitor.bundle",
+                "path": "SystemConfiguration/KernelEventMonitor.bundle",
+                "children": [{"value":0,"name":"Contents","path":"SystemConfiguration/KernelEventMonitor.bundle/Contents"}]
+              },
+              {
+                "value": 0,
+                "name": "LinkConfiguration.bundle",
+                "path": "SystemConfiguration/LinkConfiguration.bundle",
+                "children": [{"value":0,"name":"Contents","path":"SystemConfiguration/LinkConfiguration.bundle/Contents"}]
+              },
+              {
+                "value": 20,
+                "name": "Logger.bundle",
+                "path": "SystemConfiguration/Logger.bundle",
+                "children": [{"value":20,"name":"Contents","path":"SystemConfiguration/Logger.bundle/Contents"}]
+              },
+              {
+                "value": 2804,
+                "name": "PPPController.bundle",
+                "path": "SystemConfiguration/PPPController.bundle",
+                "children": [{"value":2804,"name":"Contents","path":"SystemConfiguration/PPPController.bundle/Contents"}]
+              },
+              {
+                "value": 0,
+                "name": "PreferencesMonitor.bundle",
+                "path": "SystemConfiguration/PreferencesMonitor.bundle",
+                "children": [{"value":0,"name":"Contents","path":"SystemConfiguration/PreferencesMonitor.bundle/Contents"}]
+              },
+              {
+                "value": 76,
+                "name": "PrinterNotifications.bundle",
+                "path": "SystemConfiguration/PrinterNotifications.bundle",
+                "children": [{"value":76,"name":"Contents","path":"SystemConfiguration/PrinterNotifications.bundle/Contents"}]
+              },
+              {
+                "value": 0,
+                "name": "SCNetworkReachability.bundle",
+                "path": "SystemConfiguration/SCNetworkReachability.bundle",
+                "children": [{"value":0,"name":"Contents","path":"SystemConfiguration/SCNetworkReachability.bundle/Contents"}]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

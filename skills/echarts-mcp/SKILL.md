@@ -1,6 +1,6 @@
 ---
 name: echarts-mcp
-description: "Generate charts with Apache ECharts through the echarts-mcp server. Use when the user asks to chart, plot, graph or visualize data, or mentions 画图/图表/柱状图/折线图/饼图/散点图/雷达图/热力图/桑基图/漏斗图/仪表盘/旭日图/树图/箱线图/K线图, or names generate_chart, render_option or list_chart_types. Covers chart type selection, the three data shapes, variants via optionOverrides, output and delivery choice, and recovering from silently empty charts."
+description: "Generate charts with Apache ECharts through the echarts-mcp server. Use when the user asks to chart, plot, graph or visualize data, or mentions 画图/图表/柱状图/折线图/饼图/散点图/雷达图/热力图/桑基图/漏斗图/旭日图/树图/箱线图/K线图/日历图/矩阵图, or names generate_chart, render_option or list_chart_types. Covers chart type selection, the three data shapes, variants via optionOverrides, output and delivery choice, and recovering from silently empty charts."
 ---
 
 # Charting with echarts-mcp
@@ -29,18 +29,35 @@ Match what the user is asking, not what the numbers look like.
 | How does one subject score across several axes? | `radar` |
 | Which cell is hot in a two-dimension grid? | `heatmap` |
 | How is a whole broken into nested parts? | `treemap` for area, `sunburst` for rings |
-| How far along is one metric? | `gauge` |
 | How is this distribution spread? | `boxplot` |
 | How did this price move? | `candlestick` |
 | How are these entities connected? | `graph` |
 | What is the hierarchy? | `tree` |
 | How do many samples compare across many measures? | `parallel` |
-| How do several series' volumes shift over time? | `themeRiver` |
-| Same as bar, drawn with repeated symbols | `pictorialBar` |
+| Which days were busy, over a year? | `calendar` |
+| Which cell of a cross-tab is large, read value by value? | `matrix` — `heatmap` when you want the colour pattern instead |
 
 `map`, `geo`, `lines` and 3D types are **not supported**. If the user wants a map, say so; do not substitute `scatter`.
 
+`gauge`, `pictorialBar` and `themeRiver` were **deliberately dropped**: the first two are skeuomorphic or infographic decoration (dashboards, clocks, bars made of repeated icons) and the third cannot be read to an exact value. For a single metric against a target, give the number or a bar; for several series shifting over time, use a stacked area chart.
+
 The table above picks a type. **When the choice is not obvious, or you want to know when a type is the wrong call, read `references/choosing-and-options.md`.** It covers, per type, what it is good for, what it is not, and the misuse that shows up most often — a pie chart with nine slices, a bar chart whose axis does not start at zero, a funnel used for a branching flow.
+
+## The official gallery: drill down, never bulk-load
+
+The Apache ECharts gallery has 227 examples in our 17 types. **200 are bundled here**, each evaluated into a plain option and verified to render in both light and dark. The other 27 cannot be drawn by this server — they need `geo`/`map`, a `custom` series, a third-party data transform, or a browser `Image`; `references/gallery-support.md` names every one with its reason. They are the fallback for "I need something the templates do not cover".
+
+**Work down the funnel — one file per step. Never read a whole directory.**
+
+| Step | Read | Size |
+|---|---|---|
+| 1. Which type fits the question? | `references/gallery.md` — data shape, question answered and typical topics for all 17 types | ~9 KB |
+| 2. Which example within that type? | `references/gallery/<type>.md` — the examples with feature tags (stacked, polar, dataZoom, time axis…) | 1–6 KB |
+| 3. Get the option | `examples/gallery/<type>/<id>.json` → its `option` field, straight into `render_option` | ~4 KB median |
+
+Skip step 1 when the type is already obvious. Never read more than one file at step 3 — the catalogue is 2.4 MB in total and you need exactly one option out of it.
+
+**Prefer the curated examples when a template can do the job.** Skim `references/examples.md` (3 KB) and pull the one payload you want out of `examples/examples.json` by `id` — do not read the whole 23 KB file for one payload. Those are `generate_chart` payloads: data and styling stay separate, the theme applies, spacing is handled. Gallery entries are raw upstream options — broader coverage, but you own every field, and any colour they hardcode will not follow `theme`.
 
 ## Three data shapes
 
@@ -50,7 +67,7 @@ The table above picks a type. **When the choice is not obvious, or you want to k
 { "dimensions": ["Month", "Sales", "Profit"], "source": [["Jan", 120, 30], ["Feb", 200, 60]] }
 ```
 
-Rows may be objects keyed by `dimensions` instead of arrays. Some types need an exact dimension count and will tell you the expected number if you get it wrong: `pie`/`funnel`/`gauge`/`treemap`/`sunburst` need 2, `heatmap`/`themeRiver` need 3, `candlestick` needs 5, `boxplot` needs 6 (a precomputed five-number summary, not raw observations).
+Rows may be objects keyed by `dimensions` instead of arrays. Some types need an exact dimension count and will tell you the expected number if you get it wrong: `pie`/`funnel`/`treemap`/`sunburst`/`calendar` need 2, `heatmap`/`matrix` need 3, `candlestick` needs 5, `boxplot` needs 6 (a precomputed five-number summary, not raw observations).
 
 **Node-link** (`sankey`, `graph`) — `source` and `target` must name entries in `nodes`:
 
@@ -91,6 +108,8 @@ Common fragments:
 | Percent labels on pie | `{"series":[{"label":{"show":true,"formatter":"{b}: {d}%"}}]}` |
 | Mean line and extremes | `{"series":[{"markLine":{"data":[{"type":"average"}]},"markPoint":{"data":[{"type":"max"}]}}]}` |
 
+**`calendar` dates must be `YYYY-MM-DD`.** ECharts does not reject a date it cannot parse — it drops the point, so a wrong format yields a blank calendar with no warning. The template checks this and errors instead.
+
 **Two fragments carry a placeholder you must replace.** The horizontal (`横向`) and polar (`极坐标`) variants for `bar` ship with `"data": ["替换为实际类目"]`. Paste one verbatim and the axis renders that literal text with none of the real categories — the chart looks plausible, has a normal file size, and triggers no warning. Substitute the actual categories first.
 
 ## Output and delivery
@@ -103,6 +122,16 @@ Leave both unset unless you have a reason; the defaults follow the transport and
 | Show it inline in a chat window | `"delivery": "inline"` — forces PNG, since most clients do not render SVG |
 | Hand the config to a frontend | `"output": "option"` |
 | Interactive page with tooltips and animation | `"output": "html"` — about 1.1 MB, returned as a file or link, never inline |
+
+## Light and dark
+
+`"theme": "default"` (light, the default) or `"theme": "dark"`. Both accept the same payload; the theme sets palette, background, text, axis and gridline colours. `"vintage"` also exists.
+
+Set `dark` when the chart lands somewhere dark — a dark-mode page, a slide deck on a dark background — or when the user asks. Otherwise leave it alone.
+
+**The theme is merged *underneath* your option, so anything you set wins.** That is the intended precedence, but it has a consequence worth knowing: raw gallery options frequently hardcode `itemStyle.color`, `backgroundColor`, or `visualMap.inRange.color`, and those keep their original colours under `dark` — the chart renders, but only the chrome goes dark. If you need a chart that genuinely follows the theme, use `generate_chart` (templates hardcode no colours) or delete the offending fields from the gallery option.
+
+All 200 bundled gallery examples were verified to render in **both** themes — see `references/gallery-support.md`.
 
 ## Functions cannot be sent
 
@@ -120,12 +149,20 @@ Tool arguments are JSON. Use string templates (`{b}`, `{c}`, `{d}%`) for labels,
 | Path | What it is | When to read it |
 |---|---|---|
 | `references/choosing-and-options.md` | Per type: what it suits, what it does not, the usual misuse. Then ~35 option fragments grouped by concern, each with its visual effect | Choosing between two types, or configuring anything beyond the basics |
-| `references/chart-types.md` | All 18 types: data shape, runnable example, every variant fragment. Generated from source, so it cannot drift | Working with a type not covered in this file |
+| `references/chart-types.md` | All 17 types: data shape, runnable example, every variant fragment. Generated from source, so it cannot drift | Working with a type not covered in this file |
 | `references/troubleshooting.md` | Every error code and silent-failure mode, with measured behavior | A chart came back empty or wrong |
-| `examples/examples.json` | 18 verified tool payloads, copy-pasteable | You want a working starting point |
-| `examples/option-effects.json` | ~35 option fragments with their described effect, machine-readable | Programmatic use, or regenerating the options table |
+| `references/gallery.md` | Entry point to the official gallery: per-type data shape, question answered, typical topics, and where each type's examples live | Choosing a type, or looking for an example beyond the basics |
+| `references/gallery/<type>.md` | One per type: that type's selection profile plus its examples with feature tags | You know the type and want the closest example |
+| `references/gallery-support.md` | What actually rendered, light and dark, and the 24 official examples we cannot draw with the reason for each | Asked whether some official example works here |
+| `references/examples.md` | Index of the curated examples: id, purpose, type, the gotcha for each. Generated from the JSON | Picking a starting point — read this before the JSON |
+| `examples/examples.json` | The 21 curated `generate_chart` payloads themselves, copy-pasteable | You picked an id and want its full payload |
+| `examples/gallery/<type>/<id>.json` | One official example: its `option` plus tags, upstream link and any trimming note | Step 3 of the drill-down — read exactly one |
+| `examples/option-effects.json` | The 33 option fragments with their described effect. The readable version is the options table in `choosing-and-options.md` | Programmatic use, or regenerating that table |
 | `scripts/verify-examples.mjs` | Runs every example through a live server, asserts non-empty output | After changing the examples or upgrading the server |
 | `scripts/verify-option-effects.mjs` | Applies each fragment to a baseline chart, asserts it renders **and differs from the baseline** — catching fragments that silently do nothing | Same |
-| `scripts/generate-references.mjs` | Regenerates `references/chart-types.md` from source | After the server adds types or variants |
+| `scripts/generate-references.mjs` | Regenerates `references/chart-types.md` from source and `references/examples.md` from the curated JSON | After the server adds types or variants, or the examples change |
+| `scripts/build-gallery.mjs` | Re-fetches the official gallery and rebuilds `examples/gallery/` and the catalogues | Upstream added examples |
+| `scripts/verify-gallery.mjs` | Renders every gallery example in both themes and rewrites `references/gallery-support.md` | After rebuilding the gallery or upgrading the server |
+| `scripts/chart-profiles.mjs` | The per-type selection profiles that feed the catalogues | Changing the selection guidance |
 
-Both verification scripts are green as committed: 18/18 examples render, 33/33 option fragments take effect.
+All verification scripts are green as committed: 21/21 curated examples render, 33/33 option fragments take effect, and 200/200 gallery examples render in both light and dark.

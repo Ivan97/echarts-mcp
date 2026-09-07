@@ -4,8 +4,8 @@ import { getTemplate, registerTemplate, CHART_TEMPLATES } from '../../src/charts
 import { ChartError, ErrorCode } from '../../src/errors.js';
 
 describe('chart registry', () => {
-  it('ChartType 恰好有 18 个成员', () => {
-    expect(Object.keys(ChartType)).toHaveLength(18);
+  it('ChartType 恰好有 17 个成员', () => {
+    expect(Object.keys(ChartType)).toHaveLength(17);
   });
 
   it('注册后可取回模板', () => {

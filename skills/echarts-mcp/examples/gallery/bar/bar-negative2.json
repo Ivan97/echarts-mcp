@@ -1,0 +1,45 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "bar-negative2",
+  "category": "bar",
+  "title": "Bar Chart with Negative Value",
+  "titleCN": "交错正负轴标签",
+  "difficulty": 2,
+  "tags": ["堆叠","横向"],
+  "points": 10,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/bar-negative2.ts",
+  "option": {
+    "title": {"text":"Bar Chart with Negative Value"},
+    "tooltip": {"trigger":"axis","axisPointer":{"type":"shadow"}},
+    "grid": {"top":80,"bottom":30},
+    "xAxis": {"type":"value","position":"top","splitLine":{"lineStyle":{"type":"dashed"}}},
+    "yAxis": {
+      "type": "category",
+      "axisLine": {"show":false},
+      "axisLabel": {"show":false},
+      "axisTick": {"show":false},
+      "splitLine": {"show":false},
+      "data": ["ten","nine","eight","seven","six","five","four","three","two","one"]
+    },
+    "series": [
+      {
+        "name": "Cost",
+        "type": "bar",
+        "stack": "Total",
+        "label": {"show":true,"formatter":"{b}"},
+        "data": [
+          {"value":-0.07,"label":{"position":"right"}},
+          {"value":-0.09,"label":null},
+          0.2,
+          0.44,
+          {"value":-0.23,"label":null},
+          0.08,
+          {"value":-0.17,"label":null},
+          0.47,
+          {"value":-0.36,"label":null},
+          0.18
+        ]
+      }
+    ]
+  }
+}

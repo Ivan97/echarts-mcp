@@ -1,0 +1,18 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "bar-tick-align",
+  "category": "bar",
+  "title": "Axis Align with Tick",
+  "titleCN": "坐标轴刻度与标签对齐",
+  "difficulty": 0,
+  "tags": [],
+  "points": 7,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/bar-tick-align.ts",
+  "option": {
+    "tooltip": {"trigger":"axis","axisPointer":{"type":"shadow"}},
+    "grid": {"left":"3%","right":"4%","bottom":"3%","containLabel":true},
+    "xAxis": [{"type":"category","data":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],"axisTick":{"alignWithLabel":true}}],
+    "yAxis": [{"type":"value"}],
+    "series": [{"name":"Direct","type":"bar","barWidth":"60%","data":[10,52,200,334,390,330,220]}]
+  }
+}

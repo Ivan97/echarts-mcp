@@ -1,0 +1,43 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "bar-polar-stack",
+  "category": "bar",
+  "title": "Stacked Bar Chart on Polar",
+  "titleCN": "极坐标系下的堆叠柱状图",
+  "difficulty": 7,
+  "tags": ["多系列","堆叠","极坐标"],
+  "points": 12,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/bar-polar-stack.ts",
+  "option": {
+    "angleAxis": {},
+    "radiusAxis": {"type":"category","data":["Mon","Tue","Wed","Thu"],"z":10},
+    "polar": {},
+    "series": [
+      {
+        "type": "bar",
+        "data": [1,2,3,4],
+        "coordinateSystem": "polar",
+        "name": "A",
+        "stack": "a",
+        "emphasis": {"focus":"series"}
+      },
+      {
+        "type": "bar",
+        "data": [2,4,6,8],
+        "coordinateSystem": "polar",
+        "name": "B",
+        "stack": "a",
+        "emphasis": {"focus":"series"}
+      },
+      {
+        "type": "bar",
+        "data": [1,2,3,4],
+        "coordinateSystem": "polar",
+        "name": "C",
+        "stack": "a",
+        "emphasis": {"focus":"series"}
+      }
+    ],
+    "legend": {"show":true,"data":["A","B","C"]}
+  }
+}

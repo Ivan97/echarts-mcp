@@ -1,0 +1,16 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "candlestick-simple",
+  "category": "candlestick",
+  "title": "Basic Candlestick",
+  "titleCN": "基础 K 线图",
+  "difficulty": 0,
+  "tags": [],
+  "points": 4,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/candlestick-simple.ts",
+  "option": {
+    "xAxis": {"data":["2017-10-24","2017-10-25","2017-10-26","2017-10-27"]},
+    "yAxis": {},
+    "series": [{"type":"candlestick","data":[[20,34,10,38],[40,35,30,50],[31,38,33,44],[38,15,5,42]]}]
+  }
+}

@@ -25,6 +25,6 @@ describe('细分样式目录', () => {
   });
 
   it('没有变体的类型返回空数组而非抛错', () => {
-    expect(getVariants(ChartType.Gauge)).toEqual([]);
+    expect(getVariants(ChartType.Funnel)).toEqual([]);
   });
 });

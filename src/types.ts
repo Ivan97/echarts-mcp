@@ -1,4 +1,16 @@
-/** 支持的图表类型。新增类型必须同时在 charts/ 下注册模板，否则 coverage 守卫测试会失败。 */
+/**
+ * 支持的图表类型。新增类型必须同时在 charts/ 下注册模板，否则 coverage 守卫测试会失败。
+ *
+ * 刻意不收 `gauge` / `pictorialBar` / `themeRiver`：
+ * 前两个在官方图库里的形态基本都是拟物或信息图装饰（汽车表盘、时钟、重复图标堆成的柱子），
+ * themeRiver 则读不出准确数值。三者都不是数据分析里会用来汇报结论的形态，
+ * 单个指标用条形图或直接给数值更清楚，多主题随时间的构成用堆叠面积图。
+ *
+ * `calendar` 与 `matrix` 在 ECharts 里其实是**坐标系**而不是 series 类型
+ * （日历图是画在 calendar 坐标系上的 heatmap）。这里仍然把它们列为「类型」，
+ * 是因为对调用方来说「我要一张日历热力图」就是一个选型结果，
+ * 不该逼他先懂 coordinateSystem 这一层。
+ */
 export enum ChartType {
   Bar = 'bar',
   Line = 'line',
@@ -9,15 +21,14 @@ export enum ChartType {
   Boxplot = 'boxplot',
   Candlestick = 'candlestick',
   Funnel = 'funnel',
-  Gauge = 'gauge',
   Sankey = 'sankey',
   Treemap = 'treemap',
   Sunburst = 'sunburst',
   Graph = 'graph',
   Tree = 'tree',
   Parallel = 'parallel',
-  ThemeRiver = 'themeRiver',
-  PictorialBar = 'pictorialBar',
+  Calendar = 'calendar',
+  Matrix = 'matrix',
 }
 
 export enum OutputFormat {

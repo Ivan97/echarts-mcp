@@ -1,0 +1,12 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "line-in-cartesian-coordinate-system",
+  "category": "line",
+  "title": "Line Chart in Cartesian Coordinate System",
+  "titleCN": "双数值轴折线图",
+  "difficulty": 7,
+  "tags": [],
+  "points": 3,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/line-in-cartesian-coordinate-system.ts",
+  "option": {"xAxis":{},"yAxis":{},"series":[{"data":[[10,40],[50,100],[40,20]],"type":"line"}]}
+}

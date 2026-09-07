@@ -1,0 +1,24 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "parallel-simple",
+  "category": "parallel",
+  "title": "Basic Parallel",
+  "titleCN": "基础平行坐标",
+  "difficulty": 1,
+  "tags": [],
+  "points": 3,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/parallel-simple.ts",
+  "option": {
+    "parallelAxis": [
+      {"dim":0,"name":"Price"},
+      {"dim":1,"name":"Net Weight"},
+      {"dim":2,"name":"Amount"},
+      {"dim":3,"name":"Score","type":"category","data":["Excellent","Good","OK","Bad"]}
+    ],
+    "series": {
+      "type": "parallel",
+      "lineStyle": {"width":4},
+      "data": [[12.99,100,82,"Good"],[9.99,80,77,"OK"],[20,120,60,"Excellent"]]
+    }
+  }
+}

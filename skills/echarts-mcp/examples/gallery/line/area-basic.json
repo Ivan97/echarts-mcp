@@ -1,0 +1,16 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "area-basic",
+  "category": "line",
+  "title": "Basic area chart",
+  "titleCN": "基础面积图",
+  "difficulty": 1,
+  "tags": ["面积"],
+  "points": 7,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/area-basic.ts",
+  "option": {
+    "xAxis": {"type":"category","boundaryGap":false,"data":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]},
+    "yAxis": {"type":"value"},
+    "series": [{"data":[820,932,901,934,1290,1330,1320],"type":"line","areaStyle":{}}]
+  }
+}

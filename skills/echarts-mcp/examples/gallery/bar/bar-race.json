@@ -1,0 +1,36 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "bar-race",
+  "category": "bar",
+  "title": "Bar Race",
+  "titleCN": "动态排序柱状图",
+  "difficulty": 5,
+  "tags": [],
+  "points": 5,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/bar-race.ts",
+  "option": {
+    "xAxis": {"max":"dataMax"},
+    "yAxis": {
+      "type": "category",
+      "data": ["A","B","C","D","E"],
+      "inverse": true,
+      "animationDuration": 300,
+      "animationDurationUpdate": 300,
+      "max": 2
+    },
+    "series": [
+      {
+        "realtimeSort": true,
+        "name": "X",
+        "type": "bar",
+        "data": [99,214,205,255,975],
+        "label": {"show":true,"position":"right","valueAnimation":true}
+      }
+    ],
+    "legend": {"show":true},
+    "animationDuration": 0,
+    "animationDurationUpdate": 3000,
+    "animationEasing": "linear",
+    "animationEasingUpdate": "linear"
+  }
+}

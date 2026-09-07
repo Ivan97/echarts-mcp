@@ -1,0 +1,16 @@
+{
+  "$comment": "由 scripts/build-gallery.mjs 从官方示例求值生成。option 可直接作为 render_option 的参数。",
+  "id": "line-smooth",
+  "category": "line",
+  "title": "Smoothed Line Chart",
+  "titleCN": "基础平滑折线图",
+  "difficulty": 0,
+  "tags": ["平滑"],
+  "points": 7,
+  "upstream": "https://echarts.apache.org/examples/examples/ts/line-smooth.ts",
+  "option": {
+    "xAxis": {"type":"category","data":["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]},
+    "yAxis": {"type":"value"},
+    "series": [{"data":[820,932,901,934,1290,1330,1320],"type":"line","smooth":true}]
+  }
+}
